@@ -1,36 +1,43 @@
-# MuseumHop
+# ArtHop
 
-A free, unofficial planner for Museumnacht Amsterdam (Sat 7 Nov 2026): all 310 activities and 69 venues on a map,
-shared and personal routes, route ideas, reactions and a Decide board, crews with meet-up points, a timeline with
-walking times, and live sync between friends. Not affiliated with Museumnacht Amsterdam / N8.
+A free, unofficial planner for Amsterdam Art Week (Wed 18 to Sun 22 Nov 2026): the whole programme (172 entries at
+85 venues) on one map, day by day, with each day's theme and opening hours. Your plan for a day is drawn on the map:
+a colour per stop for what it is, a size for how long you stay, a bold black line for the walk. Everything MuseumHop
+does is here too: shared and personal plans, route ideas, reactions and Decide, crews with meet-up points, a timeline
+with walking times and clashes, live sync, personal links and view-only links. Not affiliated with Amsterdam Art Week.
+
+Built from MuseumHop (`~/Claude/museumhop`, weareaiforfun-hub/museumhop) in November 2026.
 
 ## Stack
-- Vite + React + TypeScript, Leaflet (PDOK tiles), lucide icons. Programme snapshot in `src/data/catalogue.json`.
-- Supabase (shared **to-one** project, tables prefixed `na_`): anonymous sign-in, Row Level Security per night,
-  Realtime for live updates and presence. Schema: `supabase/migrations/20261101180000_night_atlas.sql`.
-- Walking times between venues: `src/data/walk.json`, built once with `npm run walk-matrix` (OSRM foot profile).
+- Vite + React + TypeScript, Leaflet on PDOK tiles (grey, with a cream wash), lucide icons.
+- Supabase: the shared **to-one** project, with ArtHop's tables, functions, policies and cron jobs prefixed `ah_`
+  (MuseumHop's are `na_`; never touch those). Migrations in `supabase/migrations/`.
+- Programme: `npm run import` (`scripts/import-artweek.mjs`) reads amsterdamart.com's programme, entry and location
+  pages at about one request a second and writes `src/data/catalogue.json`: titles, dates, times, places, addresses,
+  pins, types and admission only, never descriptions or images. Hours: an entry's or venue's own listing, widened
+  to the participant terms for galleries (Thu 13–21, Fri–Sat 12–18, Sun 12–17) and project spaces (Fri–Sat 12–18,
+  Sun 12–17). Neighbourhoods and missing pins come from PDOK's address lookup. Pages are cached in `scripts/.cache`.
+- Travel times: `npm run walk-matrix` (OSRM foot, bike and car tables between venues).
+- Suggested routes: `node scripts/build-route-ideas.mjs` (hand-picked entries, times worked out to fit).
 
 ## How it holds together
-- A **night** is one friend group. You reach it only through its invite link (`#night=<token>`; the database stores
-  just a hash). Everyone signs in anonymously; membership is keyed on the Supabase user id, so upgrading to a real
-  account later keeps all data, and different groups never see each other's data.
-- Routes are stored **one row per stop** with a fractional position. A move changes one row's position, a time
-  change one row's arrival, so two people's edits both apply (no version conflicts).
-- `src/lib/sync.ts` applies every change on screen at once, saves changes in order, queues them in localStorage
-  while offline, and patches state from Realtime. Undo replays the inverse change.
-- Update permissions are per column (see the grants at the end of the migration), so nobody can promote their own
-  role or move rows between nights.
+- A group ("night" in the code and tables) is reached only through its invite link (`#night=<token>`; the database
+  stores a hash). Anonymous sign-ins happen only when someone saves a plan, tagged `app=arthop`.
+- Routes hold all five days; every stop has a `day`. `derive(data, userId, day)` gives the stops of one day.
+  `setCurrentDay()` in `src/lib/catalogue.ts` tells opening-hour checks (timeline, clashes, suggested order) which
+  day they're on.
+- Stops are one row each with a fractional position, so two people's edits both apply. `src/lib/sync.ts` applies
+  changes at once, queues them offline and patches state from Realtime; undo replays the inverse.
+- Retention: the `arthop-retention` cron job deletes every group 30 days after Art Week (23 Dec 2026), plus ArtHop
+  sign-ins left without a group.
+- Checks: `npm run check-access` runs the access rules against the real database and leaves "access-check" groups
+  behind; delete them afterwards.
 
 ## Run
-```bash
-cp .env.example .env.local   # VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY
-npm install
-npm run dev                  # http://localhost:5190
 ```
-
-## Scripts
-- `npm run check-access`: checks the access rules against the real database with three throwaway users (creates
-  nights named "access-check").
-- Example route ideas: the organiser adds the four fictional planners and their routes (`src/data/route-ideas.json`)
-  from the Ideas tab, through the `na_add_examples` database function.
-- `node scripts/live-friend.mjs <invite token>`: a friend who edits the shared route while you watch.
+npm install
+npm run dev        # http://localhost:5191
+npm run build
+```
+`.env.local` holds `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` (the public key). Deploys to GitHub Pages
+through `.github/workflows/deploy.yml` with the same two names as repository variables.

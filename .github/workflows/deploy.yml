@@ -1,4 +1,4 @@
-# Builds MuseumHop and publishes it to GitHub Pages (custom domain museumhop.arian-shafa.xyz).
+# Builds ArtHop and publishes it to GitHub Pages (custom domain arthop.arian-shafa.xyz, from public/CNAME).
 # Needs repository variables VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY (the public key, not a secret).
 name: Deploy
 
