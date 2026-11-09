@@ -2,7 +2,6 @@ import { Plus } from "lucide-react";
 import { byId, dayOf, onDay, type Item } from "../lib/catalogue";
 import type { Derived } from "../lib/night";
 import type { Data } from "../lib/sync";
-import { REACTIONS } from "./decide";
 
 const short = { must: "Must", up: "Up", skip: "Skip" } as const;
 
@@ -48,6 +47,5 @@ export function FriendsTop({ data, night, userId, day, onInvite, onPick, onDecid
       <span className={"pick-state " + r.state}>{r.state === "in" ? "All in" : r.state === "split" ? "Split" : r.state === "waiting" ? "Waiting" : "Skip"}</span>
     </li>)}</ul>
     {rows.length > 0 && <button className="btn big" onClick={onDecide}>Decide together</button>}
-    <p className="sr-only">{REACTIONS.map((r) => r.label).join(", ")}</p>
   </section>;
 }

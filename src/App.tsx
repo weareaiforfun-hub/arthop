@@ -537,7 +537,7 @@ export default function App() {
 
       {/* ---------- the side panel (desktop) / the tab's content (phone) ---------- */}
       <aside className="panel" aria-label="Programme and plan">
-        <nav className="panel-tabs" role="tablist" aria-label="Views">{(["programme", "day", "friends"] as Tab[]).map((t) => <button key={t} role="tab" aria-selected={tab === t} className={tab === t ? "on" : ""} onClick={() => { setTab(t); if (t === "friends") setFriendsView("top"); }} data-tour={"tab-" + t}>{tabLabel(t)}</button>)}</nav>
+        <nav className="panel-tabs" role="tablist" aria-label="Views">{(["programme", "day", "friends"] as Tab[]).map((t) => <button key={t} role="tab" aria-selected={tab === t} className={tab === t ? "on" : ""} onClick={() => { setTab(t); if (t === "friends") setFriendsView("top"); if (t === "day") setFit((f) => f + 1); }} data-tour={"tab-" + t}>{tabLabel(t)}</button>)}</nav>
         <button className="sheet-handle" aria-label={sheet === "full" ? "Show more map" : "Show more list"} onClick={() => setSheet(sheet === "peek" ? "half" : sheet === "half" ? "full" : "peek")}><span /></button>
         <div className="panel-body">
           {tab === "programme" ? programme : tab === "day" ? (nowMode && stops.length ? nowCard : myDay) : friends}
@@ -548,7 +548,7 @@ export default function App() {
     {/* ---------- phone tab bar ---------- */}
     <nav className="tabbar" aria-label="ArtHop">
       <button className={tab === "programme" ? "on" : ""} aria-current={tab === "programme" ? "page" : undefined} onClick={() => setTab("programme")} data-tour="tab-programme-phone"><MapIcon size={24} />Discover</button>
-      <button className={tab === "day" ? "on" : ""} aria-current={tab === "day" ? "page" : undefined} onClick={() => setTab("day")} data-tour="tab-day-phone">{day === today ? <MapPin size={24} /> : <Route size={24} />}{day === today ? "Now" : `My ${dayName}`}</button>
+      <button className={tab === "day" ? "on" : ""} aria-current={tab === "day" ? "page" : undefined} onClick={() => { setTab("day"); setFit((f) => f + 1); }} data-tour="tab-day-phone">{day === today ? <MapPin size={24} /> : <Route size={24} />}{day === today ? "Now" : `My ${dayName}`}</button>
       <button className={tab === "friends" ? "on" : ""} aria-current={tab === "friends" ? "page" : undefined} onClick={() => { setTab("friends"); setFriendsView("top"); }} data-tour="tab-friends-phone"><Users size={24} />Friends{realMembers.length > 1 && <i className="badge">{realMembers.length}</i>}</button>
     </nav>
 

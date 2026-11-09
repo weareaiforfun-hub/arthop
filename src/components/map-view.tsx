@@ -188,13 +188,14 @@ export function MapView({ visible, lines, onSelect, focus, fit, transport, me, l
       const seen = new Map<string, number>();
       const taken: { x: number; y: number; w: number; h: number }[] = [];
       const hit = (b: { x: number; y: number; w: number; h: number }) => taken.some((t) => b.x < t.x + t.w && b.x + b.w > t.x && b.y < t.y + t.h && b.y + b.h > t.y);
-      drawing.stops.forEach((s) => { const m = byMuseum.get(byId.get(s.id)?.museumId || ""); if (m?.lat == null) return; const p = map.current.project([m.lat, m.lng], zoom), r = stopRadius(s.duration); taken.push({ x: p.x - r, y: p.y - r, w: r * 2, h: r * 2 }); });
+      const dotScale = zoom >= 16 ? 1 : zoom >= 15 ? 0.8 : 0.55; // zoomed out, big dots would hide the walk between them
+      drawing.stops.forEach((s) => { const m = byMuseum.get(byId.get(s.id)?.museumId || ""); if (m?.lat == null) return; const p = map.current.project([m.lat, m.lng], zoom), r = Math.round(stopRadius(s.duration) * dotScale); taken.push({ x: p.x - r, y: p.y - r, w: r * 2, h: r * 2 }); });
       drawing.stops.forEach((s, i) => {
         const e = byId.get(s.id), m = byMuseum.get(e?.museumId || "");
         if (!e || m?.lat == null) return;
         const prior = seen.get(m.id);
         seen.set(m.id, i);
-        const r = stopRadius(s.duration), color = isOpen(m.id) || !e ? groupOf(e).color : CLOSED;
+        const r = Math.round(stopRadius(s.duration) * dotScale), color = isOpen(m.id) || !e ? groupOf(e).color : CLOSED;
         const html = `<span class="stop-dot${s.maybe ? " maybe" : ""}" style="width:${r * 2}px;height:${r * 2}px;background:${color}"></span>`;
         const marker = L.marker([m.lat, m.lng], { icon: L.divIcon({ className: "stop-pin", html, iconSize: [r * 2, r * 2], iconAnchor: [r, r] }), keyboard: true, title: `${i + 1} · ${e.title}`, zIndexOffset: 1000 + (prior != null ? 1 : 0) }).addTo(layer.current);
         marker.on("click", () => select.current(e));

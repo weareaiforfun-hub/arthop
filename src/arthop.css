@@ -430,7 +430,8 @@ button.tb-now { text-decoration: underline; text-decoration-thickness: 2px; }
   .tab-day .open-map { display: inline-flex !important; position: absolute; right: 16px; bottom: 16px; z-index: 600; border-radius: 0; min-height: 52px; padding: 0 16px; }
   .tab-friends .map-panel { display: none; }
   .phone-head { display: flex !important; justify-content: space-between; align-items: flex-start; gap: 12px; padding: max(16px, env(safe-area-inset-top)) 16px 14px; background: var(--paper); }
-  .phone-head .drawn-title { font-size: 40px; letter-spacing: -1.8px; }
+  .phone-head > div { min-width: 0; }
+  .phone-head .drawn-title { font-size: 36px; letter-spacing: -1.6px; }
   .phone-head .md-sub { margin: 6px 0 0; }
   .ph-print { width: 60px; height: 60px; flex: 0 0 auto; display: grid; place-items: center; background: #fff; border: 2px solid var(--ink); }
   .my-day .md-head .drawn-title, .my-day .md-head .md-sub { display: none; }
@@ -455,6 +456,7 @@ button.tb-now { text-decoration: underline; text-decoration-thickness: 2px; }
   .card-sheet .stop-card h2 { font-size: 26px; }
   .card-sheet .sc-actions { position: sticky; bottom: 0; background: #fff; padding: 12px 0; margin: 10px 0 0; border-top: 1px solid var(--line); }
   .sc-add { min-height: 56px; flex: 1; justify-content: center; }
+  .reaction-buttons.big button { white-space: nowrap; font-size: 14px; padding: 0 4px; gap: 4px; }
 
   .welcome { padding: 26px 20px 20px; box-shadow: none; width: 100vw; max-height: 100dvh; border: 0; }
   .welcome-backdrop { padding: 0 !important; align-items: flex-end !important; }
@@ -473,6 +475,12 @@ button.tb-now { text-decoration: underline; text-decoration-thickness: 2px; }
   .view-list { padding: 18px 16px; }
   .view-night .top { position: relative; background: var(--paper); pointer-events: auto; }
   .view-night .brand { display: block; font-size: 30px; }
+}
+@media (min-width: 761px) and (max-width: 1440px) {
+  .brand-sub { display: none; }
+  .search { flex: 1 1 240px; min-width: 150px; }
+  .top-row { gap: 8px; }
+  .chip { padding: 0 11px; }
 }
 @media (min-width: 761px) and (max-width: 1180px) {
   .brand-sub { display: none; }
