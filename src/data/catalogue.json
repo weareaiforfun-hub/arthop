@@ -1,0 +1,7599 @@
+{
+ "source": "https://amsterdamart.com/en/programme/",
+ "importedAt": "2026-11-09",
+ "days": [
+  "2026-11-18",
+  "2026-11-19",
+  "2026-11-20",
+  "2026-11-21",
+  "2026-11-22"
+ ],
+ "museums": [
+  {
+   "id": "allen-overy",
+   "name": "A&O Shearman",
+   "url": "https://amsterdamart.com/en/locations/allen-overy/",
+   "address": "Apollolaan 15, Amsterdam",
+   "kind": "corporate",
+   "area": "Apollobuurt",
+   "district": null,
+   "lat": 52.3486755,
+   "lng": 4.882338400000001,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "09:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "09:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "akinci",
+   "name": "AKINCI",
+   "url": "https://amsterdamart.com/en/locations/akinci/",
+   "address": "Lijnbaansgracht 317, 1017 WZ Amsterdam",
+   "kind": "gallery",
+   "area": "De Weteringschans",
+   "district": null,
+   "lat": 52.3601652,
+   "lng": 4.8919876,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "althuis-hofland-fine-arts",
+   "name": "Althuis Hofland Fine Arts",
+   "url": "https://amsterdamart.com/en/locations/althuis-hofland-fine-arts/",
+   "address": "Singel 283, 1012 WG Amsterdam",
+   "kind": "gallery",
+   "area": "Burgwallen-Nieuwe Zijde",
+   "district": null,
+   "lat": 52.37116,
+   "lng": 4.888659,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "amsterdam-museum-2",
+   "name": "Amsterdam Museum",
+   "url": "https://amsterdamart.com/en/locations/amsterdam-museum-2/",
+   "address": "Huis Willet-Holthuysen, Herengracht 605, 1017 CE Amsterdam",
+   "kind": "museum",
+   "area": "Grachtengordel-Zuid",
+   "district": null,
+   "lat": 52.38599139999999,
+   "lng": 4.873230299999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "andriesseeyck-galerie-2",
+   "name": "andriesse~eyck galerie",
+   "url": "https://amsterdamart.com/locations/andriesseeyck-galerie-2/",
+   "address": "Leliegracht 47, 1016 GT Amsterdam",
+   "kind": "other",
+   "area": "Grachtengordel-West",
+   "district": null,
+   "lat": 52.3755998,
+   "lng": 4.884674,
+   "pinSource": "Art Week location page",
+   "hours": {},
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "annet-gelink-gallery",
+   "name": "Annet Gelink Gallery",
+   "url": "https://amsterdamart.com/en/locations/annet-gelink-gallery/",
+   "address": "Laurierstraat 187-189, 1016 PL Amsterdam",
+   "kind": "gallery",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.3712254,
+   "lng": 4.8774766,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "arti-et-amicitiae-2",
+   "name": "Arti et Amicitiae",
+   "url": "https://amsterdamart.com/en/locations/arti-et-amicitiae-2/",
+   "address": "Rokin 112, 1012 LB Amsterdam",
+   "kind": "project-space",
+   "area": "Burgwallen-Nieuwe Zijde",
+   "district": null,
+   "lat": 52.3688926,
+   "lng": 4.891710499999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "12:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "bar-san-francisco",
+   "name": "Bar San Francisco",
+   "url": "https://amsterdamart.com/en/locations/bar-san-francisco/",
+   "address": "Zeedijk 40, 1012 AZ Amsterdam",
+   "kind": "partner",
+   "area": "Burgwallen-Oude Zijde",
+   "district": null,
+   "lat": 52.37519932,
+   "lng": 4.90097513,
+   "pinSource": "address (PDOK)",
+   "hours": {
+    "2026-11-18": [
+     "20:00",
+     "04:00"
+    ],
+    "2026-11-19": [
+     "20:00",
+     "04:00"
+    ],
+    "2026-11-20": [
+     "20:00",
+     "05:00"
+    ],
+    "2026-11-21": [
+     "20:00",
+     "05:00"
+    ],
+    "2026-11-22": [
+     "20:00",
+     "03:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "bildhalle-amsterdam",
+   "name": "Bildhalle",
+   "url": "https://amsterdamart.com/en/locations/bildhalle-amsterdam/",
+   "address": "Singel 272, 1016 AC Amsterdam",
+   "kind": "gallery",
+   "area": "Grachtengordel-West",
+   "district": null,
+   "lat": 52.37235459999999,
+   "lng": 4.888108299999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "borzo-gallery",
+   "name": "Borzo Gallery",
+   "url": "https://amsterdamart.com/en/locations/borzo-gallery/",
+   "address": "Keizersgracht 321, 1016 EE Amsterdam",
+   "kind": "gallery",
+   "area": "Grachtengordel-West",
+   "district": null,
+   "lat": 52.3697347,
+   "lng": 4.8851049,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "13:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "bradwolff-partners",
+   "name": "Bradwolff & Partners",
+   "url": "https://amsterdamart.com/en/locations/bradwolff-partners/",
+   "address": "Lijnbaansgracht 314, 1017WZ Amsterdam",
+   "kind": "gallery",
+   "area": "De Weteringschans",
+   "district": null,
+   "lat": 52.3601711,
+   "lng": 4.8918173,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "bradwolff-projects",
+   "name": "Bradwolff Projects",
+   "url": "https://amsterdamart.com/en/locations/bradwolff-projects/",
+   "address": "oetewalerstraat 73, 1093 MD Amsterdam",
+   "kind": "project-space",
+   "area": "Dapperbuurt",
+   "district": null,
+   "lat": 52.35934710000001,
+   "lng": 4.927440799999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "brandt-gallery",
+   "name": "Brandt Gallery",
+   "url": null,
+   "address": "Bethaniënstraat 39, 1012 BZ Amsterdam",
+   "kind": "other",
+   "area": "Burgwallen-Oude Zijde",
+   "district": null,
+   "lat": 52.37164154,
+   "lng": 4.89869909,
+   "pinSource": "address (PDOK)",
+   "hours": {},
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "buro-onrust",
+   "name": "Buro Onrust",
+   "url": null,
+   "address": "Planciusstraat 7, 1013 MD Amsterdam",
+   "kind": "gallery",
+   "area": "Haarlemmerbuurt",
+   "district": null,
+   "lat": 52.3875489,
+   "lng": 4.8856119,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "galerie-onrust",
+   "name": "Buro Onrust",
+   "url": "https://amsterdamart.com/en/locations/galerie-onrust/",
+   "address": "Planciusstraat 7, 1013 MD Amsterdam",
+   "kind": "gallery",
+   "area": "Haarlemmerbuurt",
+   "district": null,
+   "lat": 52.3875489,
+   "lng": 4.8856119,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "buro-stedelijk",
+   "name": "Buro Stedelijk",
+   "url": "https://amsterdamart.com/en/locations/buro-stedelijk/",
+   "address": "Museumplein 10, 1071 DJ Amsterdam",
+   "kind": "project-space",
+   "area": "Museumkwartier",
+   "district": null,
+   "lat": 52.3582146,
+   "lng": 4.879660599999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "18:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "capital-c",
+   "name": "Capital C",
+   "url": "https://amsterdamart.com/en/locations/capital-c/",
+   "address": "Weesperplein 4B, 1018 XA Amsterdam",
+   "kind": "partner",
+   "area": "Weesperbuurt/Plantage",
+   "district": null,
+   "lat": 52.3619902,
+   "lng": 4.9065218,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "19:00",
+     "21:30"
+    ],
+    "2026-11-19": [
+     "09:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "09:00",
+     "21:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "galerie-caroline-obreen",
+   "name": "Caroline O’Breen",
+   "url": "https://amsterdamart.com/en/locations/galerie-caroline-obreen/",
+   "address": "Hazenstraat 54, 1016 SR Amsterdam",
+   "kind": "gallery",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.3701052,
+   "lng": 4.880190100000001,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "cbk-zuid-oost",
+   "name": "CBK Zuidoost",
+   "url": "https://amsterdamart.com/en/locations/cbk-zuid-oost/",
+   "address": "Anton de Komplein 120, 1102 DR Amsterdam",
+   "kind": "project-space",
+   "area": "Amsterdamse Poort e.o.",
+   "district": null,
+   "lat": 52.3162172,
+   "lng": 4.957225,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "cc-amstel",
+   "name": "CC Amstel",
+   "url": null,
+   "address": "Cullinanplein 1, 1074 JN Amsterdam",
+   "kind": "other",
+   "area": "Nieuwe Pijp",
+   "district": null,
+   "lat": 52.35334786,
+   "lng": 4.90631523,
+   "pinSource": "address (PDOK)",
+   "hours": {},
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "de-appel",
+   "name": "de Appel",
+   "url": "https://amsterdamart.com/en/locations/de-appel/",
+   "address": "Tolstraat 160, 1074 VM Amsterdam",
+   "kind": "project-space",
+   "area": "Zuid Pijp",
+   "district": null,
+   "lat": 52.3525758,
+   "lng": 4.9064071,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "14:00",
+     "20:00"
+    ],
+    "2026-11-19": [
+     "14:00",
+     "20:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "20:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "20:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "20:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "dof-deth-of-field",
+   "name": "Depth of Field",
+   "url": "https://amsterdamart.com/en/locations/dof-deth-of-field/",
+   "address": "Hazenstraat 28, 1016 SR Amsterdam​",
+   "kind": "gallery",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.3704751,
+   "lng": 4.8799315,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "diez",
+   "name": "diez",
+   "url": "https://amsterdamart.com/en/locations/diez/",
+   "address": "Gibraltarstraat 74-B, 1055 NS Amsterdam",
+   "kind": "gallery",
+   "area": "Landlust",
+   "district": null,
+   "lat": 52.3842696,
+   "lng": 4.8497401,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "de-nederlandsche-bank-dnb",
+   "name": "DNB",
+   "url": "https://amsterdamart.com/en/locations/de-nederlandsche-bank-dnb/",
+   "address": "Frederiksplein 61, 1017 XL Amsterdam",
+   "kind": "corporate",
+   "area": "De Weteringschans",
+   "district": null,
+   "lat": 52.35868989999999,
+   "lng": 4.8995359,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "09:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "09:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "gallery-dudokdegroot",
+   "name": "dudokdegroot",
+   "url": "https://amsterdamart.com/en/locations/gallery-dudokdegroot/",
+   "address": "Tweede Laurierdwarsstraat 1–3, 1016 RA Amsterdam",
+   "kind": "gallery",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.3721014,
+   "lng": 4.8790092,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "enari-gallery",
+   "name": "Enari",
+   "url": "https://amsterdamart.com/en/locations/enari-gallery/",
+   "address": "Overtoom 147, 1054 HG Amsterdam",
+   "kind": "gallery",
+   "area": "Vondelparkbuurt",
+   "district": null,
+   "lat": 52.36188660000001,
+   "lng": 4.872639899999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "eye-filmmuseum-2",
+   "name": "Eye Filmmuseum",
+   "url": "https://amsterdamart.com/en/locations/eye-filmmuseum-2/",
+   "address": "IJpromenade 1, 1031 KT Amsterdam",
+   "kind": "museum",
+   "area": "Noordelijke IJ-oevers-West",
+   "district": null,
+   "lat": 52.384348,
+   "lng": 4.901276,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "10:00",
+     "19:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "19:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "19:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "19:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "19:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "foundation-het-kunstgemaal",
+   "name": "FOUNDATION HET KUNSTGEMAAL",
+   "url": "https://amsterdamart.com/en/locations/foundation-het-kunstgemaal/",
+   "address": "Tweede Laurierdwarsstraat 31 1016 RA, 1016 RA Amsterdam",
+   "kind": "project-space",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.3719596,
+   "lng": 4.8790738,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "framer-framed",
+   "name": "Framer Framed",
+   "url": "https://amsterdamart.com/en/locations/framer-framed/",
+   "address": "Oranje-Vrijstaatkade 71, 1093 KS Amsterdam",
+   "kind": "project-space",
+   "area": "Dapperbuurt",
+   "district": null,
+   "lat": 52.35680159999999,
+   "lng": 4.9321204,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "galerie-bart",
+   "name": "Galerie Bart",
+   "url": "https://amsterdamart.com/en/locations/galerie-bart/",
+   "address": "Elandsgracht 16, 1016 TW Amsterdam",
+   "kind": "gallery",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.3702585,
+   "lng": 4.8817448,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "galerie-fleur-wouter-and-gomulan",
+   "name": "Galerie Fleur & Wouter",
+   "url": "https://amsterdamart.com/en/locations/galerie-fleur-wouter-and-gomulan/",
+   "address": "Van Ostadestraat 43B, 1072 SN Amsterdam",
+   "kind": "gallery",
+   "area": "Nieuwe Pijp",
+   "district": null,
+   "lat": 52.3518278,
+   "lng": 4.888612699999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "galerie-fontana",
+   "name": "Galerie Fontana",
+   "url": "https://amsterdamart.com/en/locations/galerie-fontana/",
+   "address": "Lauriergracht 142, 1016 RT Amsterdam",
+   "kind": "gallery",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.3709745,
+   "lng": 4.8780321,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "galerie-ron-mandos",
+   "name": "Galerie Ron Mandos",
+   "url": "https://amsterdamart.com/en/locations/galerie-ron-mandos/",
+   "address": "Prinsengracht 282, 1016 HJ Amsterdam",
+   "kind": "gallery",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.3706402,
+   "lng": 4.882344000000001,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "gallery-poche",
+   "name": "Gallery Poche",
+   "url": "https://amsterdamart.com/en/locations/gallery-poche/",
+   "address": "Leen Jongewaardkade 109, 1031 HS Amsterdam",
+   "kind": "project-space",
+   "area": "Noordelijke IJ-oevers-West",
+   "district": null,
+   "lat": 52.3931324,
+   "lng": 4.9011941,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "09:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "09:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "09:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "gallery-van-fanny-freytag",
+   "name": "Gallery van Fanny Freytag",
+   "url": "https://amsterdamart.com/en/locations/gallery-van-fanny-freytag/",
+   "address": "Schaafstraat 10, 1021 KE Amsterdam",
+   "kind": "gallery",
+   "area": "Noordelijke IJ-oevers-Oost",
+   "district": null,
+   "lat": 52.38514740000001,
+   "lng": 4.924916299999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "gdl525",
+   "name": "GDL525",
+   "url": "https://amsterdamart.com/en/locations/gdl525/",
+   "address": "Gouden Leeuw 525, Amsterdam",
+   "kind": "project-space",
+   "area": "Geerdinkhof/Kantershof",
+   "district": null,
+   "lat": 52.324851,
+   "lng": 4.9742036,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "15:00",
+     "19:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "grimm",
+   "name": "GRIMM",
+   "url": "https://amsterdamart.com/en/locations/grimm/",
+   "address": "Leidsegracht 38-40, 1016 CM Amsterdam",
+   "kind": "gallery",
+   "area": "Grachtengordel-West",
+   "district": null,
+   "lat": 52.366378,
+   "lng": 4.8830221,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "11:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "gwen-park",
+   "name": "Gwen Park",
+   "url": "https://amsterdamart.com/en/locations/gwen-park/",
+   "address": "Koninginneweg 245, 1075 CT Amsterdam",
+   "kind": "gallery",
+   "area": "Willemspark",
+   "district": null,
+   "lat": 52.3517874,
+   "lng": 4.8582079,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "12:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "hartwig-proxy",
+   "name": "Hartwig Proxy",
+   "url": "https://amsterdamart.com/en/locations/hartwig-proxy/",
+   "address": "Parnassusweg 213, 1077 DG Amsterdam",
+   "kind": "project-space",
+   "area": "Prinses Irenebuurt e.o.",
+   "district": null,
+   "lat": 52.3418413,
+   "lng": 4.8686457,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-21": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "11:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "hazenstraat-galleries",
+   "name": "Hazenstraat Galleries",
+   "url": null,
+   "address": "Hazenstraat, Amsterdam",
+   "kind": "other",
+   "area": null,
+   "district": null,
+   "lat": 52.37032786,
+   "lng": 4.88012956,
+   "pinSource": "middle of the street (PDOK), approximate",
+   "hours": {},
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "homecoming-gallery",
+   "name": "Homecoming Gallery",
+   "url": "https://amsterdamart.com/en/locations/homecoming-gallery/",
+   "address": "Frederiksplein 45, 1017 XL Amsterdam",
+   "kind": "gallery",
+   "area": "De Weteringschans",
+   "district": null,
+   "lat": 52.3605174,
+   "lng": 4.9011265,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "indebt",
+   "name": "INDEBT",
+   "url": "https://amsterdamart.com/en/locations/indebt/",
+   "address": "Govert Flinckstraat 286, 1073 CG Amsterdam",
+   "kind": "project-space",
+   "area": "Oude Pijp",
+   "district": null,
+   "lat": 52.3560059,
+   "lng": 4.8975949,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "14:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "iona-stichting",
+   "name": "Iona Foundation",
+   "url": "https://amsterdamart.com/en/locations/iona-stichting/",
+   "address": "Herengracht 276, 1016 BX Amsterdam",
+   "kind": "project-space",
+   "area": "Grachtengordel-West",
+   "district": null,
+   "lat": 52.3709631,
+   "lng": 4.8863832,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "09:30",
+     "16:30"
+    ],
+    "2026-11-19": [
+     "09:30",
+     "16:30"
+    ],
+    "2026-11-20": [
+     "09:30",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "iso",
+   "name": "ISO AMSTERDAM",
+   "url": "https://amsterdamart.com/en/locations/iso/",
+   "address": "Isolatorweg 17, 1014 AS Amsterdam",
+   "kind": "project-space",
+   "area": "Sloterdijk-West",
+   "district": null,
+   "lat": 52.3907768,
+   "lng": 4.850099,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "josilda-da-conceicao-gallery",
+   "name": "Josilda da Conceição",
+   "url": "https://amsterdamart.com/en/locations/josilda-da-conceicao-gallery/",
+   "address": "Pieter Aertszstraat 70, 1073 SR Amsterdam",
+   "kind": "gallery",
+   "area": "Nieuwe Pijp",
+   "district": null,
+   "lat": 52.3523706,
+   "lng": 4.9015596,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "14:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "kersgallery",
+   "name": "KERSGALLERY",
+   "url": null,
+   "address": "Lindengracht 148, 1015 KK Amsterdam",
+   "kind": "gallery",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.38037266,
+   "lng": 4.88463559,
+   "pinSource": "address (PDOK)",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "kimu-kinderkunstmuseum",
+   "name": "KiMu Kinderkunstmuseum",
+   "url": "https://amsterdamart.com/en/locations/kimu-kinderkunstmuseum/",
+   "address": "Termini 487 1025 XM, 1025 XM Amsterdam",
+   "kind": "museum",
+   "area": "Buikslotermeer",
+   "district": null,
+   "lat": 52.40137587,
+   "lng": 4.93383934,
+   "pinSource": "address (PDOK)",
+   "hours": {
+    "2026-11-18": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "lijnbaansgracht-galleries",
+   "name": "Lijnbaansgracht galleries",
+   "url": null,
+   "address": null,
+   "kind": "other",
+   "area": null,
+   "district": null,
+   "lat": null,
+   "lng": null,
+   "pinSource": null,
+   "hours": {},
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "loods6",
+   "name": "Loods6",
+   "url": null,
+   "address": "KNSM-Laan 143, 1019 LB Amsterdam",
+   "kind": "other",
+   "area": "Oostelijk Havengebied",
+   "district": null,
+   "lat": 52.37727359,
+   "lng": 4.93877373,
+   "pinSource": "address (PDOK)",
+   "hours": {},
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "lumen-travo-gallery",
+   "name": "Lumen Travo",
+   "url": "https://amsterdamart.com/en/locations/lumen-travo-gallery/",
+   "address": "Lijnbaansgracht 314, 1017 WZ Amsterdam",
+   "kind": "gallery",
+   "area": "De Weteringschans",
+   "district": null,
+   "lat": 52.3601711,
+   "lng": 4.8918173,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "luther-museum",
+   "name": "Luther Museum",
+   "url": "https://amsterdamart.com/en/locations/luther-museum/",
+   "address": "Nieuwe Keizersgracht 570, 1018 VG Amsterdam",
+   "kind": "museum",
+   "area": "Weesperbuurt/Plantage",
+   "district": null,
+   "lat": 52.36553319999999,
+   "lng": 4.908910400000001,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-21": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-22": [
+     "11:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "m-simons",
+   "name": "m.simons",
+   "url": "https://amsterdamart.com/en/locations/m-simons/",
+   "address": "Lijnbaansgracht 318, 1017 WZ Amsterdam",
+   "kind": "gallery",
+   "area": "De Weteringschans",
+   "district": null,
+   "lat": 52.3601815,
+   "lng": 4.892107600000001,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "mad-meg",
+   "name": "mad meg",
+   "url": "https://amsterdamart.com/en/locations/mad-meg/",
+   "address": "Spuistraat 17 & Spuistraat 19, 1012 SP Amsterdam",
+   "kind": "project-space",
+   "area": "Burgwallen-Nieuwe Zijde",
+   "district": null,
+   "lat": 52.3767728,
+   "lng": 4.8936889,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "made-van-krimpen-gallery",
+   "name": "Madé van Krimpen",
+   "url": "https://amsterdamart.com/en/locations/made-van-krimpen-gallery/",
+   "address": "Prinsengracht 615H, 1016 HT Amsterdam",
+   "kind": "gallery",
+   "area": "Grachtengordel-West",
+   "district": null,
+   "lat": 52.36761169999999,
+   "lng": 4.882900799999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "galerie-martin-van-zomeren",
+   "name": "Martin van Zomeren",
+   "url": "https://amsterdamart.com/en/locations/galerie-martin-van-zomeren/",
+   "address": "Hazenstraat 20, 1016 SP Amsterdam",
+   "kind": "gallery",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.3706006,
+   "lng": 4.879856600000001,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "cobra-museum",
+   "name": "Museum Cobra",
+   "url": "https://amsterdamart.com/en/locations/cobra-museum/",
+   "address": "Sandbergplein 1, 1181 ZX Amstelveen",
+   "kind": "museum",
+   "area": "Stadshart",
+   "district": null,
+   "lat": 52.3039865,
+   "lng": 4.8578098,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "no-limits-art-castle",
+   "name": "No Limits! Art Castle",
+   "url": "https://amsterdamart.com/en/locations/no-limits-art-castle/",
+   "address": "De Wallen, Sint Annendwarsstraat 9 C, 1012 HC Amsterdam",
+   "kind": "project-space",
+   "area": "Burgwallen-Oude Zijde",
+   "district": null,
+   "lat": 52.3737501,
+   "lng": 4.897159100000001,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "19:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "no-mans-art-gallery-2",
+   "name": "No Man’s Art Gallery",
+   "url": "https://amsterdamart.com/en/locations/no-mans-art-gallery-2/",
+   "address": "Bos en Lommerweg 88-90, 1055 EC Amsterdam",
+   "kind": "other",
+   "area": "Landlust",
+   "district": null,
+   "lat": 52.3823745,
+   "lng": 4.855296299999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "nxt-museum",
+   "name": "Nxt Museum",
+   "url": "https://amsterdamart.com/en/locations/nxt-museum/",
+   "address": "Asterweg 22, 1031HP Amsterdam",
+   "kind": "museum",
+   "area": "Noordelijke IJ-oevers-West",
+   "district": null,
+   "lat": 52.3912196,
+   "lng": 4.9043902,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "11:00",
+     "20:30"
+    ],
+    "2026-11-19": [
+     "11:00",
+     "20:30"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "22:30"
+    ],
+    "2026-11-21": [
+     "11:00",
+     "22:30"
+    ],
+    "2026-11-22": [
+     "11:00",
+     "20:30"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "on-the-inside",
+   "name": "On The Inside",
+   "url": "https://amsterdamart.com/en/locations/on-the-inside/",
+   "address": "Tt. Melaniaweg 1, 1033 ST Amsterdam",
+   "kind": "project-space",
+   "area": "Noordelijke IJ-oevers-West",
+   "district": null,
+   "lat": 52.40399480000001,
+   "lng": 4.893085699999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "11:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "oude-kerk",
+   "name": "Oude Kerk",
+   "url": "https://amsterdamart.com/en/locations/oude-kerk/",
+   "address": "Oudekerksplein 23, 1012 GX Amsterdam",
+   "kind": "museum",
+   "area": "Burgwallen-Oude Zijde",
+   "district": null,
+   "lat": 52.3743671,
+   "lng": 4.898206699999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "13:00",
+     "17:30"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "parnassus212",
+   "name": "Parnassus 212",
+   "url": "https://amsterdamart.com/en/locations/parnassus212/",
+   "address": "Parnassusweg 212, 1076 AV Amsterdam",
+   "kind": "project-space",
+   "area": "Prinses Irenebuurt e.o.",
+   "district": null,
+   "lat": 52.3418966,
+   "lng": 4.8679666,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "the-prince-claus-fund",
+   "name": "Prince Claus Fund",
+   "url": "https://amsterdamart.com/en/locations/the-prince-claus-fund/",
+   "address": "Nieuwe Herengracht 14, 1018 DP Amsterdam Amsterdam",
+   "kind": "other",
+   "area": "Weesperbuurt/Plantage",
+   "district": null,
+   "lat": 52.3659444,
+   "lng": 4.9033427,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "09:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "09:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "raam-art-space-amsterdam",
+   "name": "raam art space",
+   "url": "https://amsterdamart.com/en/locations/raam-art-space-amsterdam/",
+   "address": "Oosterdokskade 161, 1011DL Amsterdam",
+   "kind": "project-space",
+   "area": "Nieuwmarkt/Lastage",
+   "district": null,
+   "lat": 52.37561480000001,
+   "lng": 4.909434399999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "10:00",
+     "17:30"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "17:30"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "rietveld-academie",
+   "name": "Rietveld Academie",
+   "url": null,
+   "address": "Volkshotel Wibautstraat 150, Amsterdam",
+   "kind": "other",
+   "area": "Weesperzijde",
+   "district": null,
+   "lat": 52.35378293,
+   "lng": 4.91194457,
+   "pinSource": "address (PDOK)",
+   "hours": {},
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "rijksakademie-van-beeldende-kunsten-2",
+   "name": "Rijksakademie van beeldende kunsten",
+   "url": "https://amsterdamart.com/en/locations/rijksakademie-van-beeldende-kunsten-2/",
+   "address": "Sarphatistraat 470, 1018 GW Amsterdam",
+   "kind": "residency",
+   "area": "Weesperbuurt/Plantage",
+   "district": null,
+   "lat": 52.3628608,
+   "lng": 4.9176816,
+   "pinSource": "Art Week location page",
+   "hours": {},
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "rozenstraat-a-rose-is-a-rose-is-a-rose-is-a-project-space-for-contemporary-visual-art-our-program-is-characterized-by-a-focus-on-stimulating-progressi",
+   "name": "ROZENSTRAAT – a rose is a rose is a rose",
+   "url": "https://amsterdamart.com/en/locations/rozenstraat-a-rose-is-a-rose-is-a-rose-is-a-project-space-for-contemporary-visual-art-our-program-is-characterized-by-a-focus-on-stimulating-progressive-perspectives-that-encourage-a-better-broader/",
+   "address": "Rozenstraat 59, 1016 NN Amsterdam",
+   "kind": "project-space",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.37270789999999,
+   "lng": 4.8812305,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "slewe-gallery",
+   "name": "Slewe Gallery",
+   "url": "https://amsterdamart.com/en/locations/slewe-gallery/",
+   "address": "Kerkstraat 105-A, 1017 GD Amsterdam",
+   "kind": "gallery",
+   "area": "Grachtengordel-Zuid",
+   "district": null,
+   "lat": 52.3643856,
+   "lng": 4.8872539,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "south-asian-contemporary-sac-art-amsterdam",
+   "name": "South Asian Contemporary Art Amsterdam",
+   "url": "https://amsterdamart.com/en/locations/south-asian-contemporary-sac-art-amsterdam/",
+   "address": "Panamakade 200, 1019TT Amsterdam",
+   "kind": "gallery",
+   "area": "Oostelijk Havengebied",
+   "district": null,
+   "lat": 52.372483,
+   "lng": 4.9394035,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "stedelijk-museum-amsterdam",
+   "name": "Stedelijk Museum Amsterdam",
+   "url": "https://amsterdamart.com/en/locations/stedelijk-museum-amsterdam/",
+   "address": "Museumplein 10, 1071 DJ Amsterdam Amsterdam",
+   "kind": "museum",
+   "area": "Museumkwartier",
+   "district": null,
+   "lat": 52.35788309824904,
+   "lng": 4.879790698394788,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "18:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "stevenson",
+   "name": "Stevenson",
+   "url": "https://amsterdamart.com/en/locations/stevenson/",
+   "address": "Prinsengracht 371B, 1016HK Amsterdam",
+   "kind": "gallery",
+   "area": "Grachtengordel-West",
+   "district": null,
+   "lat": 52.3717141,
+   "lng": 4.883838,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "09:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "09:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "09:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "stigter-van-doesburg-2",
+   "name": "Stigter van Doesburg",
+   "url": "https://amsterdamart.com/en/locations/stigter-van-doesburg-2/",
+   "address": "Elandsstraat 90, Amsterdam, Nederland, 1016 SH Amsterdam",
+   "kind": "gallery",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.37033160000001,
+   "lng": 4.8800212,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "tegenboschvanvreden",
+   "name": "tegenboschvanvreden",
+   "url": "https://amsterdamart.com/en/locations/tegenboschvanvreden/",
+   "address": "Bloemgracht 57, 1016 KE Amsterdam",
+   "kind": "gallery",
+   "area": "Jordaan",
+   "district": null,
+   "lat": 52.37461990000001,
+   "lng": 4.881114200000001,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "thami-mnyele-foundation",
+   "name": "Thami Mnyele Foundation",
+   "url": "https://amsterdamart.com/en/locations/thami-mnyele-foundation/",
+   "address": "Bellamystraat 21D, 1053 BE Amsterdam",
+   "kind": "residency",
+   "area": "Bellamybuurt",
+   "district": null,
+   "lat": 52.3670389,
+   "lng": 4.8660663,
+   "pinSource": "Art Week location page",
+   "hours": {},
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "the-loft",
+   "name": "The Loft",
+   "url": "https://amsterdamart.com/en/locations/the-loft/",
+   "address": "Overhoeksplein 1, 1031 KS Amsterdam",
+   "kind": "partner",
+   "area": "Noordelijke IJ-oevers-West",
+   "district": null,
+   "lat": 52.38369792,
+   "lng": 4.902414,
+   "pinSource": "address (PDOK)",
+   "hours": {},
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "the-merchant-house",
+   "name": "The Merchant House",
+   "url": "https://amsterdamart.com/en/locations/the-merchant-house/",
+   "address": "Herengracht 254, 1016 BV Amsterdam",
+   "kind": "gallery",
+   "area": "Grachtengordel-West",
+   "district": null,
+   "lat": 52.37169899999999,
+   "lng": 4.8866575,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "theater-de-richel",
+   "name": "Theater de Richel",
+   "url": null,
+   "address": "Nieuwezijds Voorburgwal 282, Amsterdam",
+   "kind": "other",
+   "area": "Burgwallen-Nieuwe Zijde",
+   "district": null,
+   "lat": 52.37112934,
+   "lng": 4.89008527,
+   "pinSource": "address (PDOK)",
+   "hours": {},
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "treehouse-ndsm",
+   "name": "Treehouse NDSM",
+   "url": "https://amsterdamart.com/en/locations/treehouse-ndsm/",
+   "address": "tt neveritaweg 55-57, 1033 WB Amsterdam",
+   "kind": "project-space",
+   "area": "Noordelijke IJ-oevers-West",
+   "district": null,
+   "lat": 52.3994136,
+   "lng": 4.8933937,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "upstream-gallery",
+   "name": "Upstream Gallery",
+   "url": "https://amsterdamart.com/en/locations/upstream-gallery/",
+   "address": "Kloveniersburgwal 95, 1011KB Amsterdam",
+   "kind": "gallery",
+   "area": "Nieuwmarkt/Lastage",
+   "district": null,
+   "lat": 52.3691383,
+   "lng": 4.897560600000001,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "van-oosterom-gallery",
+   "name": "VAN OOSTEROM GALLERY",
+   "url": null,
+   "address": "Bethaniënstraat 39, 1012 BZ Amsterdam",
+   "kind": "gallery",
+   "area": "Burgwallen-Oude Zijde",
+   "district": null,
+   "lat": 52.3716865,
+   "lng": 4.898728,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": false,
+   "accessible": null
+  },
+  {
+   "id": "gallery-vriend-van-bavink",
+   "name": "Vriend van Bavink Gallery",
+   "url": "https://amsterdamart.com/en/locations/gallery-vriend-van-bavink/",
+   "address": "Oosterdokskade 243, 1011 DL Amsterdam",
+   "kind": "gallery",
+   "area": "Nieuwmarkt/Lastage",
+   "district": null,
+   "lat": 52.37624350000001,
+   "lng": 4.910278,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "10:00",
+     "17:30"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "vu-art-science-gallery",
+   "name": "VU ART SCIENCE Gallery",
+   "url": "https://amsterdamart.com/en/locations/vu-art-science-gallery/",
+   "address": "De Boelelaan 1111, 1081 HV Amsterdam",
+   "kind": "project-space",
+   "area": "Zuidas",
+   "district": null,
+   "lat": 52.3346886,
+   "lng": 4.863331,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "w139",
+   "name": "W139",
+   "url": "https://amsterdamart.com/en/locations/w139/",
+   "address": "Warmoesstraat 139, 1012 JB Amsterdam",
+   "kind": "project-space",
+   "area": "Burgwallen-Oude Zijde",
+   "district": null,
+   "lat": 52.37372000000001,
+   "lng": 4.8958877,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-18": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "de-ateliers",
+   "name": "Woonhuis de Ateliers",
+   "url": "https://amsterdamart.com/en/locations/de-ateliers/",
+   "address": "Stadhouderskade 86 (Ingang via de rechterzijde), 1073 AT Amsterdam",
+   "kind": "project-space",
+   "area": "Oude Pijp",
+   "district": null,
+   "lat": 52.3576042,
+   "lng": 4.8946935,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "gomulan-gallery-2",
+   "name": "Working Title",
+   "url": "https://amsterdamart.com/en/locations/gomulan-gallery-2/",
+   "address": "Van Ostadestraat 43A, 1072SN Amsterdam",
+   "kind": "gallery",
+   "area": "Nieuwe Pijp",
+   "district": null,
+   "lat": 52.351826,
+   "lng": 4.888491999999999,
+   "pinSource": "Art Week location page",
+   "hours": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  }
+ ],
+ "events": [
+  {
+   "id": "51-years-of-de-appel-film-screening-panel-discussion-final-cut-2026",
+   "url": "https://amsterdamart.com/en/programme/51-years-of-de-appel-film-screening-panel-discussion-final-cut-2026/",
+   "title": "51 Years of de Appel | Film Screening & Panel Discussion: Final Cut (2026)",
+   "venue": "CC Amstel",
+   "museumId": null,
+   "kind": "event",
+   "tags": [
+    "Artist Talk",
+    "Other",
+    "Screening"
+   ],
+   "disciplines": [
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-21": [
+     "15:00",
+     "18:15"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 15:00—18:15",
+   "admission": "With ticket"
+  },
+  {
+   "id": "51-years-of-de-appel-closing-drinks-of-lapdogs-of-the-bourgeoisie-2026-class-hegemony-in-contemporary-art",
+   "url": "https://amsterdamart.com/en/programme/51-years-of-de-appel-closing-drinks-of-lapdogs-of-the-bourgeoisie-2026-class-hegemony-in-contemporary-art/",
+   "title": "51 Years of de Appel Closing Drinks of Lapdogs of the Bourgeoisie 2026: Class Hegemony in Contemporary Art",
+   "venue": "de Appel",
+   "museumId": "de-appel",
+   "kind": "event",
+   "tags": [
+    "Event"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Photography"
+   ],
+   "days": {
+    "2026-11-21": [
+     "18:30",
+     "20:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 18:30—20:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "a-conversation-on-specters-hamza-halloubi-abdelkader-benali",
+   "url": "https://amsterdamart.com/en/programme/a-conversation-on-specters-hamza-halloubi-abdelkader-benali/",
+   "title": "A conversation on Specters: Hamza Halloubi & Abdelkader Benali",
+   "venue": "tegenboschvanvreden",
+   "museumId": "tegenboschvanvreden",
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Installation",
+    "Mixed Media",
+    "Painting"
+   ],
+   "days": {
+    "2026-11-21": [
+     "16:00",
+     "17:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 16:00—17:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "a-vivid-shine-julius-thissen",
+   "url": "https://amsterdamart.com/en/programme/a-vivid-shine-julius-thissen/",
+   "title": "A Vivid Shine | Julius Thissen",
+   "venue": "Galerie Bart",
+   "museumId": "galerie-bart",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 16 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-in-motion-an-hommage-rene-groebli",
+   "url": "https://amsterdamart.com/en/programme/artist-in-motion-an-hommage-rene-groebli/",
+   "title": "An Artist in Motion | René Groebli",
+   "venue": "Bildhalle",
+   "museumId": "bildhalle-amsterdam",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Photography"
+   ],
+   "days": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 13 February 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "an-evening-with-indebt-x-diez-x-minor-attractions",
+   "url": "https://amsterdamart.com/en/programme/an-evening-with-indebt-x-diez-x-minor-attractions/",
+   "title": "An evening with INDEBT x diez x Minor Attractions",
+   "venue": "INDEBT",
+   "museumId": "indebt",
+   "kind": "event",
+   "tags": [
+    "Event"
+   ],
+   "disciplines": [
+    "Other",
+    "Performance"
+   ],
+   "days": {
+    "2026-11-21": [
+     "21:00",
+     "23:59"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 21:00—23:59",
+   "admission": "Free admission"
+  },
+  {
+   "id": "andre-de-jong-and-his-theater-andre-de-jong-with-beppie-gielkens",
+   "url": "https://amsterdamart.com/en/programme/andre-de-jong-and-his-theater-andre-de-jong-with-beppie-gielkens/",
+   "title": "André de Jong and His Theater | With André de Jong and Beppie Gielkens",
+   "venue": "The Merchant House",
+   "museumId": "the-merchant-house",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 28 February 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "another-cut-iwan-baan-and-sergei-sviatchenko",
+   "url": "https://amsterdamart.com/en/programme/another-cut-iwan-baan-and-sergei-sviatchenko/",
+   "title": "ANOTHER CUT | Iwan Baan and Sergei Sviatchenko",
+   "venue": "FOUNDATION HET KUNSTGEMAAL",
+   "museumId": "foundation-het-kunstgemaal",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Photography"
+   ],
+   "days": {
+    "2026-11-18": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "10 October up to 22 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "art-ceremony-stephanie-schuitemaker",
+   "url": "https://amsterdamart.com/en/programme/art-ceremony-stephanie-schuitemaker/",
+   "title": "Art Ceremony: Stephanie Schuitemaker",
+   "venue": "Iona Foundation",
+   "museumId": "iona-stichting",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Other",
+    "Performance"
+   ],
+   "days": {
+    "2026-11-22": [
+     "14:00",
+     "16:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 14:00—16:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "art-market-panel-talk",
+   "url": "https://amsterdamart.com/en/programme/art-market-panel-talk/",
+   "title": "Art Market & Panel Talk",
+   "venue": "CBK Zuidoost",
+   "museumId": "cbk-zuid-oost",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-21": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 12:00—17:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "art-run-culture-sniffers-x-so-much-fun-running-club-starting-point-enari-gallery",
+   "url": "https://amsterdamart.com/en/programme/art-run-culture-sniffers-x-so-much-fun-running-club-starting-point-enari-gallery/",
+   "title": "Art Run: culture sniffers x so much fun running club | Starting point: Enari Gallery",
+   "venue": "Enari",
+   "museumId": "enari-gallery",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Other",
+    "Painting"
+   ],
+   "days": {
+    "2026-11-21": [
+     "09:30",
+     "11:30"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 09:30—11:30",
+   "admission": "With ticket"
+  },
+  {
+   "id": "art-workers-assembly",
+   "url": "https://amsterdamart.com/en/programme/art-workers-assembly/",
+   "title": "Art Workers’ Assembly",
+   "venue": "Framer Framed",
+   "museumId": "framer-framed",
+   "kind": "event",
+   "tags": [
+    "Panel / Talk"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Mixed Media",
+    "Other"
+   ],
+   "days": {
+    "2026-11-22": [
+     "10:00",
+     "18:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 10:00—18:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-curator-tour-annabelle-binnerts-lennart-lahuis-inge-weustink-steven-van-teeseling",
+   "url": "https://amsterdamart.com/en/programme/artist-curator-tour-annabelle-binnerts-lennart-lahuis-inge-weustink-steven-van-teeseling/",
+   "title": "Artist & Curator Tour: Annabelle Binnerts, Lennart Lahuis, Inge Weustink, Steven van Teeseling",
+   "venue": "Luther Museum",
+   "museumId": "luther-museum",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Installation"
+   ],
+   "days": {
+    "2026-11-22": [
+     "12:00",
+     "13:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 12:00—13:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "artist-meet-and-exhibition-tour-the-table",
+   "url": "https://amsterdamart.com/en/programme/artist-meet-and-exhibition-tour-the-table/",
+   "title": "Artist Meet and Exhibition Tour: The Table",
+   "venue": "Homecoming Gallery",
+   "museumId": "homecoming-gallery",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Painting",
+    "Photography",
+    "Sculpture",
+    "Textile"
+   ],
+   "days": {
+    "2026-11-19": [
+     "17:00",
+     "18:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 17:00—18:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-talk-adam-pendleton",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-adam-pendleton/",
+   "title": "Artist Talk: Adam Pendleton",
+   "venue": "Stedelijk Museum Amsterdam",
+   "museumId": "stedelijk-museum-amsterdam",
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-18": [
+     "09:00",
+     "10:15"
+    ]
+   },
+   "dates": "Wednesday 18 November 2026 · 09:00—10:15",
+   "admission": "With ticket"
+  },
+  {
+   "id": "artist-talk-folkert-de-jong-with-doede-hardeman-museum-director-singer-laren",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-folkert-de-jong-with-doede-hardeman-museum-director-singer-laren/",
+   "title": "Artist Talk: Folkert de Jong with Doede Hardeman, museum director Singer Laren",
+   "venue": "Galerie Ron Mandos",
+   "museumId": "galerie-ron-mandos",
+   "kind": "event",
+   "tags": [
+    "Panel / Talk"
+   ],
+   "disciplines": [
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-21": [
+     "13:00",
+     "14:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 13:00—14:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-talk-frank-ammerlaan",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-frank-ammerlaan/",
+   "title": "Artist Talk: Frank Ammerlaan",
+   "venue": "Upstream Gallery",
+   "museumId": "upstream-gallery",
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Installation"
+   ],
+   "days": {
+    "2026-11-22": [
+     "14:00",
+     "15:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 14:00—15:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-talk-ian-waelder",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-ian-waelder/",
+   "title": "Artist Talk: Ian Waelder",
+   "venue": "diez",
+   "museumId": "diez",
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-22": [
+     "13:00",
+     "14:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 13:00—14:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-talk-maracutaia",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-maracutaia/",
+   "title": "Artist Talk: MARACUTAIA",
+   "venue": "Josilda da Conceição",
+   "museumId": "josilda-da-conceicao-gallery",
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-20": [
+     "16:00",
+     "17:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 16:00—17:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-talk-nataliya-zuban",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-nataliya-zuban/",
+   "title": "Artist Talk: Nataliya Zuban",
+   "venue": "Iona Foundation",
+   "museumId": "iona-stichting",
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-22": [
+     "13:00",
+     "14:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 13:00—14:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-talk-ola-hassanain-and-ala-kheir-in-conversation-and-opening-of-the-exhibition",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-ola-hassanain-and-ala-kheir-in-conversation-and-opening-of-the-exhibition/",
+   "title": "Artist Talk: Ola Hassanain and Ala Kheir in conversation and opening of the exhibition",
+   "venue": "Prince Claus Fund",
+   "museumId": "the-prince-claus-fund",
+   "kind": "event",
+   "tags": [
+    "Artist Talk",
+    "Panel / Talk"
+   ],
+   "disciplines": [
+    "Photography"
+   ],
+   "days": {
+    "2026-11-20": [
+     "17:00",
+     "19:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 17:00—19:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-talk-riyas-komu",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-riyas-komu/",
+   "title": "Artist Talk: Riyas Komu",
+   "venue": "South Asian Contemporary Art Amsterdam",
+   "museumId": "south-asian-contemporary-sac-art-amsterdam",
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Painting",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-18": [
+     "17:00",
+     "18:00"
+    ]
+   },
+   "dates": "Wednesday 18 November 2026 · 17:00—18:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "artist-talk-sanja-medic",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-sanja-medic/",
+   "title": "Artist Talk: Sanja Medić",
+   "venue": "Bradwolff & Partners",
+   "museumId": "bradwolff-partners",
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Installation",
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-22": [
+     "15:00",
+     "16:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 15:00—16:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-talk-saskia-noor-van-imhoff-2",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-saskia-noor-van-imhoff-2/",
+   "title": "Artist Talk: Saskia Noor van Imhoff",
+   "venue": "GRIMM",
+   "museumId": "grimm",
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Installation",
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-21": [
+     "15:00",
+     "16:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 15:00—16:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-talk-sohrab-hura",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-sohrab-hura/",
+   "title": "Artist Talk: Sohrab Hura",
+   "venue": "Eye Filmmuseum",
+   "museumId": "eye-filmmuseum-2",
+   "kind": "event",
+   "tags": [
+    "Artist Talk",
+    "Screening"
+   ],
+   "disciplines": [
+    "Photography",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-19": [
+     "21:00",
+     "23:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 21:00—23:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "artist-talk-totomboti-collective",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-totomboti-collective/",
+   "title": "Artist Talk: Totomboti Collective",
+   "venue": "Thami Mnyele Foundation",
+   "museumId": "thami-mnyele-foundation",
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-21": [
+     "15:00",
+     "16:30"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 15:00—16:30",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-led-tour-mette-sterre",
+   "url": "https://amsterdamart.com/en/programme/artist-led-tour-mette-sterre/",
+   "title": "Artist-led Tour: Mette Sterre",
+   "venue": "Museum Cobra",
+   "museumId": "cobra-museum",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Installation",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-22": [
+     "13:00",
+     "14:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 13:00—14:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "as-if-we-are-nothing-narges-mohammadi",
+   "url": "https://amsterdamart.com/en/programme/as-if-we-are-nothing-narges-mohammadi/",
+   "title": "As if we are nothing | Narges Mohammadi",
+   "venue": "Loods6",
+   "museumId": null,
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Mixed Media",
+    "Other",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-18": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "dates": "18 up to 29 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "ask-the-curator-vincent-van-velsen",
+   "url": "https://amsterdamart.com/en/programme/ask-the-curator-vincent-van-velsen/",
+   "title": "Ask the Curator: Vincent van Velsen",
+   "venue": "Oude Kerk",
+   "museumId": "oude-kerk",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Installation"
+   ],
+   "days": {
+    "2026-11-19": [
+     "16:00",
+     "16:30"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 16:00—16:30",
+   "admission": "Free admission"
+  },
+  {
+   "id": "ask-the-director-mariette-dolle",
+   "url": "https://amsterdamart.com/en/programme/ask-the-director-mariette-dolle/",
+   "title": "Ask the director: Mariette Dölle",
+   "venue": "Oude Kerk",
+   "museumId": "oude-kerk",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Installation"
+   ],
+   "days": {
+    "2026-11-20": [
+     "16:00",
+     "16:30"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 16:00—16:30",
+   "admission": "Free admission"
+  },
+  {
+   "id": "barzakh-riyas-komu",
+   "url": "https://amsterdamart.com/en/programme/barzakh-riyas-komu/",
+   "title": "Barzakh | Riyas Komu",
+   "venue": "South Asian Contemporary Art Amsterdam",
+   "museumId": "south-asian-contemporary-sac-art-amsterdam",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 14 February 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "between-matter-and-meaning-carolein-smit-claudy-jongstra-feipel-bechameil-inez-de-brauw-marchand-meffre-ruud-van-empel-thijs-segers",
+   "url": "https://amsterdamart.com/en/programme/between-matter-and-meaning-carolein-smit-claudy-jongstra-feipel-bechameil-inez-de-brauw-marchand-meffre-ruud-van-empel-thijs-segers/",
+   "title": "Between Matter and Meaning | Group Exhibition",
+   "venue": "Galerie Fontana",
+   "museumId": "galerie-fontana",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Ceramics",
+    "Mixed Media",
+    "Painting",
+    "Photography",
+    "Sculpture",
+    "Textile"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "bodies-of-water-amsterdam-art-week-x-rietveld-alumni-i-c-w-waterschap-amstel-gooi-vecht",
+   "url": "https://amsterdamart.com/en/programme/bodies-of-water-amsterdam-art-week-x-rietveld-alumni-i-c-w-waterschap-amstel-gooi-vecht/",
+   "title": "Bodies of water: Amsterdam Art Week x Rietveld Alumni i.c.w. Waterschap Amstel, Gooi & Vecht",
+   "venue": "Rietveld Academie",
+   "museumId": null,
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-20": [
+     "18:00",
+     "20:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "20:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "dates": "20 up to 22 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "book-launch-artist-talk-of-hinterland-geert-goiris-with-roger-willems-and-wim-de-temmerman",
+   "url": "https://amsterdamart.com/en/programme/book-launch-artist-talk-of-hinterland-geert-goiris-with-roger-willems-and-wim-de-temmerman/",
+   "title": "Book Launch & Artist Talk of Hinterland: Geert Goiris with Roger Willems and Wim Temmerman",
+   "venue": "Buro Onrust",
+   "museumId": "galerie-onrust",
+   "kind": "event",
+   "tags": [
+    "Artist Talk",
+    "Other"
+   ],
+   "disciplines": [
+    "Photography"
+   ],
+   "days": {
+    "2026-11-21": [
+     "14:00",
+     "15:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 14:00—15:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "book-launch-talk-wende-wallert-founding-curator-the-future-is-now",
+   "url": "https://amsterdamart.com/en/programme/book-launch-talk-wende-wallert-founding-curator-the-future-is-now/",
+   "title": "Book Launch & Talk: Wende Wallert, founding curator | The Future is Now",
+   "venue": "VU ART SCIENCE Gallery",
+   "museumId": "vu-art-science-gallery",
+   "kind": "event",
+   "tags": [
+    "Panel / Talk"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-19": [
+     "17:00",
+     "19:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 17:00—19:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "book-launch-another-cut-iwan-baan-and-sergei-sviatchenko",
+   "url": "https://amsterdamart.com/en/programme/book-launch-another-cut-iwan-baan-and-sergei-sviatchenko/",
+   "title": "Book Launch: ANOTHER CUT | Iwan Baan and Sergei Sviatchenko",
+   "venue": "FOUNDATION HET KUNSTGEMAAL",
+   "museumId": "foundation-het-kunstgemaal",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-19": [
+     "19:00",
+     "21:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 19:00—21:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "brunch-at-the-hazenstraat-galleries",
+   "url": "https://amsterdamart.com/en/programme/brunch-at-the-hazenstraat-galleries/",
+   "title": "Brunch at the Hazenstraat Galleries",
+   "venue": "Hazenstraat Galleries",
+   "museumId": null,
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Ceramics",
+    "Other",
+    "Painting"
+   ],
+   "days": {
+    "2026-11-21": [
+     "10:00",
+     "12:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 10:00—12:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "buning-brongers-prijzen-2026",
+   "url": "https://amsterdamart.com/en/programme/buning-brongers-prijzen-2026/",
+   "title": "Buning Brongers Prijzen 2026",
+   "venue": "Arti et Amicitiae",
+   "museumId": "arti-et-amicitiae-2",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Painting",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-18": [
+     "12:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 up to 28 November 2026",
+   "admission": "With ticket"
+  },
+  {
+   "id": "burgundy-brunch-artist-talk-saar-scheerlings",
+   "url": "https://amsterdamart.com/en/programme/burgundy-brunch-artist-talk-saar-scheerlings/",
+   "title": "Burgundy Brunch & Artist Talk: Saar Scheerlings",
+   "venue": "Galerie Fleur & Wouter",
+   "museumId": "galerie-fleur-wouter-and-gomulan",
+   "kind": "event",
+   "tags": [
+    "Artist Talk",
+    "Other"
+   ],
+   "disciplines": [
+    "Ceramics"
+   ],
+   "days": {
+    "2026-11-21": [
+     "12:00",
+     "13:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 12:00—13:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "cahaya-maluku-moluccan-artists-in-the-spotlight",
+   "url": "https://amsterdamart.com/en/programme/cahaya-maluku-moluccan-artists-in-the-spotlight/",
+   "title": "Cahaya Maluku – Moluccan Artists in the Spotlight",
+   "venue": "CBK Zuidoost",
+   "museumId": "cbk-zuid-oost",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-18": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 up to 22 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "past-present-future-inez-de-brauw-bo-bosk-kenneth-aidoo-clinton-kabena",
+   "url": "https://amsterdamart.com/en/programme/past-present-future-inez-de-brauw-bo-bosk-kenneth-aidoo-clinton-kabena/",
+   "title": "Common Ground | Inez de Brauw, Bo Bosk, Clinton Kabena",
+   "venue": "Vriend van Bavink Gallery",
+   "museumId": "gallery-vriend-van-bavink",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "10:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 15 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "corporate-collection-tour-ao",
+   "url": "https://amsterdamart.com/en/programme/corporate-collection-tour-ao/",
+   "title": "Corporate Collection Tour: A&O Shearman",
+   "venue": "A&O Shearman",
+   "museumId": "allen-overy",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other",
+    "Painting",
+    "Photography"
+   ],
+   "days": {
+    "2026-11-20": [
+     "15:00",
+     "16:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 15:00—16:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "creative-workshop-tours",
+   "url": "https://amsterdamart.com/en/programme/creative-workshop-tours/",
+   "title": "Creative Workshop & Tours",
+   "venue": "VU ART SCIENCE Gallery",
+   "museumId": "vu-art-science-gallery",
+   "kind": "event",
+   "tags": [
+    "Workshop"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-22": [
+     "14:00",
+     "16:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 14:00—16:00",
+   "admission": "Free admission",
+   "family": true
+  },
+  {
+   "id": "curator-talk-imara-limon-thom-oosterhof-nadeche-remst-en-elise-van-staveren-wat-betekent-het-om-vandaag-de-dag-te-cureren",
+   "url": "https://amsterdamart.com/en/programme/curator-talk-imara-limon-thom-oosterhof-nadeche-remst-en-elise-van-staveren-wat-betekent-het-om-vandaag-de-dag-te-cureren/",
+   "title": "Curator Talk: Imara Limon, Thom Oosterhof, Nadeche Remst en Elise van Staveren | Wat betekent het om vandaag de dag te cureren?",
+   "venue": "Gallery van Fanny Freytag",
+   "museumId": "gallery-van-fanny-freytag",
+   "kind": "event",
+   "tags": [
+    "Panel / Talk"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-21": [
+     "17:00",
+     "19:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 17:00—19:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "curator-tour-artist-talk-rosanna-van-mierlo-danae-tapia-hannah-dawn-henderson-thato-toeba",
+   "url": "https://amsterdamart.com/en/programme/curator-tour-artist-talk-rosanna-van-mierlo-danae-tapia-hannah-dawn-henderson-thato-toeba/",
+   "title": "Curator Tour & Artist Talk: Rosanna van Mierlo, Danae Tapia, Hannah Dawn Henderson & Thato Toeba",
+   "venue": "DNB",
+   "museumId": "de-nederlandsche-bank-dnb",
+   "kind": "event",
+   "tags": [
+    "Artist Talk",
+    "Tour"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Mixed Media",
+    "Painting",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-20": [
+     "14:00",
+     "15:30"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 14:00—15:30",
+   "admission": "Free admission"
+  },
+  {
+   "id": "daughter-lindsay-merrill",
+   "url": "https://amsterdamart.com/en/programme/daughter-lindsay-merrill/",
+   "title": "Daughter | Lindsay Merrill",
+   "venue": "Enari",
+   "museumId": "enari-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 20 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "days-like-razors-nights-full-of-rats-frida-orupabo",
+   "url": "https://amsterdamart.com/en/programme/days-like-razors-nights-full-of-rats-frida-orupabo/",
+   "title": "Days like razors, nights full of rats | Frida Orupabo",
+   "venue": "Stevenson",
+   "museumId": "stevenson",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-19": [
+     "09:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "09:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 16 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "drawing-workshop-anouk-griffioen",
+   "url": "https://amsterdamart.com/en/programme/drawing-workshop-anouk-griffioen/",
+   "title": "Drawing Workshop: Anouk Griffioen",
+   "venue": "raam art space",
+   "museumId": "raam-art-space-amsterdam",
+   "kind": "event",
+   "tags": [
+    "Workshop"
+   ],
+   "disciplines": [
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-19": [
+     "17:00",
+     "19:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 17:00—19:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "eromheen-kinke-kooi",
+   "url": "https://amsterdamart.com/en/programme/eromheen-kinke-kooi/",
+   "title": "eromheen | Kinke Kooi",
+   "venue": "ROZENSTRAAT – a rose is a rose is a rose",
+   "museumId": "rozenstraat-a-rose-is-a-rose-is-a-rose-is-a-project-space-for-contemporary-visual-art-our-program-is-characterized-by-a-focus-on-stimulating-progressi",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Painting",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-18": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 13 February 2027",
+   "admission": "With ticket"
+  },
+  {
+   "id": "exhibition-studio-visit-marjolein-rothman",
+   "url": "https://amsterdamart.com/en/programme/exhibition-studio-visit-marjolein-rothman/",
+   "title": "Exhibition & Studio Visit: Marjolein Rothman",
+   "venue": "dudokdegroot",
+   "museumId": "gallery-dudokdegroot",
+   "kind": "event",
+   "tags": [
+    "Studio Visit"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-22": [
+     "14:00",
+     "16:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 14:00—16:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "exhibition-walkthrough-with-curator-alessandra-laitempergher",
+   "url": "https://amsterdamart.com/en/programme/exhibition-walkthrough-with-curator-alessandra-laitempergher/",
+   "title": "Exhibition Walkthrough with curator Alessandra Laitempergher",
+   "venue": "On The Inside",
+   "museumId": "on-the-inside",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "14:00",
+     "16:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 14:00—16:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "exhibition-walkthrough-with-the-eye-filmmuseum-curator-simona-monizza",
+   "url": "https://amsterdamart.com/en/programme/exhibition-walkthrough-with-the-eye-filmmuseum-curator-simona-monizza/",
+   "title": "Exhibition Walkthrough with the Eye Filmmuseum curator Simona Monizza",
+   "venue": "On The Inside",
+   "museumId": "on-the-inside",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-21": [
+     "14:00",
+     "16:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 14:00—16:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "performance-finitude-elise-van-staveren",
+   "url": "https://amsterdamart.com/en/programme/performance-finitude-elise-van-staveren/",
+   "title": "Exhibitions View Over Drinks: Finitude | Elise van Staveren",
+   "venue": "Gallery van Fanny Freytag",
+   "museumId": "gallery-van-fanny-freytag",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-20": [
+     "17:00",
+     "20:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 17:00—20:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "eye-filmmuseum-family-sunday",
+   "url": "https://amsterdamart.com/en/programme/eye-filmmuseum-family-sunday/",
+   "title": "Eye Filmmuseum: Family Sunday",
+   "venue": "Eye Filmmuseum",
+   "museumId": "eye-filmmuseum-2",
+   "kind": "event",
+   "tags": [
+    "Screening",
+    "Workshop"
+   ],
+   "disciplines": [
+    "Video | Film",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-22": [
+     "10:30",
+     "15:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 10:30—15:00",
+   "admission": "Free admission",
+   "family": true
+  },
+  {
+   "id": "fabric-of-play-zoubida-sophia-kacimi",
+   "url": "https://amsterdamart.com/en/programme/fabric-of-play-zoubida-sophia-kacimi/",
+   "title": "Fabric of Play | Zoubida (Sophia Kacimi)",
+   "venue": "Gallery Poche",
+   "museumId": "gallery-poche",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Textile"
+   ],
+   "days": {
+    "2026-11-19": [
+     "09:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "09:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 14 March 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "family-day-workshop-for-all-ages-the-closing-of-the-cahaya-maluku-exhibition",
+   "url": "https://amsterdamart.com/en/programme/family-day-workshop-for-all-ages-the-closing-of-the-cahaya-maluku-exhibition/",
+   "title": "Family Day: Workshop for all ages & the closing of the Cahaya Maluku exhibition",
+   "venue": "CBK Zuidoost",
+   "museumId": "cbk-zuid-oost",
+   "kind": "event",
+   "tags": [
+    "Workshop"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Other"
+   ],
+   "days": {
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 12:00—17:00",
+   "admission": "Free admission",
+   "family": true
+  },
+  {
+   "id": "family-experience-tales-of-two",
+   "url": "https://amsterdamart.com/en/programme/family-experience-tales-of-two/",
+   "title": "FAMILY Experience Tales of Two",
+   "venue": "Nxt Museum",
+   "museumId": "nxt-museum",
+   "kind": "event",
+   "tags": [
+    "Event"
+   ],
+   "disciplines": [
+    "Installation"
+   ],
+   "days": {
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 12:00—17:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "family-sunday-tour-kids-buy-art",
+   "url": "https://amsterdamart.com/en/programme/family-sunday-tour-kids-buy-art/",
+   "title": "Family Sunday Tour & Kids Buy Art",
+   "venue": "Gwen Park",
+   "museumId": "gwen-park",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-22": [
+     "12:00",
+     "14:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 12:00—14:00",
+   "admission": "Free admission",
+   "family": true
+  },
+  {
+   "id": "far-and-familiar-photographic-perspectives-on-a-country-in-transformation-ala-kheir-and-ola-hassanain",
+   "url": "https://amsterdamart.com/en/programme/far-and-familiar-photographic-perspectives-on-a-country-in-transformation-ala-kheir-and-ola-hassanain/",
+   "title": "Far and Familiar: photographic perspectives on a country in transformation | Ala Kheir and Ola Hassanain",
+   "venue": "Prince Claus Fund",
+   "museumId": "the-prince-claus-fund",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Photography"
+   ],
+   "days": {
+    "2026-11-18": [
+     "09:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "09:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 November up to 3 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "festive-drinks-performance-nail-polish-tutorial-by-yaima-carranza",
+   "url": "https://amsterdamart.com/en/programme/festive-drinks-performance-nail-polish-tutorial-by-yaima-carranza/",
+   "title": "Festive drinks & performance: ‘Nail polish tutorial’ by Yaima Carrazana",
+   "venue": "Vriend van Bavink Gallery",
+   "museumId": "gallery-vriend-van-bavink",
+   "kind": "event",
+   "tags": [
+    "Performance"
+   ],
+   "disciplines": [
+    "Performance"
+   ],
+   "days": {
+    "2026-11-20": [
+     "16:00",
+     "20:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 16:00—20:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "festive-gallery-night-2",
+   "url": "https://amsterdamart.com/en/programme/festive-gallery-night-2/",
+   "title": "Festive Gallery Night",
+   "venue": "Location to be announced",
+   "museumId": null,
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Other"
+   ],
+   "days": {
+    "2026-11-19": [
+     "17:00",
+     "21:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 17:00—21:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "finitude-elise-van-staveren",
+   "url": "https://amsterdamart.com/en/programme/finitude-elise-van-staveren/",
+   "title": "Finitude | Elise van Staveren",
+   "venue": "Gallery van Fanny Freytag",
+   "museumId": "gallery-van-fanny-freytag",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Painting",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "flimsily-held-together-by-birdsong-keetje-mans",
+   "url": "https://amsterdamart.com/en/programme/flimsily-held-together-by-birdsong-keetje-mans/",
+   "title": "FLIMSILY HELD TOGETHER BY BIRDSONG | Keetje Mans",
+   "venue": "andriesse~eyck galerie",
+   "museumId": "andriesseeyck-galerie-2",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "13:00",
+     "18:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "flowstones-surrender-audrey-large-jonas-lutz",
+   "url": "https://amsterdamart.com/en/programme/flowstones-surrender-audrey-large-jonas-lutz/",
+   "title": "Flowstones/Surrender | Audrey Large, Jonas Lutz",
+   "venue": "VAN OOSTEROM GALLERY",
+   "museumId": null,
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "13:00",
+     "20:00"
+    ],
+    "2026-11-21": [
+     "13:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 up to 22 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "pat-oleszko-fool-disclosure",
+   "url": "https://amsterdamart.com/en/programme/pat-oleszko-fool-disclosure/",
+   "title": "Fool Disclosure | Pat Oleszko",
+   "venue": "Museum Cobra",
+   "museumId": "cobra-museum",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Performance",
+    "Photography",
+    "Sculpture",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-21": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "17:00"
+    ]
+   },
+   "dates": "21 November 2026 up to 4 April 2027",
+   "admission": "With ticket"
+  },
+  {
+   "id": "forest-of-the-city-anouk-griffioen",
+   "url": "https://amsterdamart.com/en/programme/forest-of-the-city-anouk-griffioen/",
+   "title": "Forest of the City | Anouk Griffioen",
+   "venue": "raam art space",
+   "museumId": "raam-art-space-amsterdam",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-18": [
+     "10:00",
+     "17:30"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "17:30"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "dates": "18 up to 21 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "forget-me-not-harrison-armstrong",
+   "url": "https://amsterdamart.com/en/programme/forget-me-not-harrison-armstrong/",
+   "title": "forget-me-not | Harrison Armstrong",
+   "venue": "Bradwolff Projects",
+   "museumId": "bradwolff-projects",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 up to 22 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "from-530-am-to-730-am-iva-gueorguieva",
+   "url": "https://amsterdamart.com/en/programme/from-530-am-to-730-am-iva-gueorguieva/",
+   "title": "From 5:30 am to 7:30 am | Iva Gueorguieva",
+   "venue": "Bradwolff & Partners",
+   "museumId": "bradwolff-partners",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Other",
+    "Painting",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "guided-tour-this-quiet-place-is-fantastic-sophie-serber",
+   "url": "https://amsterdamart.com/en/programme/guided-tour-this-quiet-place-is-fantastic-sophie-serber/",
+   "title": "Guided Tour: This Quiet Place is Fantastic | sophie serber",
+   "venue": "GDL525",
+   "museumId": "gdl525",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Painting",
+    "Sculpture",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-21": [
+     "16:00",
+     "17:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 16:00—17:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "miscellany-garden-saskia-noor-van-imhoff",
+   "url": "https://amsterdamart.com/en/programme/miscellany-garden-saskia-noor-van-imhoff/",
+   "title": "Handles Squeezed | Saskia Noor van Imhoff",
+   "venue": "GRIMM",
+   "museumId": "grimm",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-19": [
+     "11:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 9 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "heaving-room-rustan-soderling",
+   "url": "https://amsterdamart.com/en/programme/heaving-room-rustan-soderling/",
+   "title": "Heaving Room | Group Exhibition",
+   "venue": "W139",
+   "museumId": "w139",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Installation",
+    "Mixed Media",
+    "Performance",
+    "Sculpture",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "dates": "20 November 2026 up to 7 February 2027",
+   "admission": "With ticket"
+  },
+  {
+   "id": "heaving-room-tour-artist-talk",
+   "url": "https://amsterdamart.com/en/programme/heaving-room-tour-artist-talk/",
+   "title": "Heaving Room Tour & Artist Talk",
+   "venue": "W139",
+   "museumId": "w139",
+   "kind": "event",
+   "tags": [
+    "Artist Talk",
+    "Tour"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Installation",
+    "Mixed Media",
+    "Performance",
+    "Sculpture",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-21": [
+     "15:00",
+     "16:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 15:00—16:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "i-think-i-dont-i-do-rasmus-nilausen-pipilotti-rist-ina-van-zyl-win-mccarthy-olga-balema-tozer-pak-ima-abasi-okon",
+   "url": "https://amsterdamart.com/en/programme/i-think-i-dont-i-do-rasmus-nilausen-pipilotti-rist-ina-van-zyl-win-mccarthy-olga-balema-tozer-pak-ima-abasi-okon/",
+   "title": "I think. I don’t. I do | Group Exhibition",
+   "venue": "Woonhuis de Ateliers",
+   "museumId": "de-ateliers",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "20 November 2026 up to 17 January 2027",
+   "admission": "With ticket"
+  },
+  {
+   "id": "idfa-juniordag-2",
+   "url": "https://amsterdamart.com/en/programme/idfa-juniordag-2/",
+   "title": "IDFA Juniordag",
+   "venue": "Eye Filmmuseum",
+   "museumId": "eye-filmmuseum-2",
+   "kind": "event",
+   "tags": [
+    "Screening"
+   ],
+   "disciplines": [
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-22": [
+     "10:00",
+     "12:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 10:00—12:00",
+   "admission": "With ticket",
+   "family": true
+  },
+  {
+   "id": "in-conversation-robin-de-puy",
+   "url": "https://amsterdamart.com/en/programme/in-conversation-robin-de-puy/",
+   "title": "In Conversation: Robin de Puy",
+   "venue": "Theater de Richel, Nieuwezijds Voorburgwal 282",
+   "museumId": null,
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Photography"
+   ],
+   "days": {
+    "2026-11-22": [
+     "19:30",
+     "21:30"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 19:30—21:30",
+   "admission": "With ticket"
+  },
+  {
+   "id": "indebt-x-diez-invites",
+   "url": "https://amsterdamart.com/en/programme/indebt-x-diez-invites/",
+   "title": "INDEBT x diez invites…",
+   "venue": "INDEBT",
+   "museumId": "indebt",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-19": [
+     "14:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "dates": "18 up to 21 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "kids-tour-by-artist-quintus-glerum",
+   "url": "https://amsterdamart.com/en/programme/kids-tour-by-artist-quintus-glerum/",
+   "title": "Kids Tour by artist Quintus Glerum",
+   "venue": "Treehouse NDSM",
+   "museumId": "treehouse-ndsm",
+   "kind": "event",
+   "tags": [
+    "Tour",
+    "Workshop"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-22": [
+     "14:00",
+     "15:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 14:00—15:00",
+   "admission": "Free admission",
+   "family": true
+  },
+  {
+   "id": "lapdogs-of-the-bourgeoisie-2026-class-hegemony-in-contemporary-art",
+   "url": "https://amsterdamart.com/en/programme/lapdogs-of-the-bourgeoisie-2026-class-hegemony-in-contemporary-art/",
+   "title": "Lapdogs of the Bourgeoisie 2026: Class Hegemony in Contemporary Art",
+   "venue": "de Appel",
+   "museumId": "de-appel",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Mixed Media",
+    "Other",
+    "Performance",
+    "Photography",
+    "Video | Film",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-18": [
+     "14:00",
+     "20:00"
+    ],
+    "2026-11-19": [
+     "14:00",
+     "20:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "20:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "20:00"
+    ]
+   },
+   "dates": "18 up to 21 November 2026",
+   "admission": "With ticket"
+  },
+  {
+   "id": "leaves-milah-van-zuilen",
+   "url": "https://amsterdamart.com/en/programme/leaves-milah-van-zuilen/",
+   "title": "Leaves, and more | Milah van Zuilen",
+   "venue": "Caroline O’Breen",
+   "museumId": "galerie-caroline-obreen",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "life-after-love-hera-chan-edwin-nasr",
+   "url": "https://amsterdamart.com/en/programme/life-after-love-hera-chan-edwin-nasr/",
+   "title": "Life After Love | Hera Chan & Edwin Nasr",
+   "venue": "Framer Framed",
+   "museumId": "framer-framed",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-18": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 17 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "live-music-performance-cellar-seriesity-presents-imaginarium",
+   "url": "https://amsterdamart.com/en/programme/live-music-performance-cellar-seriesity-presents-imaginarium/",
+   "title": "Live Music Performance: Cellar Series ity presents Imaginarium",
+   "venue": "Hartwig Proxy",
+   "museumId": "hartwig-proxy",
+   "kind": "event",
+   "tags": [
+    "Performance"
+   ],
+   "disciplines": [
+    "Performance"
+   ],
+   "days": {
+    "2026-11-21": [
+     "19:30",
+     "21:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 19:30—21:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "live-radio-show-artist-talk-quintus-glerum",
+   "url": "https://amsterdamart.com/en/programme/live-radio-show-artist-talk-quintus-glerum/",
+   "title": "Live Radio Show & Artist Talk: Quintus Glerum",
+   "venue": "Treehouse NDSM",
+   "museumId": "treehouse-ndsm",
+   "kind": "event",
+   "tags": [
+    "Artist Talk",
+    "Panel / Talk"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Mixed Media",
+    "Other"
+   ],
+   "days": {
+    "2026-11-21": [
+     "14:00",
+     "15:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 14:00—15:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "lovers-alicia-framis",
+   "url": "https://amsterdamart.com/en/programme/lovers-alicia-framis/",
+   "title": "Lovers | Alicia Framis",
+   "venue": "Upstream Gallery",
+   "museumId": "upstream-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Installation",
+    "Mixed Media",
+    "Performance",
+    "Photography",
+    "Sculpture",
+    "Video | Film",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "manos-de-hierro-en-guantes-de-terciopelo-alan-hernandez",
+   "url": "https://amsterdamart.com/en/programme/manos-de-hierro-en-guantes-de-terciopelo-alan-hernandez/",
+   "title": "Manos de hierro en guantes de terciopelo | Alan Hernández",
+   "venue": "No Man’s Art Gallery",
+   "museumId": "no-mans-art-gallery-2",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Sculpture",
+    "Textile"
+   ],
+   "days": {
+    "2026-11-19": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 18 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "maracutaia-maria-van-der-togt-quintus-glerum-caio-reisewitz",
+   "url": "https://amsterdamart.com/en/programme/maracutaia-maria-van-der-togt-quintus-glerum-caio-reisewitz/",
+   "title": "MARACUTAIA | Maria van der Togt, Quintus Glerum, Caio Reisewitz",
+   "venue": "Josilda da Conceição",
+   "museumId": "josilda-da-conceicao-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 up to 22 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "mass-frank-ammerlaan",
+   "url": "https://amsterdamart.com/en/programme/mass-frank-ammerlaan/",
+   "title": "MASS | Frank Ammerlaan",
+   "venue": "Upstream Gallery",
+   "museumId": "upstream-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Other"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "meet-the-artists-narges-mohammadi-kiki-ho",
+   "url": "https://amsterdamart.com/en/programme/meet-the-artists-narges-mohammadi-kiki-ho/",
+   "title": "Meet the Artists: Narges Mohammadi & Kiki Ho",
+   "venue": "Loods6",
+   "museumId": null,
+   "kind": "event",
+   "tags": [
+    "Artist Talk",
+    "Tour"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-22": [
+     "15:00",
+     "17:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 15:00—17:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "group-exhibition-job-koelewijn-alexandra-leykauf-robbert-weide",
+   "url": "https://amsterdamart.com/en/programme/group-exhibition-job-koelewijn-alexandra-leykauf-robbert-weide/",
+   "title": "MURMUR | Job Koelewijn, Alexandra Leykauf, Robbert Weide, Annabelle Binnerts",
+   "venue": "Martin van Zomeren",
+   "museumId": "galerie-martin-van-zomeren",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 9 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "names-in-our-veins-fx-harsono-and-vincent-ruijters",
+   "url": "https://amsterdamart.com/en/programme/names-in-our-veins-fx-harsono-and-vincent-ruijters/",
+   "title": "Names In Our Veins | FX Harsono and Vincent Ruijters",
+   "venue": "Buro Stedelijk",
+   "museumId": "buro-stedelijk",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-18": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "18:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 3 January 2027",
+   "admission": "With ticket"
+  },
+  {
+   "id": "nasal-demons-quintus-glerum-more",
+   "url": "https://amsterdamart.com/en/programme/nasal-demons-quintus-glerum-more/",
+   "title": "Nasal Demons | Quintus Glerum & more",
+   "venue": "Treehouse NDSM",
+   "museumId": "treehouse-ndsm",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Installation",
+    "Mixed Media",
+    "Other",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "dates": "18 November up to 6 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "naturocene",
+   "url": "https://amsterdamart.com/en/programme/naturocene/",
+   "title": "Naturocene",
+   "venue": "On The Inside",
+   "museumId": "on-the-inside",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Installation",
+    "Mixed Media",
+    "Painting",
+    "Photography",
+    "Sculpture",
+    "Textile",
+    "Video | Film",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-18": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "11:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 14 February 2027",
+   "admission": "With ticket"
+  },
+  {
+   "id": "new-works-kees-goudzwaard",
+   "url": "https://amsterdamart.com/en/programme/new-works-kees-goudzwaard/",
+   "title": "New Works | Kees Goudzwaard",
+   "venue": "Slewe Gallery",
+   "museumId": "slewe-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "night-gallery-presents-multisexual-dance-experience",
+   "url": "https://amsterdamart.com/en/programme/night-gallery-presents-multisexual-dance-experience/",
+   "title": "Night Gallery presents: Multisexual Dance Experience",
+   "venue": "The Loft",
+   "museumId": "the-loft",
+   "kind": "event",
+   "tags": [
+    "Event"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-20": null,
+    "2026-11-21": null
+   },
+   "dates": "20 up to 21 November 2026",
+   "admission": "With ticket"
+  },
+  {
+   "id": "ofcourse-studying-art-is-a-terrible-idea-group-exhibition-with-3-alumni-of-the-rijksakademie",
+   "url": "https://amsterdamart.com/en/programme/ofcourse-studying-art-is-a-terrible-idea-group-exhibition-with-3-alumni-of-the-rijksakademie/",
+   "title": "OFCOURSE STUDYING ART IS A TERRIBLE IDEA | Group exhibition with 3 alumni of the Rijksakademie",
+   "venue": "DNB",
+   "museumId": "de-nederlandsche-bank-dnb",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Mixed Media",
+    "Painting",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-18": [
+     "09:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "09:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 29 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "official-aaw26-after-party-curated-by-lentekabinet",
+   "url": "https://amsterdamart.com/en/programme/official-aaw26-after-party-curated-by-lentekabinet/",
+   "title": "Official AAW26 After party curated by Lentekabinet",
+   "venue": "ISO AMSTERDAM",
+   "museumId": "iso",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-21": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "21 up to 22 November 2026",
+   "admission": "With ticket"
+  },
+  {
+   "id": "official-gallery-night-after-party-hosted-by-minor-attractions",
+   "url": "https://amsterdamart.com/en/programme/official-gallery-night-after-party-hosted-by-minor-attractions/",
+   "title": "Official Gallery Night After Party hosted by Minor Attractions",
+   "venue": "Bar San Francisco",
+   "museumId": "bar-san-francisco",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-19": [
+     "21:00",
+     "00:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 21:00—00:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "omen-gabriel-lester",
+   "url": "https://amsterdamart.com/en/programme/omen-gabriel-lester/",
+   "title": "Omen | Gabriel Lester",
+   "venue": "Capital C",
+   "museumId": "capital-c",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [],
+   "days": {
+    "2026-11-18": [
+     "19:00",
+     "21:30"
+    ],
+    "2026-11-19": [
+     "09:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "09:00",
+     "21:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 31 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "open-studio-at-treehouse-ndsm",
+   "url": "https://amsterdamart.com/en/programme/open-studio-at-treehouse-ndsm/",
+   "title": "Open Studio at Treehouse NDSM",
+   "venue": "Treehouse NDSM",
+   "museumId": "treehouse-ndsm",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-21": [
+     "13:00",
+     "18:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 13:00—18:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "open-studio-fre-calmes",
+   "url": "https://amsterdamart.com/en/programme/open-studio-fre-calmes/",
+   "title": "Open Studio: Fré Calmes",
+   "venue": "Thami Mnyele Foundation",
+   "museumId": "thami-mnyele-foundation",
+   "kind": "event",
+   "tags": [
+    "Studio Visit"
+   ],
+   "disciplines": [
+    "Installation",
+    "Mixed Media",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 12:00—18:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "open-studios-rijksakademie",
+   "url": "https://amsterdamart.com/en/programme/open-studios-rijksakademie/",
+   "title": "Open Studios | Rijksakademie",
+   "venue": "Rijksakademie van beeldende kunsten",
+   "museumId": "rijksakademie-van-beeldende-kunsten-2",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition",
+    "Studio Visit"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-19": null,
+    "2026-11-20": null,
+    "2026-11-21": null,
+    "2026-11-22": null
+   },
+   "dates": "19 up to 22 November 2026",
+   "admission": "With ticket"
+  },
+  {
+   "id": "opening-artist-talk-fabric-of-play-zoubida-sophia-kacimi",
+   "url": "https://amsterdamart.com/en/programme/opening-artist-talk-fabric-of-play-zoubida-sophia-kacimi/",
+   "title": "Opening & Artist Performance: Fabric of Play, Zoubida (Sophia Kacimi)",
+   "venue": "Gallery Poche",
+   "museumId": "gallery-poche",
+   "kind": "event",
+   "tags": [
+    "Opening",
+    "Artist Talk",
+    "Other",
+    "Performance"
+   ],
+   "disciplines": [
+    "Textile"
+   ],
+   "days": {
+    "2026-11-21": [
+     "17:00",
+     "19:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 17:00—19:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "opening-bodies-of-water-amsterdam-art-week-x-rietveld-alumni-i-c-w-waterschap-amstel-gooi-vecht",
+   "url": "https://amsterdamart.com/en/programme/opening-bodies-of-water-amsterdam-art-week-x-rietveld-alumni-i-c-w-waterschap-amstel-gooi-vecht/",
+   "title": "Opening: Bodies of water: Amsterdam Art Week x Rietveld Alumni i.c.w. Waterschap Amstel, Gooi & Vecht",
+   "venue": "Rietveld Academie",
+   "museumId": null,
+   "kind": "event",
+   "tags": [
+    "Opening"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-20": [
+     "18:00",
+     "20:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 18:00—20:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "opening-eromheen-by-kinke-kooi",
+   "url": "https://amsterdamart.com/en/programme/opening-eromheen-by-kinke-kooi/",
+   "title": "Opening: eromheen by Kinke Kooi",
+   "venue": "ROZENSTRAAT – a rose is a rose is a rose",
+   "museumId": "rozenstraat-a-rose-is-a-rose-is-a-rose-is-a-project-space-for-contemporary-visual-art-our-program-is-characterized-by-a-focus-on-stimulating-progressi",
+   "kind": "event",
+   "tags": [
+    "Opening"
+   ],
+   "disciplines": [
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-20": [
+     "17:00",
+     "19:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 17:00—19:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "opening-finitude-elise-van-staveren",
+   "url": "https://amsterdamart.com/en/programme/opening-finitude-elise-van-staveren/",
+   "title": "Opening: Finitude | Elise van Staveren",
+   "venue": "Gallery van Fanny Freytag",
+   "museumId": "gallery-van-fanny-freytag",
+   "kind": "event",
+   "tags": [
+    "Opening",
+    "Other"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "17:00",
+     "20:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 17:00—20:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "opening-heaving-roomwith-special-activation-by-one-of-the-artists",
+   "url": "https://amsterdamart.com/en/programme/opening-heaving-roomwith-special-activation-by-one-of-the-artists/",
+   "title": "Opening: Heaving Room with Sound Performance",
+   "venue": "W139",
+   "museumId": "w139",
+   "kind": "event",
+   "tags": [
+    "Opening",
+    "Other"
+   ],
+   "disciplines": [
+    "Other",
+    "Performance"
+   ],
+   "days": {
+    "2026-11-20": [
+     "19:00",
+     "22:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 19:00—22:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "opening-i-think-i-dont-i-do-2",
+   "url": "https://amsterdamart.com/en/programme/opening-i-think-i-dont-i-do-2/",
+   "title": "Opening: I think. I don’t. I do",
+   "venue": "Woonhuis de Ateliers",
+   "museumId": "de-ateliers",
+   "kind": "event",
+   "tags": [
+    "Opening",
+    "Other"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Other"
+   ],
+   "days": {
+    "2026-11-20": [
+     "17:00",
+     "19:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 17:00—19:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "opening-omen-gabriel-lester",
+   "url": "https://amsterdamart.com/en/programme/opening-omen-gabriel-lester/",
+   "title": "Opening: Omen | Gabriel Lester",
+   "venue": "Capital C",
+   "museumId": "capital-c",
+   "kind": "event",
+   "tags": [
+    "Opening"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Other"
+   ],
+   "days": {
+    "2026-11-18": [
+     "17:00",
+     "20:00"
+    ]
+   },
+   "dates": "Wednesday 18 November 2026 · 17:00—20:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "opening-this-quiet-place-is-fantastic-sophie-serber",
+   "url": "https://amsterdamart.com/en/programme/opening-this-quiet-place-is-fantastic-sophie-serber/",
+   "title": "Opening: This Quiet Place is Fantastic | sophie serber",
+   "venue": "GDL525",
+   "museumId": "gdl525",
+   "kind": "event",
+   "tags": [
+    "Opening"
+   ],
+   "disciplines": [
+    "Painting",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-19": [
+     "15:00",
+     "19:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 15:00—19:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "oude-kerk-late",
+   "url": "https://amsterdamart.com/en/programme/oude-kerk-late/",
+   "title": "Oude Kerk Late",
+   "venue": "Oude Kerk",
+   "museumId": "oude-kerk",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Installation",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-20": [
+     "18:00",
+     "20:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 18:00—20:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "parallel-processes-brian-elstak-willem-harbers-roos-van-haaften",
+   "url": "https://amsterdamart.com/en/programme/parallel-processes-brian-elstak-willem-harbers-roos-van-haaften/",
+   "title": "Parallel Processes | Brian Elstak, Willem Harbers, Roos van Haaften",
+   "venue": "KiMu Kinderkunstmuseum",
+   "museumId": "kimu-kinderkunstmuseum",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-18": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 15 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "passing-still-clara-schweers-delphine-lejeune-and-bohyeon-hwang",
+   "url": "https://amsterdamart.com/en/programme/passing-still-clara-schweers-delphine-lejeune-and-bohyeon-hwang/",
+   "title": "Passing, Still | Clara Schweers, Delphine Lejeune and Bohyeon Hwang",
+   "venue": "Gwen Park",
+   "museumId": "gwen-park",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Ceramics",
+    "Installation",
+    "Mixed Media",
+    "Painting",
+    "Sculpture",
+    "Textile"
+   ],
+   "days": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 16 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "performance-alicia-framis",
+   "url": "https://amsterdamart.com/en/programme/performance-alicia-framis/",
+   "title": "Performance: Alicia Framis",
+   "venue": "Upstream Gallery",
+   "museumId": "upstream-gallery",
+   "kind": "event",
+   "tags": [
+    "Performance"
+   ],
+   "disciplines": [
+    "Performance"
+   ],
+   "days": {
+    "2026-11-19": [
+     "19:00",
+     "20:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 19:00—20:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "performance-counter-serenade",
+   "url": "https://amsterdamart.com/en/programme/performance-counter-serenade/",
+   "title": "Performance: Counter serenade",
+   "venue": "mad meg",
+   "museumId": "mad-meg",
+   "kind": "event",
+   "tags": [
+    "Performance"
+   ],
+   "disciplines": [
+    "Performance"
+   ],
+   "days": {
+    "2026-11-19": [
+     "19:00",
+     "21:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 19:00—21:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "performance-de-diepe-duisternis-by-patricia-kaersenhout-dwight-fransman-vernon-chatlein",
+   "url": "https://amsterdamart.com/en/programme/performance-de-diepe-duisternis-by-patricia-kaersenhout-dwight-fransman-vernon-chatlein/",
+   "title": "Performance: De diepe duisternis by patricia kaersenhout, Dwight Fransman & Vernon Chatlein",
+   "venue": "AKINCI",
+   "museumId": "akinci",
+   "kind": "event",
+   "tags": [
+    "Performance"
+   ],
+   "disciplines": [
+    "Performance"
+   ],
+   "days": {
+    "2026-11-20": [
+     "16:30",
+     "18:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 16:30—18:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "foreign-body-performance-by-ines-borovac",
+   "url": "https://amsterdamart.com/en/programme/foreign-body-performance-by-ines-borovac/",
+   "title": "Performance: Foreign Body by Ines Borovac",
+   "venue": "ISO AMSTERDAM",
+   "museumId": "iso",
+   "kind": "event",
+   "tags": [
+    "Performance"
+   ],
+   "disciplines": [
+    "Performance"
+   ],
+   "days": {
+    "2026-11-21": [
+     "21:30",
+     "22:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 21:30—22:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "performance-lagging-bodies-by-multiple-artists",
+   "url": "https://amsterdamart.com/en/programme/performance-lagging-bodies-by-multiple-artists/",
+   "title": "Performance: Lagging Bodies by multiple artists",
+   "venue": "Nxt Museum",
+   "museumId": "nxt-museum",
+   "kind": "event",
+   "tags": [
+    "Performance"
+   ],
+   "disciplines": [
+    "Performance"
+   ],
+   "days": {
+    "2026-11-20": [
+     "18:30",
+     "19:30"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 18:30—19:30",
+   "admission": "With ticket"
+  },
+  {
+   "id": "pioneers-of-media-art-group-show",
+   "url": "https://amsterdamart.com/en/programme/pioneers-of-media-art-group-show/",
+   "title": "Pioneers of Media Art | group show",
+   "venue": "Nxt Museum",
+   "museumId": "nxt-museum",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Installation",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-18": [
+     "11:00",
+     "20:30"
+    ],
+    "2026-11-19": [
+     "11:00",
+     "20:30"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "22:30"
+    ],
+    "2026-11-21": [
+     "11:00",
+     "22:30"
+    ],
+    "2026-11-22": [
+     "11:00",
+     "20:30"
+    ]
+   },
+   "dates": "18 November 2026 up to 10 January 2027",
+   "admission": "With ticket"
+  },
+  {
+   "id": "plantage-aan-de-gracht-verhalen-van-mens-en-macht-natasja-kensmil",
+   "url": "https://amsterdamart.com/en/programme/plantage-aan-de-gracht-verhalen-van-mens-en-macht-natasja-kensmil/",
+   "title": "Plantage aan de gracht: verhalen van mens en macht | Natasja Kensmil",
+   "venue": "Amsterdam Museum",
+   "museumId": "amsterdam-museum-2",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-18": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 4 April 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "playground-masao-nakahara",
+   "url": "https://amsterdamart.com/en/programme/playground-masao-nakahara/",
+   "title": "Playground | Masao Nakahara",
+   "venue": "Althuis Hofland Fine Arts",
+   "museumId": "althuis-hofland-fine-arts",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting",
+    "Sculpture",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 12 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "plucking-the-broom",
+   "url": "https://amsterdamart.com/en/programme/plucking-the-broom/",
+   "title": "Plucking The Broom",
+   "venue": "No Limits! Art Castle",
+   "museumId": "no-limits-art-castle",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Ceramics",
+    "Installation",
+    "Painting",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-18": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "19:00"
+    ]
+   },
+   "dates": "18 up to 29 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "poetic-justice-patricia-kaersenhout",
+   "url": "https://amsterdamart.com/en/programme/poetic-justice-patricia-kaersenhout/",
+   "title": "Poetic Justice | patricia kaersenhout",
+   "venue": "AKINCI",
+   "museumId": "akinci",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Textile",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 13 February 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "post-no-bills-7-anatomy-of-obstruction-kexin-hao",
+   "url": "https://amsterdamart.com/en/programme/post-no-bills-7-anatomy-of-obstruction-kexin-hao/",
+   "title": "Post/No/Bills #7 Anatomy of Obstruction | Kexin Hao",
+   "venue": "Stedelijk Museum Amsterdam",
+   "museumId": "stedelijk-museum-amsterdam",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-18": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "18:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 30 April 2027",
+   "admission": "With ticket"
+  },
+  {
+   "id": "pre-opening-of-exhibition-for-public-fool-disclosure-by-pat-oleszko-the-manufacturing-of-spirits-and-other-mechanical-wonders-by-mette-sterre",
+   "url": "https://amsterdamart.com/en/programme/pre-opening-of-exhibition-for-public-fool-disclosure-by-pat-oleszko-the-manufacturing-of-spirits-and-other-mechanical-wonders-by-mette-sterre/",
+   "title": "Pre-opening of exhibition for public: Fool Disclosure by Pat Oleszko & The Manufacturing of Spirits and Other Mechanical Wonders by Mette Sterre",
+   "venue": "Museum Cobra",
+   "museumId": "cobra-museum",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Installation",
+    "Performance",
+    "Photography"
+   ],
+   "days": {
+    "2026-11-21": [
+     "10:00",
+     "17:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 10:00—17:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "re-enchanting-photography",
+   "url": "https://amsterdamart.com/en/programme/re-enchanting-photography/",
+   "title": "Re-Enchanting Photography | Group Exhibition",
+   "venue": "Buro Onrust",
+   "museumId": null,
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Photography"
+   ],
+   "days": {
+    "2026-11-19": null,
+    "2026-11-20": null,
+    "2026-11-21": null,
+    "2026-11-22": null
+   },
+   "dates": "19 up to 22 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "ruins-sense-of-place-i-nataliya-zuban",
+   "url": "https://amsterdamart.com/en/programme/ruins-sense-of-place-i-nataliya-zuban/",
+   "title": "ruins. sense of place I NATALIYA ZUBAN",
+   "venue": "Iona Foundation",
+   "museumId": "iona-stichting",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-18": [
+     "09:30",
+     "16:30"
+    ],
+    "2026-11-19": [
+     "09:30",
+     "16:30"
+    ],
+    "2026-11-20": [
+     "09:30",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 up to 22 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "schneewanderung-heidrun-rathgeb",
+   "url": "https://amsterdamart.com/en/programme/schneewanderung-heidrun-rathgeb/",
+   "title": "Schneewanderung | Heidrun Rathgeb",
+   "venue": "Althuis Hofland Fine Arts",
+   "museumId": "althuis-hofland-fine-arts",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 12 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "screening-meet-the-artists-andre-de-jong-beppie-gielkens",
+   "url": "https://amsterdamart.com/en/programme/screening-meet-the-artists-andre-de-jong-beppie-gielkens/",
+   "title": "Screening & Meet the Artists: André de Jong & Beppie Gielkens",
+   "venue": "The Merchant House",
+   "museumId": "the-merchant-house",
+   "kind": "event",
+   "tags": [
+    "Artist Talk",
+    "Screening"
+   ],
+   "disciplines": [
+    "Painting",
+    "Video | Film",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-22": [
+     "15:00",
+     "17:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 15:00—17:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "solo-exhibition-aysen-kaptanoglu",
+   "url": "https://amsterdamart.com/en/programme/solo-exhibition-aysen-kaptanoglu/",
+   "title": "Solo Exhibition | Ayşen Kaptanoğlu",
+   "venue": "Madé van Krimpen",
+   "museumId": "made-van-krimpen-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "solo-exhibition-erik-van-lieshout",
+   "url": "https://amsterdamart.com/en/programme/solo-exhibition-erik-van-lieshout/",
+   "title": "Solo Exhibition | Erik van Lieshout",
+   "venue": "Annet Gelink Gallery",
+   "museumId": "annet-gelink-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-19": [
+     "10:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 9 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "solo-exhibition-ian-waelder",
+   "url": "https://amsterdamart.com/en/programme/solo-exhibition-ian-waelder/",
+   "title": "Solo Exhibition | Ian Waelder",
+   "venue": "diez",
+   "museumId": "diez",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Mixed Media",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 6 February 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "solo-exhibition-marjolein-rothman",
+   "url": "https://amsterdamart.com/en/programme/solo-exhibition-marjolein-rothman/",
+   "title": "Solo Exhibition | Marjolein Rothman",
+   "venue": "dudokdegroot",
+   "museumId": "gallery-dudokdegroot",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 up to 22 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "some-wild-kind-of-language-adam-pendleton",
+   "url": "https://amsterdamart.com/en/programme/some-wild-kind-of-language-adam-pendleton/",
+   "title": "Some Wild Kind of Language | Adam Pendleton",
+   "venue": "Stedelijk Museum Amsterdam",
+   "museumId": "stedelijk-museum-amsterdam",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [],
+   "days": {
+    "2026-11-18": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "18:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 17 January 2027",
+   "admission": "With ticket"
+  },
+  {
+   "id": "specters-hamza-halloubi",
+   "url": "https://amsterdamart.com/en/programme/specters-hamza-halloubi/",
+   "title": "Specters | Hamza Halloubi",
+   "venue": "tegenboschvanvreden",
+   "museumId": "tegenboschvanvreden",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Mixed Media",
+    "Painting",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "sunday-brunch-at-the-lijnbaansgracht-galleries",
+   "url": "https://amsterdamart.com/en/programme/sunday-brunch-at-the-lijnbaansgracht-galleries/",
+   "title": "Sunday Brunch at the Lijnbaansgracht Galleries",
+   "venue": "Lijnbaansgracht galleries",
+   "museumId": null,
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Other",
+    "Painting",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-22": [
+     "12:00",
+     "13:30"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 12:00—13:30",
+   "admission": "Free admission"
+  },
+  {
+   "id": "swarm-group-exhibition",
+   "url": "https://amsterdamart.com/en/programme/swarm-group-exhibition/",
+   "title": "SWARM | Group Exhibition",
+   "venue": "ISO AMSTERDAM",
+   "museumId": "iso",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Ceramics",
+    "Performance"
+   ],
+   "days": {
+    "2026-11-18": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-19": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "11:00",
+     "18:00"
+    ]
+   },
+   "dates": "17 up to 21 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "talk-the-films-and-work-of-guillaume-dustan-by-julien-laugier-and-olga-rozenblum",
+   "url": "https://amsterdamart.com/en/programme/talk-the-films-and-work-of-guillaume-dustan-by-julien-laugier-and-olga-rozenblum/",
+   "title": "Talk: The films and work of Guillaume Dustan by Julien Laugier and Olga Rozenblum",
+   "venue": "Hartwig Proxy",
+   "museumId": "hartwig-proxy",
+   "kind": "event",
+   "tags": [
+    "Panel / Talk"
+   ],
+   "disciplines": [
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-20": [
+     "18:30",
+     "20:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 18:30—20:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "the-future-is-now-melanie-bonajo-anna-hoetjes-maria-pask-patricia-kaersenhout",
+   "url": "https://amsterdamart.com/en/programme/the-future-is-now-melanie-bonajo-anna-hoetjes-maria-pask-patricia-kaersenhout/",
+   "title": "The Future is Now | melanie bonajo, Anna Hoetjes, Maria Pask, patricia kaersenhout",
+   "venue": "VU ART SCIENCE Gallery",
+   "museumId": "vu-art-science-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Ceramics",
+    "Installation",
+    "Mixed Media",
+    "Sculpture",
+    "Textile",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-18": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 2 April 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "the-manufacturing-of-spirits-and-other-mechanical-wonders-mette-sterre",
+   "url": "https://amsterdamart.com/en/programme/the-manufacturing-of-spirits-and-other-mechanical-wonders-mette-sterre/",
+   "title": "The Manufacturing of Spirits and Other Mechanical Wonders | Mette Sterre",
+   "venue": "Museum Cobra",
+   "museumId": "cobra-museum",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-21": [
+     "10:00",
+     "17:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "17:00"
+    ]
+   },
+   "dates": "21 November 2026 up to 4 April 2027",
+   "admission": "With ticket"
+  },
+  {
+   "id": "the-orientation-trip-joost-krijnen",
+   "url": "https://amsterdamart.com/en/programme/the-orientation-trip-joost-krijnen/",
+   "title": "The Orientation Trip | Joost Krijnen",
+   "venue": "m.simons",
+   "museumId": "m-simons",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 2 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "the-party-folkert-de-jong",
+   "url": "https://amsterdamart.com/en/programme/the-party-folkert-de-jong/",
+   "title": "The Party | Folkert de Jong",
+   "venue": "Galerie Ron Mandos",
+   "museumId": "galerie-ron-mandos",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 10 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "the-table-carlota-guerrero-yumna-al-arashi-javed-akhtar-linnea-skoglosa-wiebke-mertens-florence-reekie-alejandro-de-javaloyas-gvantsa-jishkariani-lesl",
+   "url": "https://amsterdamart.com/en/programme/the-table-carlota-guerrero-yumna-al-arashi-javed-akhtar-linnea-skoglosa-wiebke-mertens-florence-reekie-alejandro-de-javaloyas-gvantsa-jishkariani-leslie-bertho-and-more/",
+   "title": "The Table | Group Exhibition",
+   "venue": "Homecoming Gallery",
+   "museumId": "homecoming-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Painting",
+    "Photography",
+    "Sculpture",
+    "Textile",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "the-weight-of-green-and-other-wavelengths-wieteke-heldens",
+   "url": "https://amsterdamart.com/en/programme/the-weight-of-green-and-other-wavelengths-wieteke-heldens/",
+   "title": "The weight of green (and other wavelengths) | Wieteke Heldens",
+   "venue": "Borzo Gallery",
+   "museumId": "borzo-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "there-again-i-sanja-medic",
+   "url": "https://amsterdamart.com/en/programme/there-again-i-sanja-medic/",
+   "title": "There, Again I Sanja Medić",
+   "venue": "Bradwolff & Partners",
+   "museumId": "bradwolff-partners",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Other"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "this-quiet-place-is-fantastic-sophie-serber",
+   "url": "https://amsterdamart.com/en/programme/this-quiet-place-is-fantastic-sophie-serber/",
+   "title": "This Quiet Place is Fantastic | sophie serber",
+   "venue": "GDL525",
+   "museumId": "gdl525",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting",
+    "Sculpture",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-19": [
+     "15:00",
+     "19:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 13 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "this-way-maaike-schoorel",
+   "url": "https://amsterdamart.com/en/programme/this-way-maaike-schoorel/",
+   "title": "This way | Maaike Schoorel",
+   "venue": "Stigter van Doesburg",
+   "museumId": "stigter-van-doesburg-2",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 9 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "timeframes-saar-scheerlings",
+   "url": "https://amsterdamart.com/en/programme/timeframes-saar-scheerlings/",
+   "title": "Timeframes | Saar Scheerlings",
+   "venue": "Galerie Fleur & Wouter",
+   "museumId": "galerie-fleur-wouter-and-gomulan",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Painting",
+    "Textile"
+   ],
+   "days": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 20 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "tour-1-centre-on-foot",
+   "url": "https://amsterdamart.com/en/programme/tour-1-centre-on-foot/",
+   "title": "Tour 1: Centre on foot",
+   "venue": "Slewe Gallery",
+   "museumId": "slewe-gallery",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-19": [
+     "17:00",
+     "19:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 17:00—19:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "tour-1-centre-on-foot-2",
+   "url": "https://amsterdamart.com/en/programme/tour-1-centre-on-foot-2/",
+   "title": "Tour 10: Centre on foot",
+   "venue": "Althuis Hofland Fine Arts",
+   "museumId": "althuis-hofland-fine-arts",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-22": [
+     "12:00",
+     "14:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 12:00—14:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "tour-2-east-west-by-bike",
+   "url": "https://amsterdamart.com/en/programme/tour-2-east-west-by-bike/",
+   "title": "Tour 11: East/West by bike",
+   "venue": "Loods6",
+   "museumId": null,
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-22": [
+     "13:00",
+     "15:00"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 13:00—15:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "tour-2-jordaan-west-by-bike",
+   "url": "https://amsterdamart.com/en/programme/tour-2-jordaan-west-by-bike/",
+   "title": "Tour 2: Jordaan/West by bike",
+   "venue": "andriesse~eyck galerie",
+   "museumId": "andriesseeyck-galerie-2",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-19": [
+     "18:00",
+     "20:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 18:00—20:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "tour-3-centre-north-by-bike",
+   "url": "https://amsterdamart.com/en/programme/tour-3-centre-north-by-bike/",
+   "title": "Tour 3: Centre/North by bike",
+   "venue": "Upstream Gallery",
+   "museumId": "upstream-gallery",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-19": [
+     "18:00",
+     "20:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 18:00—20:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "tour-1-centre-on-foot-3",
+   "url": "https://amsterdamart.com/en/programme/tour-1-centre-on-foot-3/",
+   "title": "Tour 4: Centre on foot",
+   "venue": "Working Title",
+   "museumId": "gomulan-gallery-2",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-20": [
+     "16:00",
+     "18:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 16:00—18:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "tour-2-south-centre-by-bike",
+   "url": "https://amsterdamart.com/en/programme/tour-2-south-centre-by-bike/",
+   "title": "Tour 5: South/Centre by bike",
+   "venue": "Gwen Park",
+   "museumId": "gwen-park",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-20": [
+     "16:00",
+     "18:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 16:00—18:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "tour-3-jordaan-on-foot",
+   "url": "https://amsterdamart.com/en/programme/tour-3-jordaan-on-foot/",
+   "title": "Tour 6: Jordaan on foot",
+   "venue": "dudokdegroot",
+   "museumId": "gallery-dudokdegroot",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-20": [
+     "16:00",
+     "18:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 16:00—18:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "tour-1-north-by-bike",
+   "url": "https://amsterdamart.com/en/programme/tour-1-north-by-bike/",
+   "title": "Tour 7: North by bike",
+   "venue": "On The Inside",
+   "museumId": "on-the-inside",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-21": [
+     "13:00",
+     "15:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 13:00—15:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "tour-2-jordaan-on-foot",
+   "url": "https://amsterdamart.com/en/programme/tour-2-jordaan-on-foot/",
+   "title": "Tour 8: Jordaan on foot",
+   "venue": "Depth of Field",
+   "museumId": "dof-deth-of-field",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-21": [
+     "16:00",
+     "18:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 16:00—18:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "tour-3-south-centre-by-bike",
+   "url": "https://amsterdamart.com/en/programme/tour-3-south-centre-by-bike/",
+   "title": "Tour 9: South/Centre on foot",
+   "venue": "Working Title",
+   "museumId": "gomulan-gallery-2",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-21": [
+     "15:00",
+     "17:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 15:00—17:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "uber-das-leben-die-liebe-und-den-tod-ulrich-seidl",
+   "url": "https://amsterdamart.com/en/programme/uber-das-leben-die-liebe-und-den-tod-ulrich-seidl/",
+   "title": "Über das Leben, die Liebe und den Tod | Ulrich Seidl",
+   "venue": "Eye Filmmuseum",
+   "museumId": "eye-filmmuseum-2",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-18": [
+     "10:00",
+     "19:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "19:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "19:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "19:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "19:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 31 January 2027",
+   "admission": "With ticket"
+  },
+  {
+   "id": "under-the-surface-rene-gerritsen",
+   "url": "https://amsterdamart.com/en/programme/under-the-surface-rene-gerritsen/",
+   "title": "UNDER THE SURFACE | René Gerritsen",
+   "venue": "Depth of Field",
+   "museumId": "dof-deth-of-field",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Photography"
+   ],
+   "days": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 30 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "valentine-working-title-abstraction-lc-queisser-misako-rosen-roh-proyectos-ultravioleta-trautwein-herleth",
+   "url": "https://amsterdamart.com/en/programme/valentine-working-title-abstraction-lc-queisser-misako-rosen-roh-proyectos-ultravioleta-trautwein-herleth/",
+   "title": "Valentine: Working Title (Abstraction) | LC Queisser, Misako & Rosen, ROH, Proyectos Ultravioleta, Trautwein Herleth",
+   "venue": "Parnassus 212",
+   "museumId": "parnassus212",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Mixed Media",
+    "Painting",
+    "Performance",
+    "Sculpture",
+    "Video | Film",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "veins-of-amsterdam-thierry-oussou",
+   "url": "https://amsterdamart.com/en/programme/veins-of-amsterdam-thierry-oussou/",
+   "title": "Veins of Amsterdam | Thierry Oussou",
+   "venue": "Lumen Travo",
+   "museumId": "lumen-travo-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 9 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "video-room-guillaume-dustan",
+   "url": "https://amsterdamart.com/en/programme/video-room-guillaume-dustan/",
+   "title": "Video Room | Guillaume Dustan",
+   "venue": "Hartwig Proxy",
+   "museumId": "hartwig-proxy",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Other",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-18": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "19:00"
+    ],
+    "2026-11-21": [
+     "11:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "11:00",
+     "17:00"
+    ]
+   },
+   "dates": "18 up to 29 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "viewing-flowstones-surrender-over-a-drink",
+   "url": "https://amsterdamart.com/en/programme/viewing-flowstones-surrender-over-a-drink/",
+   "title": "Viewing: Flowstones/Surrender over a drink",
+   "venue": "Brandt Gallery",
+   "museumId": null,
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-21": [
+     "16:00",
+     "20:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 16:00—20:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "mire-lee",
+   "url": "https://amsterdamart.com/en/programme/mire-lee/",
+   "title": "Vomit My Blessing | Mire Lee",
+   "venue": "Oude Kerk",
+   "museumId": "oude-kerk",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-18": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "13:00",
+     "17:30"
+    ]
+   },
+   "dates": "18 November 2026 up to 7 March 2027",
+   "admission": "With ticket"
+  },
+  {
+   "id": "walk-in-tour-mire-lee",
+   "url": "https://amsterdamart.com/en/programme/walk-in-tour-mire-lee/",
+   "title": "Walk-in Tour: Mire Lee",
+   "venue": "Oude Kerk",
+   "museumId": "oude-kerk",
+   "kind": "event",
+   "tags": [
+    "Tour"
+   ],
+   "disciplines": [
+    "Installation",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-22": [
+     "14:00",
+     "14:30"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 14:00—14:30",
+   "admission": "With ticket"
+  },
+  {
+   "id": "where-the-light-comes-in-days-of-izyum-kiki-ho",
+   "url": "https://amsterdamart.com/en/programme/where-the-light-comes-in-days-of-izyum-kiki-ho/",
+   "title": "Where the Light Comes In – Days of Izyum | Kiki Ho",
+   "venue": "Loods6",
+   "museumId": null,
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Digital art",
+    "Installation",
+    "Other",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-18": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "18:00"
+    ]
+   },
+   "dates": "18 November up to 20 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "where-the-light-remembers-amy-wright-yeon-kyung-park-vika-mitrichenko",
+   "url": "https://amsterdamart.com/en/programme/where-the-light-remembers-amy-wright-yeon-kyung-park-vika-mitrichenko/",
+   "title": "Where the Light Remembers | Amy Wright, Yeon Kyung Park, Vika Mitrichenko",
+   "venue": "KERSGALLERY",
+   "museumId": null,
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Ceramics",
+    "Painting"
+   ],
+   "days": {
+    "2026-11-21": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November 2026 up to 3 January 2027",
+   "admission": "Free admission"
+  },
+  {
+   "id": "workshop-with-cider-appelsap-lets-build-a-treehouse",
+   "url": "https://amsterdamart.com/en/programme/workshop-with-cider-appelsap-lets-build-a-treehouse/",
+   "title": "Workshop with Cider & Appelsap: LETS BUILD A TREEHOUSE",
+   "venue": "raam art space",
+   "museumId": "raam-art-space-amsterdam",
+   "kind": "event",
+   "tags": [
+    "Workshop"
+   ],
+   "disciplines": [
+    "Installation",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-22": [
+     "14:30",
+     "17:30"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 14:30—17:30",
+   "admission": "Free admission"
+  },
+  {
+   "id": "workshop-sand-drawing-with-erik-van-lieshout",
+   "url": "https://amsterdamart.com/en/programme/workshop-sand-drawing-with-erik-van-lieshout/",
+   "title": "Workshop: sand drawing with Erik van Lieshout",
+   "venue": "Annet Gelink Gallery",
+   "museumId": "annet-gelink-gallery",
+   "kind": "event",
+   "tags": [
+    "Workshop"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-21": [
+     "14:00",
+     "16:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 14:00—16:00",
+   "admission": "With ticket"
+  },
+  {
+   "id": "audio-workshop-world-championship-bird-calls-songs-in-the-forest-of-the-city",
+   "url": "https://amsterdamart.com/en/programme/audio-workshop-world-championship-bird-calls-songs-in-the-forest-of-the-city/",
+   "title": "Workshop: World Championship Bird Calls & Songs in the Forest of the City",
+   "venue": "raam art space",
+   "museumId": "raam-art-space-amsterdam",
+   "kind": "event",
+   "tags": [
+    "Workshop"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Other"
+   ],
+   "days": {
+    "2026-11-21": [
+     "16:00",
+     "19:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 16:00—19:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "workshops-for-kids-atelier-experience",
+   "url": "https://amsterdamart.com/en/programme/workshops-for-kids-atelier-experience/",
+   "title": "Workshops for Kids: Atelier Experience",
+   "venue": "KiMu Kinderkunstmuseum",
+   "museumId": "kimu-kinderkunstmuseum",
+   "kind": "event",
+   "tags": [
+    "Workshop"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-22": [
+     "10:30",
+     "16:30"
+    ]
+   },
+   "dates": "Sunday 22 November 2026 · 10:30—16:30",
+   "admission": "With ticket",
+   "family": true
+  },
+  {
+   "id": "yayoi-kusama",
+   "url": "https://amsterdamart.com/en/programme/yayoi-kusama/",
+   "title": "YAYOI KUSAMA",
+   "venue": "Stedelijk Museum Amsterdam",
+   "museumId": "stedelijk-museum-amsterdam",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Other",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-18": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-19": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-20": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "10:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "10:00",
+     "18:00"
+    ]
+   },
+   "dates": "18 November 2026 up to 17 January 2027",
+   "admission": "With ticket"
+  }
+ ]
+}
