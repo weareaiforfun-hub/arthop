@@ -1,0 +1,64 @@
+# Refreshes the Art Week programme once a day, at a gentle pace (about one request a second, see
+# scripts/import-artweek.mjs, which also refuses a second fresh import within 12 hours). Commits only when something
+# changed, then publishes. Skipped while the site is paused, and after Art Week.
+name: Refresh programme
+
+on:
+  schedule:
+    - cron: "40 4 * * *" # 05:40 in Amsterdam
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip while paused or after Art Week
+        id: skip
+        run: |
+          if [ -f PAUSED ] || [ "$(date -u +%Y%m%d)" -gt 20261122 ]; then echo "skip=true" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/setup-node@v4
+        if: steps.skip.outputs.skip != 'true'
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+        if: steps.skip.outputs.skip != 'true'
+      - name: Import the programme
+        if: steps.skip.outputs.skip != 'true'
+        run: node scripts/import-artweek.mjs --fresh
+      - name: New venues? Rebuild the travel times
+        if: steps.skip.outputs.skip != 'true'
+        run: |
+          node -e 'const c=require("./src/data/catalogue.json"),w=require("./src/data/walk.json");const ids=c.museums.filter(m=>m.lat!=null).map(m=>m.id).join();process.exit(ids===w.ids.join()?0:1)' || npm run walk-matrix
+      - name: Suggested routes still fit? (keeps the old ones if not)
+        if: steps.skip.outputs.skip != 'true'
+        run: node scripts/build-route-ideas.mjs || git checkout -- src/data/route-ideas.json
+      - name: Check it builds
+        if: steps.skip.outputs.skip != 'true'
+        run: npx tsc -b
+      - name: Commit when something changed
+        id: commit
+        if: steps.skip.outputs.skip != 'true'
+        run: |
+          git diff --quiet -- src/data ':!src/data/catalogue.json' && [ "$(git diff --numstat -- src/data/catalogue.json | awk '{print $1+$2}')" -le 4 ] && { echo "Nothing new."; exit 0; }
+          git config user.name "arthop-refresh"
+          git config user.email "arthop-refresh@users.noreply.github.com"
+          git add src/data && git commit -m "Programme refresh $(date -u +%Y-%m-%d)" && git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: refresh
+    if: needs.refresh.outputs.changed == 'true'
+    uses: ./.github/workflows/deploy.yml

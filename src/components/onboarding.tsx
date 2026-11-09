@@ -3,7 +3,8 @@ import { track } from "../lib/track";
 import { ArrowLeft, ArrowRight, Mail, X } from "lucide-react";
 
 /** Problems and ideas go straight to the developer. The address in the link never includes invite or personal links. */
-export const CONTACT = "mailto:arian.shafa.analytics@gmail.com?subject=" + encodeURIComponent("ArtHop: a problem or an idea")
+export const CONTACT_ADDRESS = "arian.shafa.analytics@gmail.com";
+export const CONTACT = "mailto:" + CONTACT_ADDRESS + "?subject=" + encodeURIComponent("ArtHop: a problem or an idea")
   + "&body=" + encodeURIComponent("What happened, or what would you like?\n\n\nPhone or computer, and which browser:\n");
 export const MAKER = "https://arian-shafa.xyz";
 
@@ -51,7 +52,7 @@ const FEATURES: Feature[] = [
   { group: "With your group", tab: "friends", target: ".activity-panel, .friends-top", needsNight: true, title: "Live changes, activity and undo", body: "Changes show for everyone at once, What changed lists them, and your own can be undone from the message that appears." },
   { group: "With your group", tab: "friends", target: "[data-tour=invite], .friends-top", needsNight: true, title: "View-only link", body: "Under Invite: people with it see your plans, times and places, but no names or votes, and can’t change anything." },
   { group: "Your spot and your data", target: ".your-link, .spot-banner, .help-button", needsNight: true, title: "Keep your spot: a personal link", body: "A private link that opens your plan as you on any device, no account. Keep it to yourself." },
-  { group: "Your spot and your data", tab: "programme", target: ".data-note", title: "See what’s stored about you", body: "Your data explains who sees your plan, what ArtHop keeps and that it’s all deleted 30 days after Art Week." },
+  { group: "Your spot and your data", tab: "programme", target: ".site-note", title: "See what’s stored about you", body: "Your data explains who sees your plan, what ArtHop keeps and that it’s all deleted 30 days after Art Week." },
 ];
 const GROUPS = Array.from(new Set(FEATURES.map((f) => f.group)));
 
@@ -166,7 +167,7 @@ export function Onboarding({ hold, show, inNight, helpOpen, setHelpOpen, helpTab
         <button className="btn big" autoFocus onClick={() => closeWelcome()}>Start exploring</button>
         <button className="btn alt big" onClick={() => closeWelcome(true)}>Show me around · 4 steps</button>
       </div>
-      <p className="welcome-foot">Open this again any time with the <b>?</b> button at the top. Unofficial fan planner, not affiliated with Amsterdam Art Week.</p>
+      <p className="welcome-foot">Open this again any time with the <b>?</b> button at the top.<br />Unofficial fan planner, not affiliated with Amsterdam Art Week. Times can change: always check the official page. Source: <a href="https://amsterdamart.com/en/programme/" target="_blank" rel="noreferrer">amsterdamart.com</a>.</p>
     </section></div>}
 
     {hint && <Spotlight spot={{ target: ".help-button", title: "Help lives here", body: "The ? button lists everything ArtHop can do, with a “Show me” for each, and replays the tour." }} onNext={() => setHint(false)} onClose={() => setHint(false)} />}
@@ -194,8 +195,8 @@ export function Onboarding({ hold, show, inNight, helpOpen, setHelpOpen, helpTab
             <p><i className="lg-dot" style={{ background: "#c2c1ba" }} />Grey: closed at the time on the slider.</p>
             <p><i className="lg-dot big" style={{ background: "#00b67a" }} />A stop on your day. Bigger means a longer stay; the black line is your walk.</p>
           </div>
-          <p className="help-note">ArtHop is an unofficial fan planner, not affiliated with Amsterdam Art Week. Titles, times and places come from amsterdamart.com; always check there for changes and tickets.</p>
-          <p className="help-contact"><Mail size={15} /><span>Found a bug, or missing something? <a href={CONTACT}>Email the developer</a>.<br /><a href={MAKER} target="_blank" rel="noopener">A project by Arian Shafa ↗</a></span></p>
+          <p className="help-note">Unofficial fan planner, not affiliated with Amsterdam Art Week. Times can change: always check the official page. Titles, times, places and admission come from <a href="https://amsterdamart.com/en/programme/" target="_blank" rel="noreferrer">amsterdamart.com</a>, with a link to each item’s page there.</p>
+          <p className="help-contact"><Mail size={15} /><span>Found a bug, or missing something? Email <a href={CONTACT}>{CONTACT_ADDRESS}</a>.<br /><a href={MAKER} target="_blank" rel="noopener">A project by Arian Shafa ↗</a></span></p>
           <div className="two"><button className="btn alt" onClick={() => { setHelpOpen(false); setWelcome(true); }}>Show the welcome again</button><button className="btn" onClick={startTour}>Take the 4-step tour<ArrowRight size={16} /></button></div>
         </div> : <div role="tabpanel" className="help-panel">
           <h2>Everything ArtHop does</h2>
@@ -256,6 +257,6 @@ function YourData() {
       <h3>Services involved</h3>
       <p>GitHub Pages hosts the site, Supabase stores the plans (in the EU, Frankfurt), Google Fonts serves the fonts, unpkg serves the map code and PDOK (the Dutch government’s map service) serves the map. Like any website, they see your IP address when your browser loads from them. If you ask for your link by email, Resend sends it and keeps a delivery log with your address.</p>
     </section>
-    <p className="help-note">ArtHop is an unofficial fan planner, not affiliated with Amsterdam Art Week. It uses the programme’s facts (titles, times, places), not its descriptions or images. Questions or a request to delete your data sooner: <a href={CONTACT}>email the developer</a>.</p>
+    <p className="help-note">ArtHop is an unofficial fan planner, not affiliated with Amsterdam Art Week. It uses the programme’s facts (titles, times, places), not its descriptions or images. Questions or a request to delete your data sooner: <a href={CONTACT}>{CONTACT_ADDRESS}</a>.</p>
   </div>;
 }

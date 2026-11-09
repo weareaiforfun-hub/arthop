@@ -6,7 +6,7 @@ import { sync, type ViewNight as Night } from "../lib/sync";
 import { MapView } from "./map-view";
 import { DayBar } from "./days";
 import { DrawnTitle } from "./my-day";
-import { MAKER } from "./onboarding";
+import { SiteNote } from "./site-note";
 
 /** What someone with a view-only link sees: the group's plans for each day on a map and as a list, refreshed every
  *  30 seconds. No sign-in, no names; nothing here can change anything. */
@@ -62,8 +62,8 @@ export function ViewNight({ token }: { token: string }) {
               </li>;
             })}</ol>}
           <p className="view-foot">Updates by itself as the group changes the plan. Want to help plan? Ask the group for their invite link.</p>
-          <p className="view-foot"><a href="./">Plan your own Art Week with ArtHop</a> · <a href={MAKER} target="_blank" rel="noopener">A project by Arian Shafa ↗</a></p>
-          <p className="view-foot">Unofficial fan planner, not affiliated with Amsterdam Art Week.</p>
+          <p className="view-foot"><a href="./">Plan your own Art Week with ArtHop</a></p>
+          <SiteNote />
         </aside>
       </div>}
   </main>;

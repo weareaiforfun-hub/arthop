@@ -9,7 +9,8 @@ import { ActivityFeed, describe } from "./components/live";
 import { Timeline } from "./components/timeline";
 import { ShareDialog } from "./components/share-dialog";
 import { Crews } from "./components/crews";
-import { CONTACT, MAKER, introSeen, Onboarding, type HelpTab, type Place } from "./components/onboarding";
+import { introSeen, Onboarding, type HelpTab, type Place } from "./components/onboarding";
+import { SiteNote } from "./components/site-note";
 import { BackupNudge, KeepSpot, OtherDevice, RecoverByEmail, TwoDoors, YourSpot } from "./components/keep-spot";
 import { GettingAround, RideCard } from "./components/getting-around";
 import { MODES } from "./data/transport";
@@ -398,7 +399,6 @@ export default function App() {
   const programme = <>
     {stepFree && <p className="notice">Art Week’s pages don’t list step-free access for any venue yet, so this can’t narrow the list. Each card says so; ask the venue before you go.</p>}
     <ProgrammeList list={filtered} day={day} at={at} me={loc.spot} live={live} openOnly={openOnly} chips={chips} inRoute={inRoute} onAdd={toggleAdd} onPick={pick} likes={likes} routeLabel={dayLabel.replace(/^My /, "")} onClear={clearFilters} />
-    <footer className="data-note">Programme from amsterdamart.com, imported 9 Nov 2026. Check the official page for changes.<br />Unofficial fan planner, not affiliated with Amsterdam Art Week. · <button className="link" onClick={() => { setHelpTab("data"); setHelpOpen(true); }}>Your data</button> · <a className="link" href={CONTACT}>Contact</a> · <a className="link" href={MAKER} target="_blank" rel="noopener">A project by Arian Shafa ↗</a></footer>
   </>;
 
   const timeline = <Timeline stops={stops} title={dayLabel} onPick={pick} onPropose={proposeMine} onPreview={(p) => { setPreviewStops(p); if (p) setFit((f) => f + 1); }}
@@ -541,6 +541,7 @@ export default function App() {
         <button className="sheet-handle" aria-label={sheet === "full" ? "Show more map" : "Show more list"} onClick={() => setSheet(sheet === "peek" ? "half" : sheet === "half" ? "full" : "peek")}><span /></button>
         <div className="panel-body">
           {tab === "programme" ? programme : tab === "day" ? (nowMode && stops.length ? nowCard : myDay) : friends}
+          <SiteNote onData={() => { setHelpTab("data"); setHelpOpen(true); }} />
         </div>
       </aside>
     </div>

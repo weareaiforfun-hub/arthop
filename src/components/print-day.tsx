@@ -2,6 +2,8 @@ import { Printer, X } from "lucide-react";
 import { byId, byMuseum, clock, dayOf, disciplineOf, GROUPS, groupOf, type UiStop } from "../lib/catalogue";
 import { analyse } from "../lib/plan";
 import { smooth } from "./map-view";
+import { NOTICE } from "./site-note";
+import { CONTACT_ADDRESS } from "./onboarding";
 
 /** "Print my Thursday": the day as a drawing, a colour for what you saw, a size for how long you stayed and a line
  *  for how you got there (board 40), with the stops listed underneath. Prints on one page. */
@@ -42,7 +44,7 @@ export function PrintDay({ day, stops, title, onClose }: { day: string; stops: U
         <b>{stops.length} stops · {(a.metres / 1000).toFixed(1)} km · {Math.floor(hours / 60)} h {String(hours % 60).padStart(2, "0")}</b>
       </div>
       <ol className="print-list">{a.slots.map((s, i) => { const e = byId.get(s.id); return <li key={i}><b>{clock(s.start)}</b> {e?.kind === "venue" ? e.title : `${byMuseum.get(e?.museumId ?? "")?.name ?? e?.venue}: ${e?.title}`} · {byMuseum.get(e?.museumId ?? "")?.address}</li>; })}</ol>
-      <p className="print-note">Made with ArtHop (arthop.arian-shafa.xyz), an unofficial fan planner, not affiliated with Amsterdam Art Week. Times and places from amsterdamart.com; check there for changes.</p>
+      <p className="print-note">{NOTICE} Source: amsterdamart.com. Made with ArtHop, arthop.arian-shafa.xyz · {CONTACT_ADDRESS}</p>
     </article>
   </div>;
 }

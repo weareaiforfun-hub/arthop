@@ -33,6 +33,26 @@ Built from MuseumHop (`~/Claude/museumhop`, weareaiforfun-hub/museumhop) in Nove
 - Checks: `npm run check-access` runs the access rules against the real database and leaves "access-check" groups
   behind; delete them afterwards.
 
+## Using Art Week's programme (legal check, 10 Nov 2026; not legal advice)
+amsterdamart.com has no terms of use; facts plus links are fine as long as ArtHop keeps to these:
+1. Facts only: titles, times, places, admission. No descriptions or images. Every item links to its amsterdamart.com page.
+2. Every page says "Unofficial fan planner, not affiliated with Amsterdam Art Week. Times can change: always check the
+   official page.", names amsterdamart.com as the source with a link, and shows a contact address
+   (`src/components/site-note.tsx`, plus the view-only page, Print my day and the pause page).
+3. The programme refreshes at most once or twice a day, at a gentle pace: `.github/workflows/refresh.yml` runs once a
+   day at 05:40, and `import-artweek.mjs --fresh` refuses a second fresh fetch within 12 hours (`--force` overrides).
+4. The site can be paused within minutes (below).
+
+## Pausing the site
+If the organisers object, or anything else needs the site offline fast:
+```
+scripts/pause.sh          # publishes a short notice instead of the planner, in about 1–2 minutes
+scripts/pause.sh resume   # brings the planner back
+```
+It commits a `PAUSED` file to `main` and pushes; the deploy workflow then publishes only `pause/index.html` (also as
+404.html, so invite links land on it) and the daily refresh stops. Data in the database stays as it is and is still
+deleted on 23 Dec 2026. Without a terminal: create a file named `PAUSED` in the repo on github.com and commit it.
+
 ## Run
 ```
 npm install

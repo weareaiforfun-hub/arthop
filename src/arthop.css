@@ -178,8 +178,9 @@ button.tb-now { text-decoration: underline; text-decoration-thickness: 2px; }
 .pg-add.on { background: var(--yellow); color: var(--ink); }
 .pg-empty { padding: 24px 0; }
 .pg-empty p { margin-bottom: 12px; }
-.data-note { margin-top: 28px; font-size: 13px; color: var(--muted); line-height: 1.6; text-align: left; padding: 0; border: 0; }
-.data-note .link { font-size: 13px; min-height: 0; }
+.site-note { margin-top: 32px; padding-top: 14px; border-top: 2px solid var(--ink); font-size: 14px; color: var(--muted); line-height: 1.5; display: grid; gap: 6px; }
+.site-note .sn-notice { color: var(--ink); font-weight: 700; font-size: 15px; }
+.site-note a, .site-note .link { color: var(--ink); text-decoration: underline; font-size: 14px; min-height: 0; font-weight: 500; }
 
 /* ---------- details card (board 56) ---------- */
 .stop-card { position: relative; background: #fff; border: 2px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); padding: 20px 22px 18px; }

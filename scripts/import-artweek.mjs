@@ -32,7 +32,16 @@ const TERMS = {
 const STREETS = { "Hazenstraat Galleries": "Hazenstraat" };
 const KIND = { "galleries-en": "gallery", "project-spaces-en": "project-space", "museums-en": "museum", "partners-en": "partner", "residencies-en": "residency", "corporate-collections-en": "corporate", "other-en": "other" };
 
-if (process.argv.includes("--fresh")) rmSync(CACHE, { recursive: true, force: true });
+// A gentle pace: at most one fresh import every 12 hours (twice a day), unless --force. A rerun from the cache is free.
+const OUT = new URL("../src/data/catalogue.json", import.meta.url);
+if (process.argv.includes("--fresh")) {
+  const last = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")).importedAtTime : null;
+  if (last && Date.now() - Date.parse(last) < 12 * 3600e3 && !process.argv.includes("--force")) {
+    console.log(`The programme was imported at ${last}, less than 12 hours ago. Not fetching again (use --force to override).`);
+    process.exit(0);
+  }
+  rmSync(CACHE, { recursive: true, force: true });
+}
 mkdirSync(CACHE, { recursive: true });
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -229,8 +238,10 @@ for (const e of entries) {
 }
 events.sort((a, b) => a.title.localeCompare(b.title));
 
-const out = { source: `${BASE}/en/programme/`, importedAt: new Date().toISOString().slice(0, 10), days: DAYS, museums, events };
-writeFileSync(new URL("../src/data/catalogue.json", import.meta.url), JSON.stringify(out, null, 1) + "\n");
+// A sanity check before overwriting: if the site changed shape, keep yesterday's programme instead of a broken one.
+if (events.length < 100 || museums.length < 40) { console.error(`Only ${events.length} entries at ${museums.length} venues: the pages may have changed. Keeping the old catalogue.`); process.exit(1); }
+const out = { source: `${BASE}/en/programme/`, importedAt: new Date().toISOString().slice(0, 10), importedAtTime: new Date().toISOString(), days: DAYS, museums, events };
+writeFileSync(OUT, JSON.stringify(out, null, 1) + "\n");
 console.log(`wrote ${events.length} entries at ${museums.length} venues (${museums.filter((m) => m.lat == null).length} without a pin)`);
 if (dropped.length) console.log(`skipped, not on 18–22 Nov:\n  ${dropped.join("\n  ")}`);
 const noHours = events.filter((e) => Object.values(e.days).some((h) => !h));

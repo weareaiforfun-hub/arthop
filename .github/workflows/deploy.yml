@@ -1,11 +1,14 @@
 # Builds ArtHop and publishes it to GitHub Pages (custom domain arthop.arian-shafa.xyz, from public/CNAME).
 # Needs repository variables VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY (the public key, not a secret).
+# While a file named PAUSED exists at the top of the repo, it publishes only the short notice in pause/ instead of
+# the app (see scripts/pause.sh and the README).
 name: Deploy
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -21,15 +24,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main # after the daily refresh, publish what it just committed
+      - name: Paused? Publish the notice only
+        id: pause
+        run: |
+          if [ -f PAUSED ]; then
+            mkdir -p dist && cp pause/index.html dist/index.html && cp pause/index.html dist/404.html && cp public/CNAME dist/CNAME
+            echo "paused=true" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-node@v4
+        if: steps.pause.outputs.paused != 'true'
         with:
           node-version: 22
           cache: npm
       - run: npm ci
+        if: steps.pause.outputs.paused != 'true'
       - name: Stop when the backend is not configured
-        if: vars.VITE_SUPABASE_URL == '' || vars.VITE_SUPABASE_PUBLISHABLE_KEY == ''
+        if: steps.pause.outputs.paused != 'true' && (vars.VITE_SUPABASE_URL == '' || vars.VITE_SUPABASE_PUBLISHABLE_KEY == '')
         run: echo "::error::Set the VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY repository variables." && exit 1
       - run: npm run build
+        if: steps.pause.outputs.paused != 'true'
         env:
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
