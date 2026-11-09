@@ -38,7 +38,7 @@ export function describe(a: Activity, d: Data, n: Derived) {
     case "reaction": return `${who} marked ${title}: ${REACTION[a.data.reaction] ?? a.data.reaction}`;
     case "reaction_clear": return `${who} cleared their reaction to ${title}`;
     case "route_adopt": return `${who} used "${a.data.title}" as our route`;
-    case "member_join": return `${a.data.name} joined the night`;
+    case "member_join": return `${a.data.name} joined the group`;
     case "crew_add": return `${who} started the crew ${a.data.name}`;
     case "examples_added": return `${who} added ${a.data.count} example route ideas`;
     case "meetup_add": return `${who} proposed meeting at ${title}, ${a.data.at}`;

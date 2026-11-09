@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { byId, byMuseum, type Mode, type UiStop } from "./catalogue";
+import { byId, byMuseum, currentDay, DAYS, windowOf, type Item, type Mode, type UiStop } from "./catalogue";
 import { analyse } from "./plan";
 
 /** Where this phone is. Never stored or sent anywhere: it lives in this tab's memory only. */
@@ -53,29 +53,31 @@ export function amsterdamNow(now = new Date()) {
   const parts = Object.fromEntries(new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Amsterdam", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(now).map((p) => [p.type, p.value]));
   return { date: `${parts.year}-${parts.month}-${parts.day}`, minutes: Number(parts.hour) * 60 + Number(parts.minute) };
 }
-/** Minutes into the night on the same scale as `minute()` (after midnight counts as 24:xx), or null when it isn't the night. */
-export function nightMinute(now = new Date()) {
+/** The Art Week day it is today in Amsterdam, or null outside 18–22 Nov 2026. */
+export const todayId = (now = new Date()) => { const { date } = amsterdamNow(now); return DAYS.some((d) => d.id === date) ? date : null; };
+/** Minutes into the day being shown (same scale as `minute()`), but only when that day is today; otherwise null. */
+export function dayMinute(now = new Date(), day = currentDay()) {
   const { date, minutes } = amsterdamNow(now);
-  if (date === "2026-11-07" && minutes >= 12 * 60) return minutes;
-  if (date === "2026-11-08" && minutes < 8 * 60) return minutes + 24 * 60;
-  return null;
+  if (date === day) return minutes < 6 * 60 ? null : minutes;
+  // After midnight, the evening before still counts (an after-party).
+  const prev = new Date(new Date(date + "T12:00:00Z").getTime() - 864e5).toISOString().slice(0, 10);
+  return prev === day && minutes < 6 * 60 ? minutes + 24 * 60 : null;
 }
 
-/** The stop to head for: on the night, the first one that hasn't finished yet; any other day, the first stop. */
+/** The stop to head for: on the day itself, the first one that hasn't finished yet; any other day, the first stop. */
 export function nextStop(stops: UiStop[], now = new Date()): number {
   if (!stops.length) return -1;
-  const at = nightMinute(now);
+  const at = dayMinute(now);
   if (at == null) return 0;
   const i = analyse(stops).slots.findIndex((s) => s.end > at);
   return i < 0 ? stops.length - 1 : i;
 }
 
-/** "On now · ends in 1 h 40", "Starts in 25 min" or "Finished" for an activity's "HH:MM - HH:MM", on the night only. */
-export function liveStatus(time: string, now = new Date()): { text: string; tone: "on" | "soon" | "done" | "later" } | null {
-  const at = nightMinute(now), m = time.match(/(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})/);
-  if (at == null || !m) return null;
-  const toMin = (h: string, mm: string) => { const n = Number(h); return (n < 8 ? n + 24 : n) * 60 + Number(mm); };
-  const start = toMin(m[1], m[2]), end = toMin(m[3], m[4]);
+/** "On now · ends in 1 h 40", "Starts in 25 min" or "Finished" for an item on the day shown, only when that day is today. */
+export function liveStatus(item: Item, now = new Date()): { text: string; tone: "on" | "soon" | "done" | "later" } | null {
+  const at = dayMinute(now), w = windowOf(item);
+  if (at == null || !w) return null;
+  const [start, end] = w;
   const span = (n: number) => (n >= 60 ? `${Math.floor(n / 60)} h${n % 60 ? " " + (n % 60) : ""}` : `${n} min`);
   if (at >= end) return { text: "Finished", tone: "done" };
   if (at >= start) return { text: `On now · ends in ${span(end - at)}`, tone: "on" };

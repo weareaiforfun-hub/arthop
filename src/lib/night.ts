@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import type { Mode, UiStop } from "./catalogue";
+import { currentDay, type Mode, type UiStop } from "./catalogue";
 import { newId, sync, type Data, type Member, type Op, type Route, type StopRow, type Status } from "./sync";
 
-export const toUi = (s: StopRow, mode: Mode = "foot"): UiStop => ({ id: s.event_id, arrival: s.arrival, duration: s.duration, reason: s.reason, practical: s.practical, transfer: s.transfer, fixed: s.fixed, rowId: s.id, pos: s.pos, maybe: !!s.maybe, travel: s.travel ?? null, mode: s.travel ?? mode });
+export const toUi = (s: StopRow, mode: Mode = "foot"): UiStop => ({ id: s.event_id, day: s.day, arrival: s.arrival, duration: s.duration, reason: s.reason, practical: s.practical, transfer: s.transfer, fixed: s.fixed, rowId: s.id, pos: s.pos, maybe: !!s.maybe, travel: s.travel ?? null, mode: s.travel ?? mode });
 
 /** Re-renders on every change in the sync engine. */
 export function useSync() {
@@ -11,22 +11,28 @@ export function useSync() {
   return { data: sync?.data, status: sync?.status as Status | undefined, userId: sync?.userId ?? "" };
 }
 
-/** Everything the screens need, worked out from the raw tables. */
-export function derive(d: Data, userId: string) {
+/** Everything the screens need, worked out from the raw tables, for one Art Week day: routes hold all five days,
+ *  and `stopsOf` gives the stops of `day` only. `daysOf` counts a route's stops per day. */
+export function derive(d: Data, userId: string, day = currentDay()) {
   const members = [...d.ah_members].sort((a, b) => a.joined_at.localeCompare(b.joined_at));
   const memberOf = new Map(members.map((m) => [m.user_id, m]));
   const me = memberOf.get(userId) as Member | undefined;
   const stopsOf = (routeId: string | undefined) => {
     if (!routeId) return [];
     const mode = d.ah_routes.find((r) => r.id === routeId)?.travel ?? "foot";
-    return d.ah_stops.filter((s) => s.route_id === routeId).sort((a, b) => a.pos - b.pos).map((s) => toUi(s, mode));
+    return d.ah_stops.filter((s) => s.route_id === routeId && s.day === day).sort((a, b) => a.pos - b.pos).map((s) => toUi(s, mode));
+  };
+  const daysOf = (routeId: string | undefined) => {
+    const out: Record<string, number> = {};
+    for (const s of d.ah_stops) if (routeId && s.route_id === routeId) out[s.day] = (out[s.day] ?? 0) + 1;
+    return out;
   };
   const shared = d.ah_routes.find((r) => r.kind === "shared");
   const personal = d.ah_routes.filter((r) => r.kind === "personal");
   const mine = personal.find((r) => r.owner_user === userId);
   const myCrewId = d.ah_crew_members.find((c) => c.user_id === userId)?.crew_id ?? null;
   const crewRoute = (crewId: string | null) => d.ah_routes.find((r) => r.kind === "crew" && r.crew_id === crewId);
-  return { night: d.ah_nights[0], members, memberOf, me, stopsOf, shared, personal, mine, myCrewId, crewRoute };
+  return { night: d.ah_nights[0], members, memberOf, me, stopsOf, daysOf, day, shared, personal, mine, myCrewId, crewRoute };
 }
 export type Derived = ReturnType<typeof derive>;
 
@@ -35,7 +41,7 @@ export type Derived = ReturnType<typeof derive>;
 export function addStopOps(route: Route, stops: UiStop[], eventId: string, extra: Partial<StopRow> = {}): Op[] {
   if (stops.some((s) => s.id === eventId)) return [];
   const pos = (stops.at(-1)?.pos ?? 0) + 1;
-  return [{ t: "insert", table: "ah_stops", row: { id: newId(), night_id: route.night_id, route_id: route.id, pos, event_id: eventId, arrival: "", duration: route.stay ?? 45, reason: "", practical: "", transfer: "", fixed: false, ...extra } }];
+  return [{ t: "insert", table: "ah_stops", row: { id: newId(), night_id: route.night_id, route_id: route.id, pos, day: currentDay(), event_id: eventId, arrival: "", duration: route.stay ?? 45, reason: "", practical: "", transfer: "", fixed: false, ...extra } }];
 }
 
 /** Moves one stop to index `to` by giving it a position between its new neighbours: one row changes. */
@@ -86,7 +92,7 @@ export function personalRouteOps(nightId: string, userId: string, existing: Rout
   let pos = keep.at(-1)?.pos ?? 0;
   for (const s of stops) {
     if (keep.some((k) => k.id === s.id)) continue;
-    ops.push({ t: "insert", table: "ah_stops", row: { id: newId(), night_id: nightId, route_id: routeId, pos: ++pos, event_id: s.id, arrival: s.arrival, duration: s.duration, reason: s.reason ?? "", practical: s.practical ?? "", transfer: s.transfer ?? "", fixed: !!s.fixed, maybe: !!s.maybe, travel: s.travel ?? null } });
+    ops.push({ t: "insert", table: "ah_stops", row: { id: newId(), night_id: nightId, route_id: routeId, pos: ++pos, day: s.day ?? currentDay(), event_id: s.id, arrival: s.arrival, duration: s.duration, reason: s.reason ?? "", practical: s.practical ?? "", transfer: s.transfer ?? "", fixed: !!s.fixed, maybe: !!s.maybe, travel: s.travel ?? null } });
   }
   return { routeId, ops };
 }
@@ -95,6 +101,6 @@ export function personalRouteOps(nightId: string, userId: string, existing: Rout
 export function replaceRouteOps(route: Route, current: UiStop[], next: UiStop[]): Op[] {
   return [
     ...current.filter((s) => s.rowId).map((s): Op => ({ t: "delete", table: "ah_stops", id: s.rowId! })),
-    ...next.map((s, i): Op => ({ t: "insert", table: "ah_stops", row: { id: newId(), night_id: route.night_id, route_id: route.id, pos: i + 1, event_id: s.id, arrival: s.arrival, duration: s.duration, reason: s.reason ?? "", practical: s.practical ?? "", transfer: s.transfer ?? "", fixed: !!s.fixed, maybe: !!s.maybe, travel: s.travel ?? null } })),
+    ...next.map((s, i): Op => ({ t: "insert", table: "ah_stops", row: { id: newId(), night_id: route.night_id, route_id: route.id, pos: i + 1, day: s.day ?? currentDay(), event_id: s.id, arrival: s.arrival, duration: s.duration, reason: s.reason ?? "", practical: s.practical ?? "", transfer: s.transfer ?? "", fixed: !!s.fixed, maybe: !!s.maybe, travel: s.travel ?? null } })),
   ];
 }

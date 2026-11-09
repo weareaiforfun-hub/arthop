@@ -115,6 +115,7 @@ create table public.ah_idea_votes (
 create table public.ah_meetups (
   id uuid primary key default gen_random_uuid(),
   night_id uuid not null references public.ah_nights(id) on delete cascade,
+  day date not null default '2026-11-19' check (day between '2026-11-18' and '2026-11-22'),
   at text not null check (at ~ '^([01]\d|2[0-3]):[0-5]\d$'),
   event_id text not null check (event_id ~ '^[a-z0-9:_-]{1,160}$'),
   note text not null default '' check (char_length(note) <= 240),
@@ -302,7 +303,7 @@ begin
     v_kind := 'crew_add'; v_data := jsonb_build_object('name', r.name);
   elsif tg_table_name = 'ah_meetups' then
     if tg_op <> 'INSERT' then return null; end if;
-    v_kind := 'meetup_add'; v_data := jsonb_build_object('event_id', r.event_id, 'at', r.at);
+    v_kind := 'meetup_add'; v_data := jsonb_build_object('event_id', r.event_id, 'at', r.at, 'day', r.day);
   end if;
   insert into ah_activity (night_id, user_id, kind, data) values (r.night_id, auth.uid(), v_kind, v_data);
   return null;
@@ -394,5 +395,5 @@ grant update (pos, arrival, duration, reason, practical, transfer, fixed) on pub
 grant update (reaction, note, updated_at) on public.ah_reactions to authenticated;
 grant update (route_id) on public.ah_idea_votes to authenticated;
 grant update (name, color) on public.ah_crews to authenticated;
-grant update (at, event_id, note) on public.ah_meetups to authenticated;
+grant update (day, at, event_id, note) on public.ah_meetups to authenticated;
 grant update (confirmed_at, arrived_at) on public.ah_meetup_crews to authenticated;

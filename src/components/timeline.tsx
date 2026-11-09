@@ -1,12 +1,11 @@
 import { useMemo, useState } from "react";
 import { Bike, CalendarPlus, Car, ChevronDown, Footprints, Minus, Plus, Sparkles, TriangleAlert } from "lucide-react";
-import { byId, clock, minute, type Item, type Mode, type UiStop } from "../lib/catalogue";
+import { byId, clock, dayRange, type Item, type Mode, type UiStop } from "../lib/catalogue";
 import { MODES, analyse, pushToFit, suggestOrder, toIcs } from "../lib/plan";
 import { legOps, stayOps, travelOps } from "../lib/night";
 import type { Op, Route } from "../lib/sync";
 
-const FROM = minute("19:00"), TO = minute("02:30"), PX = 2;
-const y = (n: number) => (Math.min(Math.max(n, FROM), TO) - FROM) * PX;
+const PX = 2;
 const km = (m: number) => (m / 1000).toFixed(1).replace(/\.0$/, "") + " km";
 const dist = (m: number) => (m < 1000 ? Math.round(m / 50) * 50 + " m" : km(m));
 const STAYS = [15, 20, 30, 45, 60, 90];
@@ -29,7 +28,7 @@ type Props = {
   onOps?: ((ops: Op[], label: string) => void) | null;
 };
 
-/** The route on a 19:00–02:30 axis: visits, walking legs between them, and what doesn't fit. */
+/** The day on a timeline: visits, walking legs between them, and what doesn't fit. */
 export function Timeline({ stops, title, onReschedule, onPropose, onPreview, onPick, route, onOps }: Props) {
   const [previewing, setPreviewing] = useState(false), [legOpen, setLegOpen] = useState<string | null>(null), [settingsOpen, setSettingsOpen] = useState(false);
   const mode: Mode = route?.travel ?? "foot", stay = route?.stay ?? 45;
@@ -41,12 +40,16 @@ export function Timeline({ stops, title, onReschedule, onPropose, onPreview, onP
   const sureOnly = useMemo(() => (shown.some((s) => s.maybe) ? analyse(shown.filter((s) => !s.maybe)) : null), [shown]);
   const fitted = useMemo(() => pushToFit(stops), [stops]);
   const canPush = fitted.some((s, i) => s.arrival !== stops[i].arrival);
-  const hours = Array.from({ length: 8 }, (_, i) => FROM + i * 60);
+  // The day's axis: its usual opening hours, stretched to fit the stops (board 32's day, not MuseumHop's one night).
+  const [lo, hi] = dayRange();
+  const FROM = Math.floor(Math.min(lo, ...a.slots.map((x) => x.start)) / 60) * 60, TO = Math.ceil(Math.max(hi, ...a.slots.map((x) => x.end)) / 60) * 60;
+  const y = (n: number) => (Math.min(Math.max(n, FROM), TO) - FROM) * PX;
+  const hours = Array.from({ length: Math.round((TO - FROM) / 60) + 1 }, (_, i) => FROM + i * 60);
   const togglePreview = () => { const next = !previewing; setPreviewing(next); onPreview(next && suggestion ? suggestion.stops : null); };
 
   function download() {
     const url = URL.createObjectURL(new Blob([toIcs(stops, title)], { type: "text/calendar" }));
-    const a = Object.assign(document.createElement("a"), { href: url, download: "museumhop.ics" });
+    const a = Object.assign(document.createElement("a"), { href: url, download: "arthop.ics" });
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -88,7 +91,7 @@ export function Timeline({ stops, title, onReschedule, onPropose, onPreview, onP
       </>}
       <div className="tl-summary">
         <div><small>{BY[mode]}</small><b>{km(a.metres)}</b><span className="tl-wrap">{a.walkMinutes} min {VERB[mode]}{onFoot && onFoot.walkMinutes !== a.walkMinutes ? ` · ${onFoot.walkMinutes} on foot` : ""}{sureOnly ? ` · ${km(sureOnly.metres)} without maybes` : ""}</span></div>
-        <div><small>Night ends</small><b>{a.ends != null ? clock(a.ends) : "–"}</b>{onFoot?.ends != null && a.ends != null && onFoot.ends - a.ends >= 5 && !previewing
+        <div><small>Day ends</small><b>{a.ends != null ? clock(a.ends) : "–"}</b>{onFoot?.ends != null && a.ends != null && onFoot.ends - a.ends >= 5 && !previewing
           ? <span className="tl-gain tl-wrap">{span(onFoot.ends - a.ends)} earlier than on foot</span> : <span>{byId.get(shown.at(-1)!.id)?.venue}</span>}</div>
       </div>
 

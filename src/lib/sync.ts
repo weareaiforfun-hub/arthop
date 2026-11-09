@@ -2,16 +2,16 @@ import { track } from "./track";
 import { createClient, type RealtimeChannel, type SupabaseClient } from "@supabase/supabase-js";
 import type { Mode } from "./catalogue";
 
-/* Rows exactly as they are stored in Supabase (to-one project, ah_ tables). */
+/* Rows exactly as they are stored in Supabase (to-one project, ah_ tables; MuseumHop's are na_). */
 export type Night = { id: string; name: string; event_date: string; vote_deadline: string | null; route_locked_at: string | null; created_by: string };
 export type Member = { id: string; night_id: string; user_id: string; display_name: string; color: string; role: "organiser" | "planner" | "viewer"; fictional: boolean; joined_at: string };
 export type Route = { id: string; night_id: string; kind: "shared" | "personal" | "crew"; owner_user: string | null; crew_id: string | null; title: string; description: string; practical: string; updated_at: string; travel?: Mode; stay?: number };
-export type StopRow = { id: string; night_id: string; route_id: string; pos: number; event_id: string; arrival: string; duration: number; reason: string; practical: string; transfer: string; fixed: boolean; maybe?: boolean; travel?: Mode | null; updated_by: string; updated_at: string };
+export type StopRow = { id: string; night_id: string; route_id: string; pos: number; day: string; event_id: string; arrival: string; duration: number; reason: string; practical: string; transfer: string; fixed: boolean; maybe?: boolean; travel?: Mode | null; updated_by: string; updated_at: string };
 export type Reaction = { id: string; night_id: string; user_id: string; event_id: string; reaction: "must" | "up" | "skip"; note: string; updated_at: string };
 export type IdeaVote = { id: string; night_id: string; user_id: string; route_id: string };
 export type Crew = { id: string; night_id: string; name: string; color: string; created_at: string };
 export type CrewMember = { id: string; night_id: string; crew_id: string; user_id: string };
-export type Meetup = { id: string; night_id: string; at: string; event_id: string; note: string; created_by: string; created_at: string };
+export type Meetup = { id: string; night_id: string; day: string; at: string; event_id: string; note: string; created_by: string; created_at: string };
 export type MeetupCrew = { id: string; night_id: string; meetup_id: string; crew_id: string; confirmed_at: string | null; arrived_at: string | null };
 export type Activity = { id: string; night_id: string; user_id: string | null; kind: string; data: Record<string, string>; created_at: string };
 
@@ -43,13 +43,13 @@ export const newId = () => crypto.randomUUID();
 export function friendly(message: string) {
   if (/invite not found/.test(message)) return "This invitation link doesn't work (anymore). Ask your friend for the current link.";
   if (/row-level security|not allowed/.test(message)) return "You can't change that. The route may be locked, or it belongs to someone else.";
-  if (/ah_stops_route_id_event_id_key|duplicate key/.test(message)) return "That's already on this route.";
+  if (/ah_stops_route_id_day_event_id_key|duplicate key/.test(message)) return "That's already on this day's route.";
   return message;
 }
 
 /** `#me=<uid>.<secret>` from a personal link. Removed from the address at once, so it doesn't linger in history or screenshots. */
 /** A night as a view-only link shows it: routes and stops, no people. */
-export type ViewNight = { name: string; event_date: string; routes: { kind: "shared" | "crew"; title: string; color: string; stops: { event_id: string; arrival: string; duration: number; maybe: boolean; fixed: boolean }[] }[] };
+export type ViewNight = { name: string; event_date: string; routes: { kind: "shared" | "crew"; title: string; color: string; stops: { event_id: string; day: string; arrival: string; duration: number; maybe: boolean; fixed: boolean }[] }[] };
 
 export type PersonalLink = { uid: string; secret: string };
 const linkEmail = (uid: string) => `m-${uid}@users.arthop.arian-shafa.xyz`;
@@ -149,7 +149,7 @@ export class NightSync {
     try { localStorage.setItem("ah:me:" + this.userId, link); } catch { /* shown once; can't be shown again later */ }
     return link;
   }
-  /* Email (museumhop-email Edge Function): offered only once it reports it can send. */
+  /* Email (arthop-email Edge Function): offered only once it reports it can send. */
   private async email(body: Record<string, unknown>) {
     const { data, error } = await this.sb.functions.invoke("arthop-email", { body });
     if (error) {
@@ -378,7 +378,7 @@ export class NightSync {
   }
   /** Only columns people may change (the database grants update per column), e.g. when an undo restores a whole row. */
   private serverPatch(patch: Record<string, unknown>) {
-    const fixed = ["id", "night_id", "route_id", "user_id", "owner_user", "kind", "crew_id", "meetup_id", "created_by", "created_at", "joined_at", "role", "fictional", "updated_by"];
+    const fixed = ["id", "night_id", "route_id", "user_id", "owner_user", "kind", "crew_id", "meetup_id", "created_by", "created_at", "joined_at", "role", "fictional", "updated_by", "day"];
     return Object.fromEntries(Object.entries(patch).filter(([k]) => !fixed.includes(k)));
   }
 

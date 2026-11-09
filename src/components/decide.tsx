@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Check, Flame, Sparkles, ThumbsDown, ThumbsUp, Vote } from "lucide-react";
-import { byId, clock, type Item, type UiStop } from "../lib/catalogue";
+import { byId, clock, hoursText, type Item, type UiStop } from "../lib/catalogue";
 import { analyse, suggestOrder } from "../lib/plan";
 import type { Derived } from "../lib/night";
 import type { Data, Member, Reaction } from "../lib/sync";
@@ -99,7 +99,7 @@ export function Decide({ data, night, userId, proposals, onPick, onReact, onDead
         <div className="deadline">
           <Vote size={14} />
           {onDeadline
-            ? <label>Voting closes<input type="datetime-local" min="2026-11-01T00:00" max="2026-11-07T19:00" value={deadline ? toLocalInput(deadline) : ""} onChange={(e) => onDeadline(e.target.value ? new Date(e.target.value).toISOString() : null)} /></label>
+            ? <label>Voting closes<input type="datetime-local" min="2026-11-09T00:00" max="2026-11-22T17:00" value={deadline ? toLocalInput(deadline) : ""} onChange={(e) => onDeadline(e.target.value ? new Date(e.target.value).toISOString() : null)} /></label>
             : <span>{deadline ? (closed ? "Voting closed " : "Voting closes ") + deadline.toLocaleString("en-GB", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "No voting deadline set"}</span>}
         </div>
       </div>
@@ -137,7 +137,7 @@ export function Decide({ data, night, userId, proposals, onPick, onReact, onDead
         {shown.map((r) => (
           <li key={r.eventId}>
             <div className="decide-row-top">
-              <button className="decide-title" onClick={() => onPick(r.item)}>{r.item.title}<small>{r.item.venue} · {r.item.time.replace(" - ", "–")}</small></button>
+              <button className="decide-title" onClick={() => onPick(r.item)}>{r.item.title}<small>{r.item.venue} · {hoursText(r.item)}</small></button>
               <span className="decide-score" title="Must-see 2 · Up for it 1 · Skip −1"><i style={{ width: `${Math.max(0, (r.score / max) * 100)}%` }} />{r.score}</span>
             </div>
             <div className="decide-votes">

@@ -1,102 +1,153 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { Accessibility, ArrowUpRight, Bus, Check, Navigation, NavigationOff, KeyRound, ChevronRight, Clock, Compass, Mail, Map as MapIcon, MapPin, MonitorSmartphone, Moon, Plus, Route, Search, Share2, Sparkles, Star, Utensils, Undo2, X } from "lucide-react";
-import { activities, byId, byMuseum, COLORS, FOOD, initials, items, minute, warnings, type Item, type UiStop } from "./lib/catalogue";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Accessibility, ArrowUpRight, Check, Layers, LocateFixed, Map as MapIcon, MapPin, Minus, Navigation, Plus, Route, Search, SlidersHorizontal, Undo2, Users, X } from "lucide-react";
+import { activities, byId, byMuseum, clock, COLORS, dayOf, DAYS, dayRange, disciplineOf, GROUPS, initials, KIND_LABEL, museumItem, museums, onDay, openAt, setCurrentDay, type GroupId, type Item, type Kind, type UiStop } from "./lib/catalogue";
 import { addStopOps, derive, personalRouteOps, replaceRouteOps, rescheduleOps, useSync } from "./lib/night";
 import { newId, sync, type Op } from "./lib/sync";
 import { MapView, type MapLine } from "./components/map-view";
-import { PersonalRoute } from "./components/personal-route";
 import { RouteIdeas, type Proposal } from "./components/route-ideas";
-import { ActivityFeed, describe, SyncPill } from "./components/live";
+import { ActivityFeed, describe } from "./components/live";
 import { Timeline } from "./components/timeline";
-import { RouteList } from "./components/route-stop";
 import { ShareDialog } from "./components/share-dialog";
 import { Crews } from "./components/crews";
-import { BrandMark } from "./components/brand-mark";
-import { CONTACT, HelpButton, MAKER, introSeen, Onboarding, type HelpTab, type Place } from "./components/onboarding";
+import { CONTACT, MAKER, introSeen, Onboarding, type HelpTab, type Place } from "./components/onboarding";
 import { BackupNudge, KeepSpot, OtherDevice, RecoverByEmail, TwoDoors, YourSpot } from "./components/keep-spot";
 import { GettingAround, RideCard } from "./components/getting-around";
 import { MODES } from "./data/transport";
 import exampleIdeas from "./data/route-ideas.json";
-import { Decide, REACTIONS, ReactionButtons, type ReactionKey } from "./components/decide";
+import { Decide, type ReactionKey } from "./components/decide";
 import { track } from "./lib/track";
-import { liveStatus, mapsNext, nextStop, useLocation, walkFrom } from "./lib/location";
+import { amsterdamNow, dayMinute, mapsNext, nextStop, todayId, useLocation, walkFrom } from "./lib/location";
 import { GoogleMapsSheet } from "./components/google-maps";
-import { ActivityInfo } from "./components/activity-info";
-import { bannerOff, markNextSeen, nextSeen, NextBanner, WhatsNext } from "./components/whats-next";
+import { DayBar, TimeBar } from "./components/days";
+import { StopCard } from "./components/stop-card";
+import { ProgrammeList, sortProgramme, type Chip } from "./components/programme";
+import { DayActions, DayStops, daySummary, DrawnTitle, RouteSwitch, ViewLinks, type Face, type RouteChoice } from "./components/my-day";
+import { loadWalk, NowCard, saveWalk, walkIndex, type WalkState } from "./components/now";
+import { FriendsTop } from "./components/friends";
+import { PrintDay } from "./components/print-day";
+import { analyse, leg } from "./lib/plan";
 
-type Aside = "route" | "personal" | "ideas" | "suggested" | "decide" | "crews" | "activity";
-
-/** The four built-in route suggestions: readable by everyone, with or without a night. */
-const SUGGESTED: Proposal[] = exampleIdeas.map((idea, i) => ({ id: "suggested-" + (i + 1), member_id: "museumhop", title: idea.title, description: idea.description, practical: idea.practical, route: idea.route, checked_at: "" }));
-const SUGGESTER = [{ id: "museumhop", name: "Suggested route" }];
+type Tab = "programme" | "day" | "friends";
+type DayView = "list" | "timeline" | "ideas" | "suggested";
+type Kindish = RouteChoice["kind"];
 type Undo = { text: string; ops: Op[] };
 
-/** Invite token -> night id, so a returning browser opens its nights without asking for a name again. */
+/** Built-in suggested routes: readable by everyone, with or without a group. Each stop carries its day. */
+const SUGGESTED: Proposal[] = exampleIdeas.map((idea, i) => ({ id: "suggested-" + (i + 1), member_id: "arthop", title: idea.title, description: idea.description, practical: idea.practical, route: idea.route as UiStop[], checked_at: "" }));
+const SUGGESTER = [{ id: "arthop", name: "Suggested route" }];
+
+/** Invite token -> group id, so a returning browser opens its group without asking for a name again. */
 const KNOWN = "ah:nights";
 const known = (): Record<string, string> => { try { return JSON.parse(localStorage.getItem(KNOWN) ?? "{}"); } catch { return {}; } };
 const remember = (token: string, nightId: string) => { try { localStorage.setItem(KNOWN, JSON.stringify({ ...known(), [token]: nightId })); } catch { /* private mode */ } };
-/** The name box's example, a different one each visit. */
-const EXAMPLE_NAME = ["Sanne", "Daan", "Jan Jansen", "Night Owl", "Museum Hopper", "Art Attack", "Rembrandt van Rave", "Vincent van Gogo", "Night Watcher"][Math.floor(Math.random() * 9)];
+const EXAMPLE_NAME = ["Sanne", "Daan", "Noor", "Sam", "Gallery Hopper", "Mondriaan Fan", "Rietveld Rider"][Math.floor(Math.random() * 7)];
 const pref = (k: string) => { try { return localStorage.getItem(k) ?? ""; } catch { return ""; } };
 const setPref = (k: string, v: string) => { try { localStorage.setItem(k, v); } catch { /* private mode */ } };
+const isPhone = () => window.matchMedia("(max-width: 760px)").matches;
+
+/** The day to open on: today during Art Week, Sunday after it, and before it the Thursday Gallery Night. */
+function startDay() {
+  const t = todayId();
+  if (t) return t;
+  return amsterdamNow().date > DAYS[4].id ? DAYS[4].id : DAYS[1].id;
+}
+/** The time to show on a day: now on the day itself, else the start of Gallery Night on Thursday, else 14:00. */
+function startAt(day: string) {
+  const now = dayMinute(new Date(), day);
+  const [lo, hi] = dayRange(day);
+  if (now != null) return Math.min(Math.max(now, lo), hi);
+  return day === DAYS[1].id ? 17 * 60 : 14 * 60;
+}
 
 export default function App() {
   const { data, status, userId } = useSync();
-  const [target, setTarget] = useState<"shared" | "personal" | "crew">("shared");
-  const [asideMode, setAsideMode] = useState<Aside>("route"), [previewId, setPreviewId] = useState<string | null>(null);
-  const [category, setCategory] = useState("Activities"), [query, setQuery] = useState(""), [tag, setTag] = useState("All types"), [view, setView] = useState("Explore"), [suggestedOnly, setSuggestedOnly] = useState(false), [wheelchair, setWheelchair] = useState(false), [personFilter, setPersonFilter] = useState("all");
+  const [day, setDayState] = useState(startDay);
+  setCurrentDay(day); // before anything below reads opening hours
+  const [at, setAt] = useState(() => startAt(day)), [atMoved, setAtMoved] = useState(false);
+  const today = todayId(), live = day === today && !atMoved;
+  const [tab, setTab] = useState<Tab>("programme"), [dayView, setDayView] = useState<DayView>("list"), [kind, setKind] = useState<Kindish>("personal");
+  const [friendsView, setFriendsView] = useState<"top" | "decide">("top");
+  const [previewId, setPreviewId] = useState<string | null>(null), [previewStops, setPreviewStops] = useState<UiStop[] | null>(null);
+  const [query, setQuery] = useState(""), [openOnly, setOpenOnly] = useState(false), [stepFree, setStepFree] = useState(false);
+  const [types, setTypes] = useState<Set<string>>(new Set()), [groups, setGroups] = useState<Set<GroupId>>(new Set()), [kinds, setKinds] = useState<Set<Kind>>(new Set());
+  const [free, setFree] = useState(false), [picksOnly, setPicksOnly] = useState(false), [personFilter, setPersonFilter] = useState("all"), [venuesToo, setVenuesToo] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [invite, setInvite] = useState(""), [nightId, setNightId] = useState(""), [resolving, setResolving] = useState(false);
   const [spotOpen, setSpotOpen] = useState(false), [menuOpen, setMenuOpen] = useState(false), [deviceOpen, setDeviceOpen] = useState(false), [nudgeOpen, setNudgeOpen] = useState(false), [doorChosen, setDoorChosen] = useState(false), [switchLink, setSwitchLink] = useState(false), [, setLinkMade] = useState(0);
   const loc = useLocation(), [locateTick, setLocateTick] = useState(0), [gmapsOpen, setGmapsOpen] = useState(false);
-  const [shareOpen, setShareOpen] = useState(false), [emailReady, setEmailReady] = useState(false), [recoverOpen, setRecoverOpen] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false), [emailReady, setEmailReady] = useState(false), [recoverOpen, setRecoverOpen] = useState(false), [printOpen, setPrintOpen] = useState(false);
   useEffect(() => { sync?.emailReady().then(setEmailReady); }, []);
   const [name, setName] = useState(pref("ah:name")), [color, setColor] = useState(pref("ah:color") || COLORS[Math.floor(Math.random() * COLORS.length)]);
   const [note, setNote] = useState(""), [selected, setSelected] = useState<Item | null>(null), [focus, setFocus] = useState<string | null>(null), [fit, setFit] = useState(0);
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [toast, setToast] = useState(""), [undo, setUndo] = useState<Undo | null>(null), [nameDialog, setNameDialog] = useState(false);
-  const [routeView, setRouteView] = useState<"list" | "timeline">("list"), [previewStops, setPreviewStops] = useState<UiStop[] | null>(null);
-  const openedIdeas = useRef(false);
-  const [pendingSuggestion, setPendingSuggestion] = useState<string | null>(null), [helpOpen, setHelpOpen] = useState(false), [helpTab, setHelpTab] = useState<HelpTab>("what");
-  /* After the night: "what's next" once as a pop-up (it replaces the intro for first-time visitors), then as a banner. */
-  const [nextAtStart] = useState(() => !nextSeen()), [nextState, setNextState] = useState<"wait" | "open" | "closed">(() => (nextSeen() ? "closed" : "wait")), [nextBanner, setNextBanner] = useState(() => !bannerOff());
+  const [pendingAdd, setPendingAdd] = useState<string | null>(null), [pendingSuggestion, setPendingSuggestion] = useState<string | null>(null);
+  const [helpOpen, setHelpOpen] = useState(false), [helpTab, setHelpTab] = useState<HelpTab>("what");
   const [ridesOpen, setRidesOpen] = useState(false), [layers, setLayers] = useState(() => new Set(MODES.filter((m) => m.on).map((m) => m.id)));
   const [hideVenues, setHideVenues] = useState(false), [ride, setRide] = useState<{ mode: string; stop: number } | null>(null);
+  const [zoom, setZoom] = useState({ by: 0, tick: 0 });
+  const [sheet, setSheet] = useState<"peek" | "half" | "full">("half"), [nowMode, setNowMode] = useState(false), [walk, setWalk] = useState<WalkState>(() => loadWalk(day));
   const shownModes = useMemo(() => (ridesOpen ? MODES.filter((m) => layers.has(m.id)) : []), [ridesOpen, layers]);
   const rideMode = ride && shownModes.find((m) => m.id === ride.mode);
-  /** Desktop shows the panel in the explore column (the map stays clear); phones show it as a sheet over the map. */
-  const gettingAround = (where: string) => <GettingAround className={where} modes={MODES} layers={layers} hideVenues={hideVenues} onHideVenues={setHideVenues} onClose={() => { setRidesOpen(false); setRide(null); }}
-    onToggle={(id) => { setLayers((l) => { const n = new Set(l); if (n.has(id)) n.delete(id); else n.add(id); return n; }); if (ride?.mode === id) setRide(null); }} />;
 
-  const night = useMemo(() => (data ? derive(data, userId) : null), [data, userId]);
+  /* ---------- the day and the time shown ---------- */
+  function pickDay(id: string) {
+    if (id === day) return;
+    setCurrentDay(id); setDayState(id); setAt(startAt(id)); setAtMoved(false); setWalk(loadWalk(id)); setNowMode(false);
+    setPreviewStops(null); setPreviewId(null); setFit((f) => f + 1);
+    track("day", { day: id });
+  }
+  useEffect(() => { // on the day itself, the time follows the clock until someone moves the slider
+    if (!live) return;
+    const t = setInterval(() => setAt(startAt(day)), 30_000);
+    return () => clearInterval(t);
+  }, [live, day]);
+  useEffect(() => { if (day === today && tab === "day") setNowMode(true); }, [tab]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  /* ---------- the group ---------- */
+  const night = useMemo(() => (data ? derive(data, userId, day) : null), [data, userId, day]);
   const identity = night?.me;
-  const route = night?.stopsOf(night.shared?.id) ?? [];
-  const myRoute = night?.stopsOf(night.mine?.id) ?? [];
+  const realMembers = night?.members.filter((m) => !m.fictional) ?? [];
+  const shared = night?.stopsOf(night.shared?.id) ?? [];
+  const mine = night?.stopsOf(night.mine?.id) ?? [];
   const crewRoute = night?.crewRoute(night.myCrewId);
   const crewStops = night?.stopsOf(crewRoute?.id) ?? [];
   const myCrewName = data?.ah_crews.find((c) => c.id === night?.myCrewId)?.name;
+  const sharedDays = night?.daysOf(night.shared?.id) ?? {};
+  const choices: RouteChoice[] = [
+    { kind: "personal", label: "Mine" },
+    ...(identity && (realMembers.length > 1 || Object.keys(sharedDays).length) ? [{ kind: "shared" as const, label: "Our group" }] : []),
+    ...(crewRoute ? [{ kind: "crew" as const, label: myCrewName ?? "Crew" }] : []),
+  ];
+  const routeKind: Kindish = choices.some((c) => c.kind === kind) ? kind : "personal";
+  const routeRow = routeKind === "shared" ? night?.shared : routeKind === "crew" ? crewRoute : night?.mine;
+  const stops = routeKind === "shared" ? shared : routeKind === "crew" ? crewStops : mine;
+  const canEdit = routeKind === "personal" ? true : identity?.role !== "viewer";
+  const routeName = routeKind === "personal" ? "your route" : routeKind === "shared" ? "our route" : `${myCrewName}’s route`;
+  const dayName = dayOf(day).name;
+  const dayLabel = `${routeKind === "shared" ? "Our" : routeKind === "crew" ? (myCrewName ?? "Crew") + "’s" : "My"} ${dayName}`;
   const proposals: Proposal[] = useMemo(() => (night?.personal ?? []).map((r) => ({
     id: r.id, member_id: r.owner_user!, title: r.title || (night!.memberOf.get(r.owner_user!)?.display_name ?? "Someone") + "’s route",
     description: r.description, practical: r.practical, route: night!.stopsOf(r.id), checked_at: r.updated_at,
   })), [night]);
   const people = useMemo(() => (night?.members ?? []).map((m) => ({ id: m.user_id, name: m.display_name, fictional: m.fictional ? 1 : 0, color: m.color })), [night]);
-  const suggestions = useMemo(() => (data?.ah_reactions ?? []).filter((r) => r.reaction !== "skip").map((r) => ({ member_id: r.user_id, event_id: r.event_id, note: r.note, id: r.id, reaction: r.reaction })), [data]);
+  const suggestions = useMemo(() => (data?.ah_reactions ?? []).filter((r) => r.reaction !== "skip"), [data]);
   const myReaction = (eventId: string) => data?.ah_reactions.find((r) => r.user_id === userId && r.event_id === eventId)?.reaction;
   const canEditShared = !!identity && identity.role !== "viewer";
-  const proposal = proposals.find((p) => p.id === previewId) ?? SUGGESTED.find((p) => p.id === previewId);
-  const mapRoute = previewStops || proposal?.route || (asideMode === "personal" ? myRoute : route);
-  const realMembers = night?.members.filter((m) => !m.fictional) ?? [];
   const nameOf = (uid: string) => night?.memberOf.get(uid)?.display_name;
+  const proposal = proposals.find((p) => p.id === previewId) ?? SUGGESTED.find((p) => p.id === previewId);
+  const proposalStops = proposal ? proposal.route.filter((s) => (s.day ?? day) === day) : null;
+  const mapStops = previewStops || proposalStops || stops;
 
-  /* ---------- which night: the invite token in the address ---------- */
+  /* ---------- which group: the invite token in the address ---------- */
   useEffect(() => {
     const readLocation = () => {
       const token = new URLSearchParams(location.hash.slice(1)).get("night") || "";
-      setPreviewId(null); setAsideMode("route"); setTarget("shared"); setPersonFilter("all"); setSuggestedOnly(false); setSelected(null); setError(""); openedIdeas.current = false;
+      setPreviewId(null); setSelected(null); setError("");
       setInvite(token);
-      if (token && !/^[a-f0-9]{64}$/.test(token)) { setError("This invitation link is invalid. Ask your friend for the complete link."); return; }
+      if (token && !/^[a-f0-9]{64}$/.test(token)) { setError("This invitation link is incomplete. Ask your friend for the whole link."); return; }
       const id = token ? known()[token] : "";
       setNightId(id || "");
       if (!id) sync?.close();
-      // A browser that knows who I am but not this night (a personal link, or a lost list) opens it without joining again.
       if (token && !id && sync) {
         setResolving(true);
         sync.memberNight(token).then((found) => { if (found) { remember(token, found); setNightId(found); } }).finally(() => setResolving(false));
@@ -109,69 +160,26 @@ export default function App() {
   useEffect(() => { if (nightId && sync) sync.open(nightId, { name: pref("ah:name"), color: pref("ah:color") }).catch((e) => setError(e.message)); }, [nightId]);
   useEffect(() => sync?.onNotice((n) => (n.kind === "error" ? setError(n.text) : setToast(n.text))), []);
   useEffect(() => { sync?.ready.then(() => { if (sync!.linkProblem) setError(sync!.linkProblem); if (sync!.pendingLink) setSwitchLink(true); }); }, []);
-  const hasLink = !!identity && !!sync?.savedPersonalLink();
-  /* Once someone has started planning, offer once to back up their spot by email; the banner stays until they do. */
   const backedUp = !!identity && !!sync?.backedUp();
   const planned = !!data && (data.ah_reactions.some((r) => r.user_id === userId) || data.ah_stops.some((s) => s.updated_by === userId));
   useEffect(() => {
-    if (!identity || backedUp || !planned || !emailReady || !introSeen() || nextState !== "closed") return;
+    if (!identity || backedUp || !planned || !emailReady || !introSeen()) return;
     const asked = "ah:backup-asked:" + userId;
     if (pref(asked)) return;
     const t = setTimeout(() => { setPref(asked, "1"); setNudgeOpen(true); track("backup-nudge"); }, 1500);
     return () => clearTimeout(t);
-  }, [identity?.id, backedUp, planned, emailReady, nextState]);
-  useEffect(() => { if (identity) sync?.updatePresence({ name: identity.display_name, color: identity.color }); }, [identity?.display_name, identity?.color]);
-
+  }, [identity?.id, backedUp, planned, emailReady]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (identity) sync?.updatePresence({ name: identity.display_name, color: identity.color }); }, [identity?.display_name, identity?.color]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(""), 4500); return () => clearTimeout(t); }, [toast]);
   useEffect(() => { if (!undo) return; const t = setTimeout(() => setUndo(null), 7000); return () => clearTimeout(t); }, [undo]);
   useEffect(() => {
-    if (!selected && !nameDialog) return;
-    const prior = document.activeElement as HTMLElement;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") { setSelected(null); setNameDialog(false); }
-      if (e.key === "Tab") {
-        const dialogs = document.querySelectorAll("[role=dialog]");
-        const nodes = Array.from(dialogs[dialogs.length - 1]?.querySelectorAll<HTMLElement>("button:not([disabled]),a[href],input,select,textarea") || []);
-        const first = nodes[0], last = nodes[nodes.length - 1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
-      }
-    };
+    if (!selected && !nameDialog && !filtersOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") { setSelected(null); setNameDialog(false); setFiltersOpen(false); } };
     window.addEventListener("keydown", onKey);
-    return () => { window.removeEventListener("keydown", onKey); prior?.focus(); };
-  }, [selected, nameDialog]);
-  useEffect(() => {
-    if (!proposals.length || openedIdeas.current) return;
-    openedIdeas.current = true;
-    if (!route.length && !identity) setAsideMode("ideas");
-    const requested = new URLSearchParams(location.hash.slice(1)).get("idea");
-    if (requested && proposals.some((p) => p.id === requested)) { setAsideMode("ideas"); setPreviewId(requested); setFit((f) => f + 1); }
-  }, [proposals.length]);
-  useEffect(() => { document.querySelector(".itinerary")?.scrollTo({ top: 0 }); setPreviewStops(null); }, [previewId, asideMode]);
-  useEffect(() => { document.querySelector(".itinerary-tabs .active")?.scrollIntoView({ block: "nearest", inline: "center" }); }, [asideMode]);
-  /* On phones, switching views lands at the top of the new view rather than mid-page. */
-  useEffect(() => {
-    const nav = document.querySelector<HTMLElement>(".mobile-nav");
-    if (nav && getComputedStyle(nav).display !== "none" && nav.getBoundingClientRect().top < 0) window.scrollTo({ top: window.scrollY + nav.getBoundingClientRect().top });
-  }, [view]);
-
-  /* ---------- usage stats: which parts get used (see lib/track.ts) ---------- */
-  const firstRender = useRef(true);
-  useEffect(() => { if (!firstRender.current) track("view", { name: view }); }, [view]);
-  useEffect(() => { if (!firstRender.current) track("panel", { name: asideMode }); }, [asideMode]);
-  useEffect(() => { if (!firstRender.current) track("category", { name: category }); }, [category]);
-  useEffect(() => { if (!firstRender.current && tag !== "All types") track("type-filter"); }, [tag]);
-  useEffect(() => { if (!firstRender.current && suggestedOnly) track("picks-filter", { person: personFilter === "all" ? "everyone" : "one" }); }, [suggestedOnly, personFilter]);
-  useEffect(() => { if (!firstRender.current) track("route-view", { name: routeView }); }, [routeView]);
-  useEffect(() => { if (ridesOpen) track("getting-around"); }, [ridesOpen]);
-  useEffect(() => { if (ride) track("ride-select", { mode: ride.mode }); }, [ride?.mode, ride?.stop]);
-  useEffect(() => { if (previewId) track("route-preview", { kind: SUGGESTED.some((p) => p.id === previewId) ? "suggested" : "idea" }); }, [previewId]);
-  useEffect(() => { if (selected) track("details-open", { kind: selected.id.startsWith("museum:") ? "museum" : "activity" }); }, [selected?.id]);
-  useEffect(() => { if (helpOpen) track("help-open", { tab: helpTab }); }, [helpOpen]);
-  useEffect(() => { if (spotOpen) track("keep-spot-open"); }, [spotOpen]);
-  useEffect(() => { if (!query.trim()) return; const t = setTimeout(() => track("search"), 1500); return () => clearTimeout(t); }, [query]);
-  useEffect(() => { firstRender.current = false; }, []);
-  useEffect(() => { if (identity) track("in-night", { role: identity.role, people: realMembers.length, link: hasLink }); }, [identity?.id]);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selected, nameDialog, filtersOpen]);
+  useEffect(() => { setPreviewStops(null); }, [previewId, tab, dayView]);
+  useEffect(() => { if (identity) track("in-group", { role: identity.role, people: realMembers.length }); }, [identity?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* ---------- changes ---------- */
   /** Shows ops at once and saves them; with a label, offers to undo. */
@@ -182,322 +190,379 @@ export default function App() {
     if (label) setUndo({ text: label, ops: inverse });
   }
   const title = (id: string) => byId.get(id)?.title ?? "stop";
-
-  function addShared(id: string) { if (night?.shared) run(addStopOps(night.shared, route, id), `Added ${title(id)} to our route`); }
-  function addCrew(id: string) { if (crewRoute) run(addStopOps(crewRoute, crewStops, id), `Added ${title(id)} to ${myCrewName}’s route`); }
-  function addTo(id: string) { track("stop-add", { route: target }); if (target === "personal") addPersonal(id); else if (target === "crew") addCrew(id); else addShared(id); }
+  function addShared(id: string) { if (night?.shared) run(addStopOps(night.shared, shared, id), `Added ${title(id)} to our ${dayName}`); }
+  function addCrew(id: string) { if (crewRoute) run(addStopOps(crewRoute, crewStops, id), `Added ${title(id)} to ${myCrewName}’s ${dayName}`); }
   function addPersonal(id: string) {
-    if (!night || !identity) { setNameDialog(true); return; }
-    if (night.mine) run(addStopOps(night.mine, myRoute, id), `Added ${title(id)} to your route`);
-    else run(personalRouteOps(identity.night_id, userId, undefined, identity.display_name + "’s route", [{ id, arrival: "", duration: 45 }]).ops, `Added ${title(id)} to your route`);
+    if (!night || !identity) { setPendingAdd(id); setNameDialog(true); return; }
+    if (night.mine) run(addStopOps(night.mine, mine, id), `Added ${title(id)} to your ${dayName}`);
+    else run(personalRouteOps(identity.night_id, userId, undefined, identity.display_name + "’s route", [{ id, arrival: "", duration: 45, day }]).ops, `Added ${title(id)} to your ${dayName}`);
   }
-  /** Replaces my personal route (a route idea) with these stops, e.g. a suggested order. */
-  function proposeMine(stops: UiStop[]) {
+  function addTo(id: string) {
+    if (!onDay(byId.get(id), day)) { setToast(`That isn’t on ${dayName}.`); return; }
+    track("stop-add", { route: routeKind });
+    if (routeKind === "shared") addShared(id); else if (routeKind === "crew") addCrew(id); else addPersonal(id);
+  }
+  const inRoute = (id: string) => stops.some((s) => s.id === id);
+  function toggleAdd(e: Item) {
+    const s = stops.find((x) => x.id === e.id);
+    if (s?.rowId) run([{ t: "delete", table: "ah_stops", id: s.rowId }], `Removed ${e.title} from ${routeName}`);
+    else addTo(e.id);
+  }
+  useEffect(() => { // the stop someone tapped before they had a name
+    if (!pendingAdd || !identity || !night) return;
+    const id = pendingAdd; setPendingAdd(null); addPersonal(id);
+  }, [pendingAdd, identity?.id, night?.night?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  /** Replaces my personal route for this day with these stops (e.g. a suggested order). */
+  function proposeMine(next: UiStop[]) {
     if (!night || !identity) { setNameDialog(true); return; }
-    const clear: Op[] = myRoute.map((s) => ({ t: "delete", table: "ah_stops", id: s.rowId! }));
-    track("route-idea-save", { stops: stops.length });
-    run([...clear, ...personalRouteOps(identity.night_id, userId, night.mine, night.mine?.title || identity.display_name + "’s route", stops, []).ops], "Saved as your route idea");
+    const clear: Op[] = mine.map((s) => ({ t: "delete", table: "ah_stops", id: s.rowId! }));
+    run([...clear, ...personalRouteOps(identity.night_id, userId, night.mine, night.mine?.title || identity.display_name + "’s route", next.map((s) => ({ ...s, day })), []).ops], "Saved as your route idea");
     setToast("Saved as your route idea. Friends can compare it under Route ideas.");
   }
-  /** Sets, changes or (with null) clears my reaction to a programme item. */
   function react(eventId: string, reaction: ReactionKey | null, withNote?: string) {
     if (!night || !identity) { setNameDialog(true); return; }
-    const mine = data!.ah_reactions.find((r) => r.user_id === userId && r.event_id === eventId);
+    const row = data!.ah_reactions.find((r) => r.user_id === userId && r.event_id === eventId);
     track("reaction", { kind: reaction ?? "clear", note: !!withNote });
-    if (!reaction) { if (mine) run([{ t: "delete", table: "ah_reactions", id: mine.id }]); return; }
-    run(mine ? [{ t: "update", table: "ah_reactions", id: mine.id, patch: { reaction, note: withNote ?? mine.note, updated_at: new Date().toISOString() } }]
+    if (!reaction) { if (row) run([{ t: "delete", table: "ah_reactions", id: row.id }]); return; }
+    run(row ? [{ t: "update", table: "ah_reactions", id: row.id, patch: { reaction, note: withNote ?? row.note, updated_at: new Date().toISOString() } }]
       : [{ t: "insert", table: "ah_reactions", row: { id: newId(), night_id: identity.night_id, user_id: userId, event_id: eventId, reaction, note: withNote ?? "" } }]);
   }
   function vote(routeId: string | null) {
     if (!identity) { setNameDialog(true); return; }
-    track("idea-vote", { cleared: !routeId });
-    const mine = data!.ah_idea_votes.find((v) => v.user_id === userId);
-    run(!routeId ? (mine ? [{ t: "delete", table: "ah_idea_votes", id: mine.id }] : [])
-      : mine ? [{ t: "update", table: "ah_idea_votes", id: mine.id, patch: { route_id: routeId } }]
+    const row = data!.ah_idea_votes.find((v) => v.user_id === userId);
+    run(!routeId ? (row ? [{ t: "delete", table: "ah_idea_votes", id: row.id }] : [])
+      : row ? [{ t: "update", table: "ah_idea_votes", id: row.id, patch: { route_id: routeId } }]
       : [{ t: "insert", table: "ah_idea_votes", row: { id: newId(), night_id: identity.night_id, user_id: userId, route_id: routeId } }]);
   }
   async function adoptIdea(id: string) {
     if (!identity) { setNameDialog(true); return; }
     setBusy(true);
-    try { await sync!.rpc("ah_adopt_route", { p_route: id }); track("route-adopt", { from: "idea" }); setPreviewId(null); setAsideMode("route"); setFit((f) => f + 1); setError(""); setToast("Your group route is ready. Everyone can adjust it."); }
+    try { await sync!.rpc("ah_adopt_route", { p_route: id, p_day: day }); track("route-adopt", { from: "idea" }); setPreviewId(null); setKind("shared"); setDayView("list"); setFit((f) => f + 1); setError(""); setToast(`Our ${dayName} is ready. Everyone can adjust it.`); }
     catch (e) { setError((e as Error).message); }
     finally { setBusy(false); }
   }
-  /** Makes a suggested route our shared route; without a night yet, creates one first. */
+  /** Uses a suggested route for its day as the plan shown (mine, the group's or the crew's); without a group, makes one first. */
   function adoptSuggested(id: string) {
     const idea = SUGGESTED.find((p) => p.id === id);
-    if (!idea) return;
-    if (!identity || !night?.shared) { setPendingSuggestion(id); setNameDialog(true); return; }
-    if (!canEditShared) { setError("Viewers can’t change the shared route. Ask the organiser for a planner link."); return; }
+    if (!idea || !data) { if (idea) { setPendingSuggestion(id); setNameDialog(true); } return; }
+    if (!identity || !night) { setPendingSuggestion(id); setNameDialog(true); return; }
+    const ideaDay = idea.route[0]?.day ?? day;
+    if (ideaDay !== day) pickDay(ideaDay);
+    const target = routeKind === "shared" && canEditShared ? night.shared : routeKind === "crew" ? crewRoute : night.mine;
+    const current = derive(data, userId, ideaDay).stopsOf(target?.id);
     track("route-adopt", { from: "suggested", route: idea.id });
-    run(replaceRouteOps(night.shared, route, idea.route), `Using “${idea.title}” as our route`);
-    setPreviewId(null); setAsideMode("route"); setTarget("shared"); setFit((f) => f + 1);
+    if (!target) run(personalRouteOps(identity.night_id, userId, undefined, identity.display_name + "’s route", idea.route).ops, `Using “${idea.title}”`);
+    else run(replaceRouteOps(target, current, idea.route), `Using “${idea.title}” for ${dayOf(ideaDay).name}`);
+    setPreviewId(null); setDayView("list"); setTab("day"); setFit((f) => f + 1);
   }
   useEffect(() => {
-    if (!pendingSuggestion || !identity || !night?.shared) return;
-    const id = pendingSuggestion;
-    setPendingSuggestion(null);
-    // A night that already has stops (we joined friends) keeps them until someone confirms the swap.
-    if (route.length) { setAsideMode("suggested"); setPreviewId(id); setToast("You joined. Using this route would replace the group’s stops, so confirm below."); }
-    else adoptSuggested(id);
-    // Runs once the night we just created or joined has loaded.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pendingSuggestion, identity?.id, night?.shared?.id]);
+    if (!pendingSuggestion || !identity || !night) return;
+    const id = pendingSuggestion; setPendingSuggestion(null); adoptSuggested(id);
+  }, [pendingSuggestion, identity?.id, night?.night?.id]); // eslint-disable-line react-hooks/exhaustive-deps
   async function enter() {
     if (!sync || !name.trim()) return;
     setBusy(true); setError("");
     setPref("ah:name", name.trim()); setPref("ah:color", color);
     try {
       if (identity && nameDialog) {
-        track("name-change");
         run([{ t: "update", table: "ah_members", id: identity.id, patch: { display_name: name.trim(), color } }]);
         setNameDialog(false);
         return;
       }
-      const token = invite || await sync.createNight("Museumnacht 2026", name.trim(), color);
+      const token = invite || await sync.createNight("Art Week 2026", name.trim(), color);
       const id = await sync.joinNight(token, name.trim(), color);
       remember(token, id);
       history.replaceState(null, "", "#night=" + token);
       setInvite(token);
       if (id === nightId) await sync.reload(); else setNightId(id);
-      setNameDialog(false); setAsideMode("personal"); setTarget("personal"); setPreviewId(null);
-      track(invite ? "night-join" : "night-create", { via: pendingSuggestion ? "suggested" : "start" });
-      setToast(invite ? "You joined the night." : "Your night is ready. Invite your friends!");
+      setNameDialog(false); setKind("personal"); setPreviewId(null);
+      track(invite ? "night-join" : "night-create", { via: pendingSuggestion ? "suggested" : pendingAdd ? "add" : "start" });
+      setToast(invite ? "You joined the group." : "Saved. Invite friends any time from Friends.");
     } catch (e) { setError((e as Error).message); }
     finally { setBusy(false); }
   }
   async function share() {
     if (!invite) { setNameDialog(true); return; }
     if (identity) { setShareOpen(true); return; }
-    try { await navigator.clipboard.writeText(location.origin + location.pathname + "#night=" + invite); setToast("Invite link copied. Anyone with it can join and edit."); track("invite-copy"); }
-    catch { setToast("Copy the invitation from your browser address bar."); }
+    try { await navigator.clipboard.writeText(location.origin + location.pathname + "#night=" + invite); setToast("Invite link copied. Anyone with it can join and plan."); }
+    catch { setToast("Copy the invitation from your browser’s address bar."); }
   }
 
+  /* ---------- the programme for the day ---------- */
+  const groupMatch = (e: Item, g: GroupId) => e.disciplines.some((d) => (GROUPS.find((x) => x.id === g)!.match as readonly string[]).includes(d));
   const filtered = useMemo(() => {
-    let list = category === "Museums" ? items.filter((e) => e.id.startsWith("museum:")) : activities;
-    if (category === "Food & drink") list = list.filter((e) => e.tags.includes(FOOD));
-    if (tag !== "All types") list = list.filter((e) => e.tags.includes(tag));
-    if (wheelchair) list = list.filter((e) => byMuseum.get(e.museumId || "")?.accessible);
-    if (query.trim()) { const q = query.toLocaleLowerCase(); list = list.filter((e) => (e.title + " " + e.venue + " " + e.tags.join(" ") + " " + byMuseum.get(e.museumId || "")?.address).toLocaleLowerCase().includes(q)); }
-    if (suggestedOnly) list = list.filter((e) => suggestions.some((s) => s.event_id === e.id && (personFilter === "all" || s.member_id === personFilter)));
-    return list;
-  }, [category, query, tag, wheelchair, suggestedOnly, personFilter, suggestions]);
-  const types = useMemo(() => Array.from(new Set(activities.flatMap((e) => e.tags))).sort(), []);
-  function pick(e: Item) { setSelected(e); setFocus(e.museumId); setNote(suggestions.find((s) => s.event_id === e.id && s.member_id === userId)?.note || ""); }
-  const suggesters = (id: string) => suggestions.filter((s) => s.event_id === id);
-  const uniqueVenues = new Set(route.map((s) => byId.get(s.id)?.museumId)).size;
-  const lastSharedChange = data?.ah_activity.filter((a) => a.data.route_kind === "shared" || a.kind === "route_adopt").sort((a, b) => b.created_at.localeCompare(a.created_at))[0];
-  const lines: MapLine[] = useMemo(() => asideMode === "crews" && !previewStops && night && data?.ah_crews.length
-    ? data.ah_crews.map((c) => ({ stops: night.stopsOf(night.crewRoute(c.id)?.id), color: c.color, numbered: c.id === night.myCrewId }))
-    : [{ stops: mapRoute, color: "#de654b", numbered: true }], [mapRoute, asideMode, previewStops, night, data?.ah_crews]);
-  // The route the Google Maps button opens: whichever one the side panel shows.
-  const gmaps = asideMode === "personal" ? { stops: myRoute, title: night?.mine?.title || "My route" } : asideMode === "crews" ? { stops: crewStops, title: (myCrewName ?? "Crew") + "’s route" } : { stops: route, title: "Our route" };
-  const viewToggle = <div className="route-tools">
-    <div className="view-toggle" role="group" aria-label="Route view">
-      {(["list", "timeline"] as const).map((v) => <button key={v} aria-pressed={routeView === v} className={routeView === v ? "on" : ""} onClick={() => { setRouteView(v); setPreviewStops(null); }}>{v === "list" ? "List" : "Timeline"}</button>)}
-    </div>
-    {gmaps.stops.length > 0 && <button className="gmaps-button" onClick={() => setGmapsOpen(true)}><MapPin size={13} />Google Maps</button>}
-  </div>;
-  // On the map: the next stop of the route shown, and how far it is from you.
-  const nextIndex = loc.spot && !previewStops && !proposal ? nextStop(mapRoute) : -1;
-  const nextItem = nextIndex >= 0 ? byId.get(mapRoute[nextIndex].id) : undefined;
-  const nextWalk = nextItem && loc.spot ? walkFrom(loc.spot, nextItem.museumId) : null;
+    let list = activities.filter((e) => onDay(e, day));
+    if (venuesToo) list = [...list, ...museums.filter((m) => day in m.hours).map(museumItem)];
+    if (types.size) list = list.filter((e) => e.tags.some((t) => types.has(t)));
+    if (groups.size) list = list.filter((e) => e.kind === "venue" || [...groups].some((g) => groupMatch(e, g)));
+    if (kinds.size) list = list.filter((e) => kinds.has(byMuseum.get(e.museumId ?? "")?.kind ?? "other"));
+    if (free) list = list.filter((e) => e.admission === "Free admission");
+    if (openOnly) list = list.filter((e) => openAt(e, at, day));
+    if (query.trim()) { const q = query.toLocaleLowerCase(); list = list.filter((e) => [e.title, e.venue, e.tags.join(" "), e.disciplines.join(" "), byMuseum.get(e.museumId || "")?.address, byMuseum.get(e.museumId || "")?.area].join(" ").toLocaleLowerCase().includes(q)); }
+    if (picksOnly) list = list.filter((e) => suggestions.some((s) => s.event_id === e.id && (personFilter === "all" || s.user_id === personFilter)));
+    return sortProgramme(list, day, at, loc.spot);
+  }, [day, at, query, types, groups, kinds, free, openOnly, picksOnly, personFilter, suggestions, venuesToo, loc.spot]); // eslint-disable-line react-hooks/exhaustive-deps
+  const filterCount = types.size + groups.size + kinds.size + (free ? 1 : 0) + (picksOnly ? 1 : 0) + (venuesToo ? 1 : 0);
+  const toggle = <T,>(set: Set<T>, v: T, put: (s: Set<T>) => void) => { const n = new Set(set); if (n.has(v)) n.delete(v); else n.add(v); put(n); };
+  const clearFilters = () => { setTypes(new Set()); setGroups(new Set()); setKinds(new Set()); setFree(false); setPicksOnly(false); setVenuesToo(false); setOpenOnly(false); setQuery(""); setStepFree(false); };
+  const openLabel = live ? "Open now" : `Open at ${clock(at)}`;
+  const chips: Chip[] = [
+    ...[...groups].map((g) => ({ key: "g" + g, label: GROUPS.find((x) => x.id === g)!.label, onRemove: () => toggle(groups, g, setGroups) })),
+    ...[...types].map((t) => ({ key: "t" + t, label: t, onRemove: () => toggle(types, t, setTypes) })),
+    ...[...kinds].map((k) => ({ key: "k" + k, label: KIND_LABEL[k] + "s", onRemove: () => toggle(kinds, k, setKinds) })),
+    ...(free ? [{ key: "free", label: "Free", onRemove: () => setFree(false) }] : []),
+    ...(picksOnly ? [{ key: "picks", label: "Friends’ picks", onRemove: () => setPicksOnly(false) }] : []),
+    ...(venuesToo ? [{ key: "venues", label: "Venues too", onRemove: () => setVenuesToo(false) }] : []),
+    ...(openOnly ? [{ key: "open", label: openLabel, onRemove: () => setOpenOnly(false) }] : []),
+    ...(stepFree ? [{ key: "step", label: "♿ Step-free", onRemove: () => setStepFree(false) }] : []),
+  ];
+  const allTypes = useMemo(() => Array.from(new Set(activities.flatMap((e) => e.tags))).sort(), []);
+  const openVenues = useMemo(() => new Set(museums.filter((m) => openAt(museumItem(m), at, day) || activities.some((e) => e.museumId === m.id && openAt(e, at, day))).map((m) => m.id)), [at, day]);
+  const isOpen = useCallback((id: string) => openVenues.has(id), [openVenues]);
+  function pick(e: Item) { setSelected(e); setFocus(e.museumId); setNote(data?.ah_reactions.find((r) => r.event_id === e.id && r.user_id === userId)?.note || ""); track("details-open", { kind: e.kind }); }
+  const likes = (id: string) => {
+    const who = suggestions.filter((s) => s.event_id === id && s.user_id !== userId).map((s) => nameOf(s.user_id)).filter(Boolean);
+    return who.length ? `${who.slice(0, 2).join(" and ")}${who.length > 2 ? " and more" : ""} ${who.length === 1 ? "likes" : "like"} this` : "";
+  };
+  /** Others in the group who have this on their plan for the day, or want to see it. */
+  const faces = (id: string): Face[] => {
+    if (!night) return [];
+    const out = new Map<string, Face>();
+    for (const r of night.personal) { if (r.owner_user === userId) continue; if (night.stopsOf(r.id).some((s) => s.id === id)) { const m = night.memberOf.get(r.owner_user!); if (m && !m.fictional) out.set(m.user_id, { name: m.display_name, color: m.color }); } }
+    for (const s of suggestions) if (s.event_id === id && s.user_id !== userId) { const m = night.memberOf.get(s.user_id); if (m && !m.fictional) out.set(m.user_id, { name: m.display_name, color: m.color }); }
+    return [...out.values()];
+  };
+
+  /* ---------- the map ---------- */
+  const labels = useMemo(() => analyse(mapStops).slots.map((s) => `${clock(s.start)} · ${disciplineOf(byId.get(s.id))} · ${s.duration} min`), [mapStops]);
+  const lines: MapLine[] = useMemo(() => {
+    const crewLines = tab === "friends" && !previewStops && night && data?.ah_crews.length
+      ? data.ah_crews.filter((c) => c.id !== night.myCrewId || routeKind !== "crew").map((c) => ({ stops: night.stopsOf(night.crewRoute(c.id)?.id), color: c.color })) : [];
+    return [{ stops: mapStops, color: "#111", numbered: true, labels }, ...crewLines];
+  }, [mapStops, labels, tab, previewStops, night, data?.ah_crews, routeKind]);
+  const visible = ridesOpen && hideVenues ? [] : proposalStops ? proposalStops.map((s) => byId.get(s.id)!).filter(Boolean) : filtered;
+  const nextIndex = !previewStops && !proposal ? nextStop(stops) : -1;
+  const nextItem = nextIndex >= 0 ? byId.get(stops[nextIndex].id) : undefined;
+  const nextWalk = nextItem ? (loc.spot ? walkFrom(loc.spot, nextItem.museumId)?.minutes : nextIndex > 0 ? leg(stops[nextIndex - 1].id, stops[nextIndex].id).minutes : null) : null;
+  const go = nextItem ? { label: `Go: ${stops[nextIndex].mode === "bike" ? "cycle" : "walk"} to ${nextItem.kind === "venue" ? nextItem.title : byMuseum.get(nextItem.museumId ?? "")?.name ?? nextItem.venue}${nextWalk ? ` · ${nextWalk} min` : ""}`, href: mapsNext(stops[nextIndex]), onClick: () => track("google-maps", { kind: "go" }) } : null;
+
+  /* ---------- walking it (Now) ---------- */
+  const walkAt = walkIndex(stops, walk);
+  const markWalk = (k: "done" | "skipped") => { const s = stops[walkAt]; if (!s) return; const next = { ...walk, [k]: [...walk[k], s.rowId ?? s.id] }; setWalk(next); saveWalk(day, next); };
+  const groupLine = useMemo(() => {
+    if (!data || !night) return null;
+    const last = data.ah_activity.find((a) => a.user_id && a.user_id !== userId && !night.memberOf.get(a.user_id)?.fictional);
+    return last ? describe(last, data, night) : null;
+  }, [data, night, userId]);
   const loading = (resolving || !!nightId) && !night?.members.length && status?.conn !== "offline";
-  /* An invite link on a device that doesn't know you: ask first, because joining again makes a second you. The intro waits. */
   const doorPending = /[#&]night=/.test(location.hash) && !identity && !doorChosen;
   const doors = doorPending && !!invite && !loading;
-  useEffect(() => {
-    if (nextState !== "wait" || doorPending || recoverOpen || nameDialog || switchLink || loading || helpOpen) return;
-    markNextSeen(); setNextState("open"); track("next-popup");
-  }, [nextState, doorPending, recoverOpen, nameDialog, switchLink, loading, helpOpen]);
   const emailLink = async (address: string) => { const made = await sync!.emailMyLink(address, invite); setLinkMade((n) => n + 1); return made; };
+  const lastChange = data?.ah_activity[0];
 
   const joinForm = (
     <form className="join-form" onSubmit={(e) => { e.preventDefault(); enter(); }}>
       <label htmlFor="your-name">Your name</label>
-      <input id="your-name" autoFocus={nameDialog} value={name} onChange={(e) => setName(e.target.value)} maxLength={32} placeholder={"e.g. " + EXAMPLE_NAME} autoComplete="given-name" required />
+      <input id="your-name" autoFocus value={name} onChange={(e) => setName(e.target.value)} maxLength={32} placeholder={"e.g. " + EXAMPLE_NAME} autoComplete="given-name" required />
       <div className="color-choice" role="radiogroup" aria-label="Your colour">
         {COLORS.map((c) => <button type="button" key={c} role="radio" aria-checked={c === color} aria-label={"Colour " + c} className={c === color ? "on" : ""} style={{ background: c }} onClick={() => setColor(c)} />)}
       </div>
-      <button className="primary" disabled={busy || !name.trim()}>{busy ? "Saving…" : identity && nameDialog ? "Save name" : invite ? "Join this night" : "Create our night"}<ArrowUpRight size={17} /></button>
-      <small>No account needed. Your name is remembered in this browser. Everyone with the link can view plans and edit the shared route.</small>
+      <button className="btn big" disabled={busy || !name.trim()}>{busy ? "Saving…" : identity && nameDialog ? "Save name" : invite ? "Join this group" : "Save my Art Week"}</button>
+      <small>No account needed. Your name is remembered in this browser. Friends you invite later see your plan and can plan with you.</small>
     </form>
   );
 
-  if (!sync) return <main className="config-missing"><h1>MuseumHop</h1><p>The backend isn't configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY.</p></main>;
+  if (!sync) return <main className="config-missing"><h1>ArtHop</h1><p>The backend isn't configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY.</p></main>;
 
-  return <main>
-    <header className="topbar">
-      <a href="./" className="brand" aria-label="MuseumHop home"><span className="brand-icon"><BrandMark /></span><span>museum<span className="brand-light">hop</span><small>AMSTERDAM, AFTER HOURS</small></span></a>
-      <div className="event-date"><span className="live-dot" />SAT 7 NOV 2026<span className="date-divider" />19:00 — 02:00<span className="tagline">Find your favourites. Bring your people.</span></div>
-      <div className="header-actions">
-        {invite && !identity && !loading && <button className="secondary join-button" onClick={() => setNameDialog(true)}>Join this night</button>}
-        {identity && <button className="secondary device-button" onClick={() => setDeviceOpen(true)}><MonitorSmartphone size={15} /><span>Open on another device</span></button>}
-        {identity && <button className="profile" data-track="Your name" onClick={() => setMenuOpen(true)}><span className="avatar" style={{ background: identity.color, color: "#fff" }}>{initials(identity.display_name)}</span><span>{identity.display_name}</span></button>}
-        <a href="https://museumnacht.amsterdam/programma" target="_blank" rel="noreferrer" className="source-link">Official programme<ArrowUpRight size={14} /></a>
-        <HelpButton onClick={() => { setHelpTab("what"); setHelpOpen(true); }} />
-        <button className="primary share-button" aria-label={invite ? "Invite friends" : "Plan with friends"} onClick={share}><Share2 size={16} /><span>{invite ? "Invite friends" : "Plan with friends"}</span></button>
+  /* ---------- pieces used in both layouts ---------- */
+  const filterPanel = <div className="filters-panel" role="dialog" aria-label="Filters">
+    <div className="fp-head"><h2>Filters</h2><button className="sc-close" aria-label="Close filters" onClick={() => setFiltersOpen(false)}><X size={20} /></button></div>
+    <h3>What it is</h3>
+    <div className="fp-chips">{GROUPS.map((g) => <button key={g.id} className={"chip" + (groups.has(g.id) ? " on" : "")} aria-pressed={groups.has(g.id)} onClick={() => toggle(groups, g.id, setGroups)}><i className="fp-dot" style={{ background: g.color }} />{g.label}</button>)}</div>
+    <h3>Kind of entry</h3>
+    <div className="fp-chips">{allTypes.map((t) => <button key={t} className={"chip" + (types.has(t) ? " on" : "")} aria-pressed={types.has(t)} onClick={() => toggle(types, t, setTypes)}>{t}</button>)}</div>
+    <h3>Kind of place</h3>
+    <div className="fp-chips">{(["gallery", "project-space", "museum", "residency", "partner", "corporate", "other"] as Kind[]).map((k) => <button key={k} className={"chip" + (kinds.has(k) ? " on" : "")} aria-pressed={kinds.has(k)} onClick={() => toggle(kinds, k, setKinds)}>{k === "other" ? "Other places" : KIND_LABEL[k] + "s"}</button>)}</div>
+    <h3>More</h3>
+    <div className="fp-chips">
+      <button className={"chip" + (free ? " on" : "")} aria-pressed={free} onClick={() => setFree(!free)}>Free admission</button>
+      <button className={"chip" + (openOnly ? " on" : "")} aria-pressed={openOnly} onClick={() => setOpenOnly(!openOnly)}>{openLabel}</button>
+      <button className={"chip" + (stepFree ? " on" : "")} aria-pressed={stepFree} onClick={() => setStepFree(!stepFree)}><Accessibility size={15} />Step-free</button>
+      <button className={"chip" + (venuesToo ? " on" : "")} aria-pressed={venuesToo} onClick={() => setVenuesToo(!venuesToo)}>List venues too</button>
+      {identity && <button className={"chip" + (picksOnly ? " on" : "")} aria-pressed={picksOnly} onClick={() => setPicksOnly(!picksOnly)}>Friends’ picks</button>}
+    </div>
+    {picksOnly && <select className="fp-person" aria-label="Whose picks" value={personFilter} onChange={(e) => setPersonFilter(e.target.value)}><option value="all">Everyone’s picks</option>{people.filter((p) => !p.fictional).map((m) => <option key={m.id} value={m.id}>{m.name}</option>)}</select>}
+    <div className="fp-foot"><button className="text-button" onClick={clearFilters}>Clear all</button><button className="btn" onClick={() => setFiltersOpen(false)}>Show {filtered.length}</button></div>
+  </div>;
+
+  const programme = <>
+    {stepFree && <p className="notice">Art Week’s pages don’t list step-free access for any venue yet, so this can’t narrow the list. Each card says so; ask the venue before you go.</p>}
+    <ProgrammeList list={filtered} day={day} at={at} me={loc.spot} live={live} openOnly={openOnly} chips={chips} inRoute={inRoute} onAdd={toggleAdd} onPick={pick} likes={likes} routeLabel={dayLabel.replace(/^My /, "")} onClear={clearFilters} />
+    <footer className="data-note">Programme from amsterdamart.com, imported 9 Nov 2026. Check the official page for changes.<br />Unofficial fan planner, not affiliated with Amsterdam Art Week. · <button className="link" onClick={() => { setHelpTab("data"); setHelpOpen(true); }}>Your data</button> · <a className="link" href={CONTACT}>Contact</a> · <a className="link" href={MAKER} target="_blank" rel="noopener">A project by Arian Shafa ↗</a></footer>
+  </>;
+
+  const timeline = <Timeline stops={stops} title={dayLabel} onPick={pick} onPropose={proposeMine} onPreview={(p) => { setPreviewStops(p); if (p) setFit((f) => f + 1); }}
+    onReschedule={canEdit ? (next, label) => run(rescheduleOps(stops, next), label) : null} route={routeRow} onOps={canEdit ? run : null} />;
+  const daySuggested = SUGGESTED.filter((p) => p.route[0]?.day === day);
+  const ideasCount = proposals.filter((p) => p.route.length).length + daySuggested.length;
+  const decideBox = night && data && realMembers.length > 1 && (() => {
+    const ids = new Set(data.ah_reactions.filter((r) => onDay(byId.get(r.event_id), day)).map((r) => r.event_id));
+    const splitCount = [...ids].filter((id) => { const rs = data.ah_reactions.filter((r) => r.event_id === id); return rs.some((r) => r.reaction === "skip") && rs.some((r) => r.reaction !== "skip"); }).length;
+    const others = realMembers.filter((m) => m.user_id !== userId).map((m) => m.display_name);
+    return <div className="decide-box"><p><b>{others.slice(0, 2).join(" and ")}{others.length > 2 ? ` and ${others.length - 2} more` : ""} {others.length === 1 ? "is" : "are"} in.</b> {splitCount ? `${splitCount} ${splitCount === 1 ? "pick" : "picks"} still split.` : "No split picks."}</p><button className="btn" onClick={() => { setTab("friends"); setFriendsView("decide"); }}>Decide</button></div>;
+  })();
+
+  const myDay = <section className="my-day" aria-label={dayLabel}>
+    <div className="md-head"><DrawnTitle day={day} /><p className="md-sub">{daySummary(day, stops)}</p>
+      <RouteSwitch choices={choices} kind={routeKind} onKind={(k) => { setKind(k); setFit((f) => f + 1); }} /></div>
+    {loading ? <p className="md-empty">Loading your group…</p>
+      : dayView === "ideas" ? <>
+        <ViewLinks view={dayView} onView={setDayView} ideas={ideasCount} />
+        {night && proposals.length > 0 && <RouteIdeas votes={data?.ah_idea_votes ?? []} proposals={proposals} members={people} events={byId} previewId={previewId} onPreview={(id) => { setPreviewId(id); setFit((f) => f + 1); }} onAdopt={adoptIdea} onSelect={pick} busy={busy} currentRoute={shared} />}
+        <RouteIdeas suggested proposals={daySuggested} members={SUGGESTER} events={byId} previewId={previewId} onPreview={(id) => { setPreviewId(id); setFit((f) => f + 1); }} onAdopt={async (id) => adoptSuggested(id)} onSelect={pick} busy={busy} currentRoute={stops} />
+        {SUGGESTED.some((p) => p.route[0]?.day !== day) && <p className="md-other-days">More suggested routes on {DAYS.filter((d) => d.id !== day && SUGGESTED.some((p) => p.route[0]?.day === d.id)).map((d) => <button key={d.id} className="link" onClick={() => pickDay(d.id)}>{d.name}</button>)}</p>}
+      </>
+      : !stops.length ? <div className="md-empty">
+        <p>Nothing on {routeKind === "personal" ? "your" : "this"} {dayName} yet. Tap <b>+</b> on anything in the programme, or start from a suggested route.</p>
+        <div className="two"><button className="btn" onClick={() => setTab("programme")}><Search size={16} />Find things</button><button className="btn alt" onClick={() => setDayView("ideas")}><Route size={16} />Suggested routes</button></div>
+        {routeKind === "personal" && shared.length > 0 && identity && <button className="link" onClick={() => run(personalRouteOps(identity.night_id, userId, night!.mine, identity.display_name + "’s route", shared, mine).ops, "Copied our route")}>Start with a copy of our group’s {dayName}</button>}
+        {!identity && <button className="link" onClick={() => setRecoverOpen(true)}>Already planning on another device? Get back in</button>}
       </div>
-    </header>
-    {nextState === "closed" && nextBanner && <NextBanner onOpen={() => setNextState("open")} onHide={() => setNextBanner(false)} />}
-    <nav className="mobile-nav" aria-label="Planner views">{([["Explore", Compass], ["Map", MapIcon], ["Our night", Route]] as const).map(([n, Icon]) => <button className={view === n ? "active" : ""} key={n} onClick={() => setView(n)}><Icon size={17} />{n}</button>)}</nav>
-    {error && <div className="error-banner" role="alert">{error}<button aria-label="Dismiss error" onClick={() => setError("")}><X size={16} /></button></div>}
-    <div className={"workspace mobile-" + view.replace(" ", "-").toLowerCase()}>
-      <section className={"explorer" + (ridesOpen ? " rides-open" : "")} aria-label="Explore programme">
-        {ridesOpen && gettingAround("in-explorer")}
-        <div className="explore-controls">
-          <div className="section-heading"><h2>Explore the night</h2><span className="count">{activities.length} activities</span></div>
-          <div className="category-tabs">{["Activities", "Museums", "Food & drink"].map((c) => <button key={c} className={category === c ? "active" : ""} onClick={() => { setCategory(c); setTag("All types"); }}>{c === "Food & drink" && <Utensils size={13} />} {c}</button>)}</div>
-          <label className="search"><Search size={17} /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search places, activities…" aria-label="Search places and activities" />{query && <button aria-label="Clear search" onClick={() => setQuery("")}><X size={15} /></button>}</label>
-          <div className="filter-row"><select value={tag} onChange={(e) => setTag(e.target.value)} aria-label="Activity type" disabled={category === "Museums"}><option>All types</option>{types.map((t) => <option key={t}>{t}</option>)}</select><button className={"suggested-filter " + (suggestedOnly ? "active" : "")} onClick={() => setSuggestedOnly(!suggestedOnly)}><Star size={14} />Picks</button><button className={"suggested-filter wheelchair-filter " + (wheelchair ? "active" : "")} aria-pressed={wheelchair} title="Venues the organiser lists as wheelchair accessible" onClick={() => setWheelchair(!wheelchair)}><Accessibility size={14} />Wheelchair</button></div>
-          {suggestedOnly && <select className="person-select" aria-label="Filter suggestions by person" value={personFilter} onChange={(e) => setPersonFilter(e.target.value)}><option value="all">Everyone’s picks</option>{people.map((m) => <option key={m.id} value={m.id}>{m.name}{m.fictional ? " · fictional" : ""}</option>)}</select>}
-          <div className="results-line"><span>{filtered.length} {category === "Museums" ? "museums" : "options"} to discover</span><span>⌖ Amsterdam</span></div>
-        </div>
-        <div className="event-list">
-          {filtered.length === 0 && <div className="empty"><Search size={26} /><h3>No matches yet</h3><p>Try another search or filter. Your next discovery is out there.</p><button onClick={() => { setQuery(""); setTag("All types"); setSuggestedOnly(false); setWheelchair(false); }}>Clear filters</button></div>}
-          {filtered.map((e) => {
-            const inMine = myRoute.some((s) => s.id === e.id), inOurs = route.some((s) => s.id === e.id), inCrew = crewStops.some((s) => s.id === e.id), food = e.tags.includes(FOOD);
-            return <article key={e.id} className={"event-card " + (inOurs || inMine || inCrew ? "on-route" : "")}>
-              <div className="card-topline"><span className={"type-label " + (food ? "food-label" : "")}>{e.id.startsWith("museum:") ? "MUSEUM" : food ? "FOOD & DRINK" : e.tags[0] || "DISCOVER"}</span><ReactionButtons value={myReaction(e.id)} onChange={(r) => react(e.id, r)} title={e.title} /></div>
-              <button className="card-title" onClick={() => pick(e)}>{e.title}<ArrowUpRight size={16} /></button>
-              {!e.id.startsWith("museum:") && <p className="venue"><MapPin size={13} />{e.venue}</p>}
-              <div className="card-bottom"><span><Clock size={13} />{e.time.replace(" - ", " – ")}{byMuseum.get(e.museumId || "")?.accessible && <Accessibility className="card-wheelchair" size={13} role="img" aria-label="Wheelchair accessible venue" />}</span><div className="add-buttons">
-                <button className={inMine ? "added" : "add-button"} disabled={inMine} onClick={() => { track("stop-add", { route: "personal" }); addPersonal(e.id); }} aria-label={"Add to my route: " + e.title}>{inMine ? <Check size={14} /> : <Plus size={14} />}My route</button>
-                <button className={inOurs ? "added" : "add-button"} disabled={inOurs} onClick={() => { track("stop-add", { route: "shared" }); addShared(e.id); }} aria-label={"Add to our route: " + e.title}>{inOurs ? <Check size={14} /> : <Plus size={14} />}Our route</button>
-                {crewRoute && <button className={inCrew ? "added" : "add-button"} disabled={inCrew} onClick={() => { track("stop-add", { route: "crew" }); addCrew(e.id); }} aria-label={`Add to ${myCrewName}’s route: ${e.title}`}>{inCrew ? <Check size={14} /> : <Plus size={14} />}Crew</button>}
-              </div></div>
-              {suggesters(e.id).length > 0 && <div className="suggested-by">{suggesters(e.id).map((s) => { const R = REACTIONS.find((x) => x.key === s.reaction)!; return <span key={s.member_id} title={(s.note || R.label)}><R.Icon size={10} />{nameOf(s.member_id)}</span>; })}</div>}
-            </article>;
-          })}
-        </div>
-        <footer className="data-note">Programme snapshot · 1 Nov 2026<br />Check the official listing for updates and availability.<br />Unofficial fan planner · not affiliated with Museumnacht Amsterdam / N8. · <button className="footer-link" onClick={() => { setHelpTab("data"); setHelpOpen(true); }}>Your data</button> · <a className="footer-link" href={CONTACT}>Contact the developer</a><br /><a className="footer-link maker" href={MAKER} target="_blank" rel="noopener">A project by Arian Shafa ↗</a></footer>
-      </section>
+      : <>
+        {dayView === "timeline" ? timeline : <DayStops stops={stops} run={run} canEdit={canEdit} onPick={pick} faces={faces} routeName={routeName} onReschedule={canEdit ? (next, label) => run(rescheduleOps(stops, next), label) : null} />}
+        <ViewLinks view={dayView} onView={setDayView} ideas={ideasCount} />
+        {decideBox}
+        <button className="btn big phone-only" onClick={() => setNowMode(true)}>Start my walk</button>
+        <DayActions day={day} go={go} onMaps={() => setGmapsOpen(true)} onPrint={() => { setPrintOpen(true); track("print"); }} hasStops={stops.length > 0} />
+        {lastChange && data && night && <p className="last-change">Last change: {describe(lastChange, data, night)}</p>}
+      </>}
+  </section>;
 
-      <section className="map-panel" aria-label="Amsterdam map">
-        <MapView transport={{ modes: shownModes, selected: ride, onSelect: (mode, stop) => setRide({ mode, stop }) }} visible={ridesOpen && hideVenues ? [] : proposal ? proposal.route.map((s) => byId.get(s.id)!).filter(Boolean) : asideMode === "personal" && myRoute.length ? myRoute.map((s) => byId.get(s.id)!).filter(Boolean) : filtered} lines={lines} onSelect={pick} focus={focus} fit={fit} me={loc.spot} locate={locateTick} />
-        <div className="map-caption"><span className="live-dot" />{previewStops ? "ROUTE PREVIEW" : proposal ? "ROUTE IDEA PREVIEW" : asideMode === "personal" && myRoute.length ? "MY PERSONAL ROUTE" : asideMode === "crews" && data?.ah_crews.length ? "CREW ROUTES" : "AMSTERDAM AT NIGHT"}</div>
-        {proposal && <div className="preview-banner"><span>{proposal.title}</span><button onClick={() => setPreviewId(null)} aria-label="Close route preview"><X size={15} /></button></div>}
-        <button className={"rides-button" + (ridesOpen ? " on" : "")} aria-pressed={ridesOpen} onClick={() => { setRidesOpen(!ridesOpen); setRide(null); }}><Bus size={16} />Getting around</button>
-        <button className={"locate-button" + (loc.status === "on" ? " on" : loc.status === "blocked" ? " blocked" : "")} aria-pressed={loc.status === "on"}
-          aria-label={loc.status === "on" ? "Centre the map on me" : "Show where I am"} title={loc.status === "on" ? "Centre on me" : "Show where I am"}
-          onClick={() => { setLocateTick((n) => n + 1); if (loc.status !== "on") { track("locate", { from: loc.status }); loc.toggle(); } }}>{loc.status === "blocked" ? <NavigationOff size={18} /> : <Navigation size={18} />}</button>
+  const nowCard = <NowCard stops={stops} index={walkAt} me={loc.spot} onHere={() => markWalk("done")} onSkip={() => markWalk("skipped")} onPick={pick} groupLine={groupLine}
+    onWholeDay={() => setNowMode(false)} onRestart={() => { const w = { done: [], skipped: [] }; setWalk(w); saveWalk(day, w); }} />;
+
+  const friends = friendsView === "decide" && data && night ? <section className="friends-decide">
+    <button className="link" onClick={() => setFriendsView("top")}>← Back to Friends</button>
+    <Decide data={data} night={night} userId={userId} proposals={proposals} onPick={pick} onReact={(id, r) => react(id, r)}
+      onDeadline={identity?.role === "organiser" ? (iso) => run([{ t: "update", table: "ah_nights", id: night.night!.id, patch: { vote_deadline: iso } }]) : null}
+      onVote={vote} onPreview={(p) => { setPreviewStops(p); if (p) setFit((f) => f + 1); }} onPropose={proposeMine}
+      onUseShared={canEditShared && night.shared ? (next) => { run(replaceRouteOps(night.shared!, shared, next), `Replaced our ${dayName} with the draft`); setKind("shared"); setTab("day"); } : null} />
+  </section> : <>
+    <FriendsTop data={data} night={night} userId={userId} day={day} onInvite={share} onPick={pick} onDecide={() => setFriendsView("decide")} inGroup={!!identity} onStart={() => setNameDialog(true)} />
+    {identity && data && night && <Crews data={data} night={night} userId={userId} canWrite={canEditShared} shared={shared} run={run} onPick={pick}
+      onChooseStops={() => { setKind("crew"); setTab("programme"); }} onPreview={(p) => { setPreviewStops(p); if (p) setFit((f) => f + 1); }} onPropose={proposeMine} routeView="list" toggle={null} />}
+    {identity && data && night && <section className="activity-panel"><h3>What changed</h3><ActivityFeed data={data} night={night} /></section>}
+  </>;
+
+  const tabLabel = (t: Tab) => t === "programme" ? "Programme" : t === "day" ? `My ${dayName}` : `Friends${realMembers.length > 1 ? " · " + realMembers.length : ""}`;
+  const here = status?.here ?? [];
+
+  function card() {
+    if (!selected) return null;
+    const n = stops.findIndex((s) => s.id === selected.id);
+    const also = [
+      ...(routeKind !== "personal" ? [{ label: "Mine", added: mine.some((s) => s.id === selected.id), onAdd: () => addPersonal(selected.id) }] : []),
+      ...(routeKind !== "shared" && identity && night?.shared && choices.some((c) => c.kind === "shared") ? [{ label: "Our group", added: shared.some((s) => s.id === selected.id), onAdd: () => addShared(selected.id) }] : []),
+      ...(routeKind !== "crew" && crewRoute ? [{ label: myCrewName ?? "Crew", added: crewStops.some((s) => s.id === selected.id), onAdd: () => addCrew(selected.id) }] : []),
+    ];
+    const friendsSaid = (data?.ah_reactions ?? []).filter((r) => r.event_id === selected.id && r.user_id !== userId && !night?.memberOf.get(r.user_id)?.fictional).map((r) => ({ name: nameOf(r.user_id) ?? "Someone", reaction: r.reaction, note: r.note }));
+    return <StopCard item={selected} day={day} at={at} me={loc.spot} stopNumber={n >= 0 ? n + 1 : null} routeLabel={dayLabel.replace(/^My /, "")} inRoute={n >= 0}
+      onAdd={() => addTo(selected.id)} also={also} reaction={myReaction(selected.id)} onReact={(r, nt) => react(selected.id, r, nt)} note={note} onNote={setNote}
+      friends={friendsSaid} onPick={pick} onClose={() => setSelected(null)} />;
+  }
+
+  return <main className={"app tab-" + tab + (nowMode && tab === "day" && stops.length ? " now-mode" : "") + " sheet-" + sheet}>
+    {/* ---------- header: one row plus the days on desktop; search, filters and ? on phones ---------- */}
+    <header className="top">
+      <div className="top-row">
+        <a href="./" className="brand" aria-label="ArtHop home">arthop</a>
+        <span className="brand-sub">Amsterdam Art Week<br />18–22 Nov</span>
+        <label className="search chip" data-tour="search"><Search size={17} /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search artists, galleries, shows" aria-label="Search artists, galleries and shows" />{query && <button aria-label="Clear search" onClick={() => setQuery("")}><X size={15} /></button>}</label>
+        <button className={"chip filters-button" + (filterCount ? " on" : "")} aria-expanded={filtersOpen} aria-label={"Filters" + (filterCount ? `, ${filterCount} on` : "")} onClick={() => setFiltersOpen(!filtersOpen)}><SlidersHorizontal size={17} /><span className="label">Filters{filterCount ? ` · ${filterCount}` : ""}</span>{filterCount > 0 && <i className="badge">{filterCount}</i>}</button>
+        <button className={"chip desk-only" + (openOnly ? " on" : "")} aria-pressed={openOnly} onClick={() => setOpenOnly(!openOnly)}>{openLabel}{openOnly && <Check size={15} />}</button>
+        <button className={"chip desk-only" + (stepFree ? " on" : "")} aria-pressed={stepFree} onClick={() => setStepFree(!stepFree)}><Accessibility size={16} />Step-free</button>
+        <span className="grow" />
+        {identity && <span className={"chip live-chip desk-only " + (status?.conn ?? "")} role="status"><i />{status?.conn === "offline" ? `Offline${status.pending ? ` · ${status.pending} to sync` : ""}` : status?.pending ? "Saving…" : `Live · ${Math.max(1, here.length)} here`}</span>}
+        {identity && <span className="faces desk-only" aria-label={realMembers.map((m) => m.display_name).join(", ")}>{realMembers.slice(0, 4).map((m) => <i key={m.id} title={m.display_name} style={{ background: m.color }}>{initials(m.display_name)}</i>)}</span>}
+        {invite && !identity && !loading && <button className="chip desk-only" onClick={() => setNameDialog(true)}>Join this group</button>}
+        <button className="chip on desk-only" onClick={share}>Invite</button>
+        <button className="chip help-button" aria-label="How ArtHop works" title="How ArtHop works (?)" onClick={() => { setHelpTab("what"); setHelpOpen(true); }}>?</button>
+        <button className="chip desk-only your-link" title="Your private link, no account" onClick={() => (identity ? setMenuOpen(true) : setRecoverOpen(true))}>Your link</button>
+      </div>
+      <DayBar day={day} onDay={pickDay} counts={night?.daysOf(routeRow?.id)} />
+      {filtersOpen && !isPhone() && <div className="filters-pop">{filterPanel}</div>}
+    </header>
+    {error && <div className="error-banner" role="alert">{error}<button aria-label="Dismiss" onClick={() => setError("")}><X size={16} /></button></div>}
+    {identity && !backedUp && <button className="spot-banner" onClick={() => setSpotOpen(true)}><span>Your plan lives only in this browser so far.</span><b>Keep it</b></button>}
+
+    {/* ---------- phone heading for My day, above its map ---------- */}
+    {tab === "day" && !(nowMode && stops.length) && <div className="phone-head"><div><DrawnTitle day={day} /><p className="md-sub">{daySummary(day, stops)}</p></div>
+      {stops.length > 0 && <button className="ph-print" aria-label={`Print or share my ${dayName}`} onClick={() => setPrintOpen(true)}><ArrowUpRight size={22} /></button>}</div>}
+
+    <div className="workspace">
+      <section className="map-panel" aria-label="Map of Amsterdam">
+        <MapView isOpen={isOpen} transport={{ modes: shownModes, selected: ride, onSelect: (mode, stop) => setRide({ mode, stop }) }} visible={visible} lines={lines} onSelect={pick} focus={focus} fit={fit} me={loc.spot} locate={locateTick} zoomBy={zoom.by} zoomTick={zoom.tick} />
+        {proposal && <div className="preview-banner"><span>Preview: {proposal.title}</span><button onClick={() => setPreviewId(null)} aria-label="Close preview"><X size={15} /></button></div>}
+        {previewStops && <div className="preview-banner"><span>Preview: suggested order</span><button onClick={() => setPreviewStops(null)} aria-label="Close preview"><X size={15} /></button></div>}
+        <button className={"map-btn rides-button" + (ridesOpen ? " on" : "")} aria-pressed={ridesOpen} aria-label="Getting around" onClick={() => { setRidesOpen(!ridesOpen); setRide(null); }} data-tour="rides"><Layers size={19} /><span>Getting around</span></button>
+        <div className="map-controls">
+          <button className="map-btn desk-only" aria-label="Zoom in" onClick={() => setZoom((z) => ({ by: 1, tick: z.tick + 1 }))}><Plus size={20} /></button>
+          <button className="map-btn desk-only" aria-label="Zoom out" onClick={() => setZoom((z) => ({ by: -1, tick: z.tick + 1 }))}><Minus size={20} /></button>
+          <button className={"map-btn locate-button" + (loc.status === "on" ? " on" : loc.status === "blocked" ? " blocked" : "")} aria-pressed={loc.status === "on"} aria-label={loc.status === "on" ? "Centre the map on me" : "Show where I am"}
+            onClick={() => { setLocateTick((n) => n + 1); if (loc.status !== "on") { track("locate", { from: loc.status }); loc.toggle(); } }}>{loc.status === "on" ? <LocateFixed size={20} /> : <Navigation size={18} />}</button>
+        </div>
+        {tab === "day" && stops.length > 0 && <button className="map-btn open-map phone-only" onClick={() => { setTab("programme"); setFit((f) => f + 1); }}>Open map</button>}
         {loc.status === "on" && <button className="locate-off" onClick={loc.toggle}>Hide my location</button>}
         {loc.status === "waiting" && <p className="locate-note" role="status">Finding you…</p>}
-        {loc.status === "blocked" && <p className="locate-note" role="alert"><b>Location is blocked for this site.</b> Turn it on in your browser’s site settings, then tap the arrow again. Everything else works without it.<button aria-label="Close" onClick={loc.dismiss}><X size={14} /></button></p>}
-        {loc.status === "unavailable" && <p className="locate-note" role="alert"><b>Can’t find your location right now.</b> Try again outside or with a better signal.<button aria-label="Close" onClick={loc.dismiss}><X size={14} /></button></p>}
+        {loc.status === "blocked" && <p className="locate-note" role="alert"><b>Location is blocked for this site.</b> Turn it on in your browser’s site settings, then tap the arrow again.<button aria-label="Close" onClick={loc.dismiss}><X size={14} /></button></p>}
+        {loc.status === "unavailable" && <p className="locate-note" role="alert"><b>Can’t find your location right now.</b> Try again outside.<button aria-label="Close" onClick={loc.dismiss}><X size={14} /></button></p>}
         {loc.status === "explain" && <div className="locate-explain" role="dialog" aria-label="Show where you are?">
           <b>Show where you are?</b>
-          <p>A blue dot shows you on the map, with walking times from where you stand. Your location stays on this phone: nobody in your group sees it, and MuseumHop doesn’t store it.</p>
-          <button className="primary" autoFocus onClick={loc.start}>Show my location</button>
+          <p>A blue dot shows you on the map, with walking times from where you stand. Your location stays on this phone: nobody in your group sees it, and ArtHop doesn’t store it.</p>
+          <button className="btn" autoFocus onClick={loc.start}>Show my location</button>
           <button className="text-button" onClick={loc.dismiss}>Not now</button>
         </div>}
-        {nextItem && !ride && loc.status === "on" && <div className="next-card">
-          <span className={"stop-number" + (mapRoute[nextIndex].maybe ? " maybe" : "")}>{nextIndex + 1}</span>
-          <button className="next-card-body" onClick={() => pick(nextItem)}><b>{nextItem.title}</b><small>{nextWalk ? (nextWalk.metres > 15000 ? "Far from you" : `${nextWalk.minutes} min walk from you`) : nextItem.venue}{mapRoute[nextIndex].arrival ? ` · arrive ${mapRoute[nextIndex].arrival}` : ""}</small></button>
-          {mapsNext(mapRoute[nextIndex]) && <a className="next-go" href={mapsNext(mapRoute[nextIndex])!} target="_blank" rel="noreferrer" onClick={() => track("google-maps", { kind: "next-card" })}>Go<ArrowUpRight size={14} /></a>}
-        </div>}
-        {ridesOpen && gettingAround("in-map")}
-        {ride && rideMode && <RideCard mode={rideMode} stop={ride.stop} onClose={() => setRide(null)} onAdd={addTo} onDetails={(id) => { const e = byId.get(id); if (e) pick(e); }}
-          added={(id) => (target === "personal" ? myRoute : target === "crew" ? crewStops : route).some((s) => s.id === id)}
-          addLabel={target === "personal" ? "My route" : target === "crew" ? "Crew" : "Route"} />}
-        <button className="fit-button" onClick={() => setFit(fit + 1)}><Compass size={16} />{proposal ? "Fit preview" : asideMode === "personal" ? "Fit my route" : route.length ? "Fit our route" : "Reset map"}</button>
-        <div className="map-legend"><span><i className="legend-museum" />Venue</span><span><i className="legend-food" />Food & drink</span><span><i className="legend-cluster" />Several venues</span>{asideMode === "crews" && !previewStops && data?.ah_crews.length ? data.ah_crews.map((c) => <span key={c.id}><i style={{ background: c.color }} />{c.name}</span>)
-          : <span><i className="legend-route" />{previewStops ? "Preview" : proposal ? "Route idea" : asideMode === "personal" ? "My route" : "Our route"}</span>}</div>
-        <div className="map-bottom-note">Bigger dots have more on · tap a ring to zoom in · coral numbers show stop order</div>
+        {ridesOpen && <GettingAround className="in-map" modes={MODES} layers={layers} hideVenues={hideVenues} onHideVenues={setHideVenues} onClose={() => { setRidesOpen(false); setRide(null); }}
+          onToggle={(id) => { setLayers((l) => { const n = new Set(l); if (n.has(id)) n.delete(id); else n.add(id); return n; }); if (ride?.mode === id) setRide(null); }} />}
+        {ride && rideMode && <RideCard mode={rideMode} stop={ride.stop} onClose={() => setRide(null)} />}
+        <div className="map-legend desk-only" data-tour="legend">
+          <b>Colour: what it is</b>
+          <div className="lg-grid">{GROUPS.map((g) => <span key={g.id}><i style={{ background: g.color }} />{g.label.split(" & ")[0]}</span>)}</div>
+          <p><b>Size:</b> how long you stay · <b>Grey:</b> closed {live ? "now" : `at ${clock(at)}`}</p>
+        </div>
+        <p className="map-credit">Map © Kadaster / PDOK</p>
+        {selected && !isPhone() && <div className="card-float">{card()}</div>}
       </section>
+      <div className="time-wrap"><TimeBar day={day} at={at} onAt={(n) => { setAt(n); setAtMoved(true); }} live={live} onLive={day === today ? () => { setAtMoved(false); setAt(startAt(day)); } : undefined} /></div>
 
-      <aside className="itinerary" aria-label="Shared itinerary">
-        <div className="night-header"><div className="eyebrow">BETTER TOGETHER</div><h2>Our night<span className="count">{route.length}</span></h2><p>A little planning. A lot of possibility.</p></div>
-        {identity && <nav className="itinerary-tabs" aria-label="Route choices">
-          <button className={asideMode === "route" ? "active" : ""} onClick={() => { setAsideMode("route"); setTarget("shared"); setPreviewId(null); }}>Our route</button>
-          <button className={asideMode === "personal" ? "active" : ""} onClick={() => { setAsideMode("personal"); setTarget("personal"); setPreviewId(null); }}>My route</button>
-          <button className={asideMode === "ideas" ? "active" : ""} onClick={() => setAsideMode("ideas")}>Ideas <span>{proposals.filter((p) => p.route.length).length}</span></button>
-          <button data-tour="suggested" className={asideMode === "suggested" ? "active" : ""} onClick={() => { setAsideMode("suggested"); setPreviewId(null); }}>Suggested <span>{SUGGESTED.length}</span></button>
-          <button className={asideMode === "decide" ? "active" : ""} onClick={() => setAsideMode("decide")}>Decide</button>
-          <button className={asideMode === "crews" ? "active" : ""} onClick={() => setAsideMode("crews")}>Crews</button>
-          <button className={asideMode === "activity" ? "active" : ""} onClick={() => setAsideMode("activity")}>Activity</button>
-        </nav>}
-        {!identity && !loading && <nav className="itinerary-tabs" aria-label="Route choices">
-          <button className={asideMode !== "suggested" ? "active" : ""} onClick={() => { setAsideMode("route"); setPreviewId(null); }}>{invite ? "Join" : "Start"}</button>
-          <button data-tour="suggested" className={asideMode === "suggested" ? "active" : ""} onClick={() => { setAsideMode("suggested"); setPreviewId(null); }}>Suggested routes <span>{SUGGESTED.length}</span></button>
-        </nav>}
-        {identity && !backedUp && <button className="spot-banner" onClick={() => setSpotOpen(true)}><KeyRound size={15} /><span>Only on this device so far</span><b>Fix this</b></button>}
-        {loading ? <div className="start-plan"><div className="illustration"><Moon size={38} /></div><h3>Loading your night…</h3></div>
-        : asideMode === "personal" && identity && routeView === "timeline" && myRoute.length ? <section className="personal-route"><h3>My route</h3>{viewToggle}
-            <Timeline stops={myRoute} title={night?.mine?.title || "My route"} onPick={pick} onPropose={proposeMine} onPreview={(p) => { setPreviewStops(p); if (p) setFit((f) => f + 1); }}
-              onReschedule={(next, label) => run(rescheduleOps(myRoute, next), label)} route={night?.mine} onOps={run} /></section>
-        : asideMode === "personal" && identity ? <PersonalRoute title={night?.mine?.title} name={identity.display_name} route={myRoute} events={byId} shared={route}
-            onRename={(t) => run(night!.mine ? [{ t: "update", table: "ah_routes", id: night!.mine.id, patch: { title: t } }] : personalRouteOps(identity.night_id, userId, undefined, t, []).ops)}
-            run={run} onPick={pick}
-            onCopyShared={() => run(personalRouteOps(identity.night_id, userId, night!.mine, identity.display_name + "’s route", route, myRoute).ops)}
-            onExplore={() => { setTarget("personal"); setView("Explore"); }}
-            onPreview={() => { setAsideMode("ideas"); setPreviewId(night!.mine?.id || null); setFit((f) => f + 1); setView("Map"); }} toggle={viewToggle} />
-        : asideMode === "ideas" && night ? <RouteIdeas votes={data?.ah_idea_votes ?? []} proposals={proposals} members={people} events={byId} previewId={previewId} onPreview={(id) => { setPreviewId(id); setFit((f) => f + 1); if (id) setView("Map"); }} onAdopt={adoptIdea} onSelect={pick} busy={busy} currentRoute={route} />
-        : asideMode === "suggested" ? <RouteIdeas suggested proposals={SUGGESTED} members={SUGGESTER} events={byId} previewId={previewId} onPreview={(id) => { setPreviewId(id); setFit((f) => f + 1); if (id) setView("Map"); }} onAdopt={async (id) => adoptSuggested(id)} onSelect={pick} busy={busy} currentRoute={identity ? route : []} />
-        : asideMode === "decide" && data && night ? <Decide data={data} night={night} userId={userId} proposals={proposals} onPick={pick} onReact={(id, r) => react(id, r)}
-            onDeadline={identity?.role === "organiser" ? (iso) => run([{ t: "update", table: "ah_nights", id: night.night!.id, patch: { vote_deadline: iso } }]) : null}
-            onVote={vote} onPreview={(p) => { setPreviewStops(p); if (p) setFit((f) => f + 1); }} onPropose={proposeMine}
-            onUseShared={canEditShared && night.shared ? (stops) => { run(replaceRouteOps(night.shared!, route, stops), "Replaced our route with the draft"); setAsideMode("route"); } : null} />
-        : asideMode === "crews" && data && night ? <Crews data={data} night={night} userId={userId} canWrite={canEditShared} shared={route} run={run} onPick={pick}
-            onChooseStops={() => { setTarget("crew"); setView("Explore"); }} onPreview={(p) => { setPreviewStops(p); if (p) setFit((f) => f + 1); }} onPropose={proposeMine} routeView={routeView} toggle={viewToggle} />
-        : asideMode === "activity" && data && night ? <section className="activity-panel"><div className="group-strip"><div><strong>What changed</strong><SyncPill status={status} /></div></div><ActivityFeed data={data} night={night} /></section>
-        : !identity ? <div className="start-plan"><div className="illustration"><Moon size={38} /><Sparkles size={20} /></div><h3>{invite ? "Your friends are planning a night." : "Good nights start with good company."}</h3><p>{invite ? "Add your name to join in." : "Create your group, then send the invite link to your friends."}</p>{!nameDialog && joinForm}<button className="text-button suggested-teaser" onClick={() => setAsideMode("suggested")}>Or start from one of {SUGGESTED.length} suggested routes<ChevronRight size={15} /></button><button className="text-button suggested-teaser" onClick={() => setRecoverOpen(true)}>Already in a night on another device? Get back in<ChevronRight size={15} /></button></div>
-        : <>
-          <div className="group-strip">
-            <div className="avatar-stack">{realMembers.slice(0, 5).map((m) => <span className="avatar" title={m.display_name} key={m.id} style={{ background: m.color, color: "#fff" }}>{initials(m.display_name)}</span>)}</div>
-            <div><strong>{realMembers.length || 1} {realMembers.length === 1 ? "night explorer" : "night explorers"}</strong><SyncPill status={status} /></div>
-            <button aria-label="Copy invite link" onClick={share}><Plus size={17} /></button>
-          </div>
-          <div className="route-content">{route.length === 0
-            ? <div className="empty-route"><Route size={30} /><h3>Where will the night take you?</h3><p>Tap <b>+ Our route</b> on any place or activity to add your first stop. React to activities so your friends see what you’d like.</p><button className="text-button" onClick={() => setView("Explore")}>Explore the programme<ChevronRight size={15} /></button></div>
-            : <>
-              <div className="route-summary"><span>{uniqueVenues} {uniqueVenues === 1 ? "venue" : "venues"} · {route.length} stops</span><button onClick={() => { setFit(fit + 1); setView("Map"); }}>Show on map<ArrowUpRight size={13} /></button></div>
-              {viewToggle}
-              {routeView === "timeline"
-                ? <Timeline stops={route} title="Our route" onPick={pick} onPropose={proposeMine} onPreview={(p) => { setPreviewStops(p); if (p) setFit((f) => f + 1); }}
-                    onReschedule={(next, label) => run(rescheduleOps(route, next), label)} route={night?.shared} onOps={canEditShared ? run : null} />
-                : <RouteList stops={route} onPick={pick} run={run} routeName="our route" />}
-              <div className="route-disclaimer">The dashed line connects stops in order; dotted grey lines lead to maybe stops. Drag a stop’s handle to reorder. Use directions for streets, crossings, and ferries. Travel and queue time are not included.</div>
-              {lastSharedChange && data && night && <p className="last-editor">Last change: {describe(lastSharedChange, data, night)}</p>}
-            </>}
-          </div>
-          <div className="group-suggestions"><h3><Star size={16} />From the group<span>{suggestions.length}</span></h3>
-            {!suggestions.length ? <p>Your friends’ suggestions will appear here.</p> : suggestions.map((s) => {
-              const e = byId.get(s.event_id);
-              if (!e) return null;
-              const who = night?.memberOf.get(s.member_id);
-              return <div className="group-suggestion" key={s.id}><span className="suggestion-person">{who?.display_name}{who?.fictional ? " (fictional)" : ""} · {s.reaction === "must" ? "must-see" : "up for it"}</span><button onClick={() => pick(e)}>{e.title}<ArrowUpRight size={13} /></button>{s.note && <p>{s.note}</p>}<button className="suggestion-add" disabled={route.some((r) => r.id === e.id)} onClick={() => addShared(e.id)}>{route.some((r) => r.id === e.id) ? "In our route" : "+ Add to route"}</button></div>;
-            })}
-          </div>
-        </>}
-        <div className="night-footer"><Moon size={14} /><span>One ticket. Your kind of night.</span><a className="contact-link" href={CONTACT}><Mail size={13} />Report a problem</a><a className="footer-link" href={MAKER} target="_blank" rel="noopener">A project by Arian Shafa ↗</a></div>
+      {/* ---------- the side panel (desktop) / the tab's content (phone) ---------- */}
+      <aside className="panel" aria-label="Programme and plan">
+        <nav className="panel-tabs" role="tablist" aria-label="Views">{(["programme", "day", "friends"] as Tab[]).map((t) => <button key={t} role="tab" aria-selected={tab === t} className={tab === t ? "on" : ""} onClick={() => { setTab(t); if (t === "friends") setFriendsView("top"); }} data-tour={"tab-" + t}>{tabLabel(t)}</button>)}</nav>
+        <button className="sheet-handle" aria-label={sheet === "full" ? "Show more map" : "Show more list"} onClick={() => setSheet(sheet === "peek" ? "half" : sheet === "half" ? "full" : "peek")}><span /></button>
+        <div className="panel-body">
+          {tab === "programme" ? programme : tab === "day" ? (nowMode && stops.length ? nowCard : myDay) : friends}
+        </div>
       </aside>
     </div>
+
+    {/* ---------- phone tab bar ---------- */}
+    <nav className="tabbar" aria-label="ArtHop">
+      <button className={tab === "programme" ? "on" : ""} aria-current={tab === "programme" ? "page" : undefined} onClick={() => setTab("programme")} data-tour="tab-programme-phone"><MapIcon size={24} />Discover</button>
+      <button className={tab === "day" ? "on" : ""} aria-current={tab === "day" ? "page" : undefined} onClick={() => setTab("day")} data-tour="tab-day-phone">{day === today ? <MapPin size={24} /> : <Route size={24} />}{day === today ? "Now" : `My ${dayName}`}</button>
+      <button className={tab === "friends" ? "on" : ""} aria-current={tab === "friends" ? "page" : undefined} onClick={() => { setTab("friends"); setFriendsView("top"); }} data-tour="tab-friends-phone"><Users size={24} />Friends{realMembers.length > 1 && <i className="badge">{realMembers.length}</i>}</button>
+    </nav>
+
     {(toast || undo) && <div className="toast" role="status"><Check size={17} /><span>{toast || undo!.text}</span>{!toast && undo && <button className="toast-undo" onClick={() => { sync!.apply(undo.ops); setUndo(null); }}><Undo2 size={14} />Undo</button>}</div>}
-    {selected && <div className="modal-backdrop" onClick={() => setSelected(null)}><section className="detail-modal" role="dialog" aria-modal="true" aria-label={selected.title} onClick={(e) => e.stopPropagation()}>
-      <button className="modal-close" autoFocus aria-label="Close details" onClick={() => setSelected(null)}><X size={21} /></button>
-      <div className="eyebrow">YOUR NEXT DISCOVERY</div><h2>{selected.title}</h2>
-      <div className="detail-tags">{selected.tags.map((t) => <span key={t}>{t}</span>)}</div>
-      <ActivityInfo item={selected} me={loc.spot} />
-      <p className="detail-help">Time ranges can cover several sessions. Check the official page for session times, reservations and availability.</p>
-      <div className="detail-actions">
-        <button className="primary" disabled={route.some((s) => s.id === selected.id)} onClick={() => addShared(selected.id)}>{route.some((s) => s.id === selected.id) ? <><Check size={16} />In our route</> : <><Plus size={16} />Add to our route</>}</button>
-        <button className="secondary" disabled={myRoute.some((s) => s.id === selected.id)} onClick={() => addPersonal(selected.id)}><Plus size={16} />My route</button>
-        {crewRoute && <button className="secondary" disabled={crewStops.some((s) => s.id === selected.id)} onClick={() => addCrew(selected.id)}><Plus size={16} />{myCrewName}</button>}
-      </div>
-      <ReactionButtons big value={myReaction(selected.id)} onChange={(r) => react(selected.id, r, note)} title={selected.title} />
-      <label className="note-label">Why you’d like to go <span>(optional)</span><textarea value={note} onChange={(e) => setNote(e.target.value)} maxLength={240} placeholder="This looks like our kind of thing…" /></label>
-      <button className="text-button" onClick={() => react(selected.id, myReaction(selected.id) ?? "up", note)}>Save my note{myReaction(selected.id) ? "" : " (as Up for it)"}<ArrowUpRight size={14} /></button>
-      {suggesters(selected.id).length > 0 && <div className="detail-suggestions">{suggesters(selected.id).map((s) => <p key={s.member_id}><b>{nameOf(s.member_id)}</b> · {REACTIONS.find((x) => x.key === s.reaction)!.label}{s.note ? ": " + s.note : ""}</p>)}</div>}
-      {selected.id.startsWith("museum:") && <div className="museum-activities"><h3>What’s on here</h3>{activities.filter((e) => e.museumId === selected.museumId).map((e) => <button key={e.id} onClick={() => pick(e)}><span>{e.title}<small>{e.time} · {e.tags.join(" · ")}</small></span><ChevronRight size={16} /></button>)}</div>}
-    </section></div>}
-    {nextState === "open" && <WhatsNext paused={helpOpen} onClose={() => setNextState("closed")} onYourData={() => { setHelpTab("data"); setHelpOpen(true); }} />}
-    <Onboarding hold={doorPending || recoverOpen || nameDialog || nextState === "open"} skipIntro={nextAtStart} inNight={!!identity} helpOpen={helpOpen} setHelpOpen={setHelpOpen} helpTab={helpTab} show={(p: Place) => {
-      setSelected(null); setPreviewId(null);
-      if (p.view) setView(p.view);
-      if (p.aside && (identity || p.aside === "route" || p.aside === "suggested")) setAsideMode(p.aside);
+    {selected && isPhone() && <div className="sheet-backdrop" onClick={() => setSelected(null)}><div className="card-sheet" onClick={(e) => e.stopPropagation()}>{card()}</div></div>}
+    {filtersOpen && isPhone() && <div className="sheet-backdrop" onClick={() => setFiltersOpen(false)}><div className="card-sheet" onClick={(e) => e.stopPropagation()}>{filterPanel}</div></div>}
+    {printOpen && <PrintDay day={day} stops={stops} title={dayLabel} onClose={() => setPrintOpen(false)} />}
+    <Onboarding hold={doorPending || recoverOpen || nameDialog} inNight={!!identity} helpOpen={helpOpen} setHelpOpen={setHelpOpen} helpTab={helpTab} show={(p: Place) => {
+      setSelected(null); setPreviewId(null); setFiltersOpen(false);
+      if (p.tab) setTab(p.tab);
+      if (p.dayView) { setDayView(p.dayView); setNowMode(false); }
+      if (p.sheet) setSheet(p.sheet);
     }} />
-    {spotOpen && identity && sync && <KeepSpot name={identity.display_name} nightName={night?.night?.name ?? "this night"} saved={sync.savedPersonalLink()}
+    {spotOpen && identity && sync && <KeepSpot name={identity.display_name} nightName="your Art Week group" saved={sync.savedPersonalLink()}
       onCreate={async () => { const link = await sync!.newPersonalLink(invite); setLinkMade((n) => n + 1); return link; }} onClose={() => setSpotOpen(false)}
       emailReady={emailReady} onEmail={emailLink} onSaved={() => sync!.markBackedUp()} />}
     {menuOpen && identity && <YourSpot name={identity.display_name} backedUp={backedUp} onClose={() => setMenuOpen(false)} onOtherDevice={() => { setMenuOpen(false); setDeviceOpen(true); }} onLink={() => { setMenuOpen(false); setSpotOpen(true); }}
@@ -507,18 +572,18 @@ export default function App() {
     {nudgeOpen && !menuOpen && !spotOpen && !deviceOpen && <BackupNudge onEmail={emailLink} onClose={() => setNudgeOpen(false)} />}
     {doors && <TwoDoors onNew={() => { setDoorChosen(true); setNameDialog(true); }} onBack={() => { setDoorChosen(true); setRecoverOpen(true); track("get-back-in"); }} onLook={() => setDoorChosen(true)} />}
     {recoverOpen && sync && <RecoverByEmail emailReady={emailReady} onSend={(address) => sync!.recoverByEmail(address)} onClose={() => setRecoverOpen(false)} />}
-    {gmapsOpen && <GoogleMapsSheet stops={gmaps.stops} title={gmaps.title} onClose={() => setGmapsOpen(false)} />}
+    {gmapsOpen && <GoogleMapsSheet stops={stops} title={dayLabel} onClose={() => setGmapsOpen(false)} />}
     {shareOpen && identity && invite && <ShareDialog invite={invite} nightId={identity.night_id} canPlan={identity.role !== "viewer"} onClose={() => setShareOpen(false)} />}
     {switchLink && sync?.pendingLink && <div className="modal-backdrop"><section className="name-modal" role="dialog" aria-modal="true" aria-label="Open this personal link?">
-      <KeyRound size={30} /><h2>Open this personal link?</h2>
-      <p>This browser is already someone in a night. The link switches it to the person the link belongs to, with their nights. This browser’s current spot stays safe only if that person has a personal link of their own.</p>
-      <button className="primary" onClick={async () => { try { await sync!.useLink(sync!.pendingLink!); location.reload(); } catch (e) { setSwitchLink(false); setError((e as Error).message); } }}>Switch to the link’s person<ArrowUpRight size={16} /></button>
+      <h2>Open this personal link?</h2>
+      <p>This browser is already someone in a group. The link switches it to the person the link belongs to, with their plans. This browser’s current spot stays safe only if that person has a personal link of their own.</p>
+      <button className="btn big" onClick={async () => { try { await sync!.useLink(sync!.pendingLink!); location.reload(); } catch (e) { setSwitchLink(false); setError((e as Error).message); } }}>Switch to the link’s person</button>
       <button className="text-button" onClick={() => { sync!.pendingLink = null; setSwitchLink(false); }}>Stay as I am</button>
     </section></div>}
-    {nameDialog && <div className="modal-backdrop" onClick={() => setNameDialog(false)}><section className="name-modal" role="dialog" aria-modal="true" aria-label={identity ? "Your name" : "Join the night"} onClick={(e) => e.stopPropagation()}>
-      <button className="modal-close" aria-label="Close" onClick={() => setNameDialog(false)}><X size={20} /></button><Moon size={32} />
-      <h2>{identity ? "Your name" : invite ? "Join your friends" : "Start your shared night"}</h2>
-      <p>{identity ? "This is how your name appears to the group." : "A name, an invite link, and a whole city to explore."}</p>
+    {nameDialog && <div className="modal-backdrop" onClick={() => setNameDialog(false)}><section className="name-modal" role="dialog" aria-modal="true" aria-label={identity ? "Your name" : "Save your Art Week"} onClick={(e) => e.stopPropagation()}>
+      <button className="sc-close" aria-label="Close" onClick={() => setNameDialog(false)}><X size={20} /></button>
+      <h2>{identity ? "Your name" : invite ? "Join your friends" : "Save your Art Week"}</h2>
+      <p>{identity ? "This is how your name appears to your group." : invite ? "Add your name to plan together." : "Add a name to keep your plan. You can invite friends to plan with you whenever you like."}</p>
       {error && <p className="dialog-error" role="alert">{error}</p>}{joinForm}
     </section></div>}
   </main>;

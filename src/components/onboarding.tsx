@@ -1,64 +1,57 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { track } from "../lib/track";
-import { ArrowLeft, ArrowRight, Compass, HelpCircle, Mail, Route, Sparkles, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Mail, X } from "lucide-react";
 
 /** Problems and ideas go straight to the developer. The address in the link never includes invite or personal links. */
-export const CONTACT = "mailto:arian.shafa.analytics@gmail.com?subject=" + encodeURIComponent("MuseumHop: a problem or an idea")
+export const CONTACT = "mailto:arian.shafa.analytics@gmail.com?subject=" + encodeURIComponent("ArtHop: a problem or an idea")
   + "&body=" + encodeURIComponent("What happened, or what would you like?\n\n\nPhone or computer, and which browser:\n");
 export const MAKER = "https://arian-shafa.xyz";
 
-/** Which part of the app a spotlight step needs on screen (phones show one part at a time). */
-export type Place = { view?: "Explore" | "Map" | "Our night"; aside?: "route" | "suggested" | "personal" | "ideas" | "decide" | "crews" | "activity" };
+/** Which part of the app a spotlight step needs on screen (phones show one tab at a time). */
+export type Place = { tab?: "programme" | "day" | "friends"; dayView?: "list" | "timeline" | "ideas"; sheet?: "peek" | "half" | "full" };
 type Spot = Place & { target: string; title: string; body: string };
 
 const SEEN = "ah:intro-seen";
 export const introSeen = () => { try { return !!localStorage.getItem(SEEN); } catch { return true; } };
 const markSeen = () => { try { localStorage.setItem(SEEN, "1"); } catch { /* private mode */ } };
 
-const SLIDES = [
-  { icon: Compass, eyebrow: "Welcome · 1 of 3", title: "One night, 310 things to do.", body: "MuseumHop is a planner for Museumnacht Amsterdam on Saturday 7 November, 19:00 to 02:00. Every activity, museum and food stop is on one list and one map." },
-  { icon: Route, eyebrow: "Welcome · 2 of 3", title: "Plan it together, live.", body: "Create a night and send the invite link. Friends react to what they like, everyone edits the same route at the same time, and it keeps working without signal." },
-  { icon: Sparkles, eyebrow: "Welcome · 3 of 3", title: "Or start from a suggested route.", body: "Four themed routes are ready to preview on the map. Use one as your group’s route, then make it yours." },
+/** What's new compared with MuseumHop, on the welcome card and in the help panel. */
+const NEW = [
+  { color: "#f5d90a", title: "Five days, five moods", body: "Pick a day. Each has its own theme and opening hours, from the first openings on Wednesday to Family Sunday." },
+  { color: "#2b3bff", title: "Your walk becomes a drawing", body: "Every stop adds a colour, sized by how long you stay. Print it or share it afterwards." },
+  { color: "#ff4fa3", title: "Open now, closed in grey", body: "Slide the time along the bottom of the map, so you never walk to a locked door." },
 ];
 
-/** The 30-second tour: only what adds the most and is easy to miss. Everything else is in "What can I do?". A target can
- *  list several selectors; the first one on screen wins (so a step works before and after joining a night). */
+/** The optional tour: four steps, each pointing at the real screen (board 64). A target can list several selectors; the
+ *  first one on screen wins, so a step works on phones and on computers. */
 const TOUR: Spot[] = [
-  { view: "Explore", target: ".event-card .reaction-buttons", title: "React to what you like", body: "Must, Up for it or Skip. Your friends see your picks, and the Decide tab adds everyone’s up." },
-  { view: "Explore", target: ".event-card .add-buttons", title: "My route or Our route", body: "“My route” is your own plan. “Our route” is the group’s. Nothing lands in the group’s route until you add it there." },
-  { view: "Map", target: ".rides-button", title: "The map, and getting around", body: "Every dot is a venue; bigger dots have more on. Getting around adds the free buses, boats and ferries. The arrow below it shows where you are, as a blue dot." },
-  { view: "Our night", aside: "suggested", target: "[data-tour=suggested]", title: "Not sure where to start?", body: "Four ready-made routes with a reason for every stop. Preview one on the map, then use it as your group’s route." },
-  { target: ".share-button", title: "Invite friends, or just show them", body: "The invite link lets friends plan with you, no account needed. Once your night exists, the same button gives a view-only link too: routes and times, no names, no editing." },
-  { view: "Our night", aside: "route", target: ".route-list, .route-content, .itinerary", title: "Shape the route", body: "Drag a stop by its handle to move it. Tap its time to mark it Maybe: it stays in, greyed out. Timeline shows the walks and clashes (or bike or car), and Google Maps takes you there." },
-  { view: "Explore", target: ".spot-banner, .profile, .data-note .footer-link", title: "Your night, on any device", body: "Only the people in your night can see it. Once you’re in one, tap your name, then “Open on another device” to scan a code or email yourself a link. Keep that link to yourself." },
-  { target: ".help-button", title: "Everything else is in here", body: "Crews and meet-ups, voting, calendar export and more: tap ? and open “What can I do?”. You can replay this tour from there." },
+  { tab: "programme", target: "[data-tour=search]", title: "Search and filter", body: "Look for an artist, a gallery or a street. Filters narrow it to painting, photography, tours, free entry and more." },
+  { tab: "programme", target: "[data-tour=days]", title: "Pick a day", body: "Each day of Art Week has its own theme and opening hours. Thursday is Gallery Night, 17:00–21:00." },
+  { tab: "programme", sheet: "half", target: ".pg-add, .pg-rows, .map-panel", title: "Tap + to add it to your day", body: "Your walk draws itself on the map: a colour for what it is, a size for how long you stay, a bold line for the walk. Grey dots are closed at the time shown." },
+  { target: "[data-tour=tab-friends], [data-tour=tab-friends-phone]", title: "Bring your friends", body: "Invite friends with one link, no account. See their picks, decide together, split into crews and meet up." },
 ];
 
 type Feature = Spot & { needsNight?: boolean; group: string };
-/** Everything MuseumHop can do, for the "What can I do?" tab, in groups. `needsNight` ones only exist once you're in a night. */
+/** Everything ArtHop does: all of MuseumHop's functions, plus Art Week's own. `needsNight` ones need a saved plan. */
 const FEATURES: Feature[] = [
-  { group: "Find things", view: "Explore", target: ".explore-controls", title: "Search and filter", body: "Search by activity, venue or street. Filter by type (music, talks, workshops…) or wheelchair-accessible venues, or switch to museums or food & drink." },
-  { group: "Find things", view: "Map", target: ".map-panel", title: "Tap a venue on the map", body: "Opens the venue with everything on there tonight. Tap a ring to zoom into venues close together." },
-  { group: "Find things", view: "Map", target: ".rides-button", title: "See buses, boats and ferries", body: "Getting around shows the free Museumnacht buses, the uitvaartbus, the Lampedusa boat, ferries, the museum tram and bike parking. Tap a ride to add it to your route." },
-  { group: "Find things", view: "Explore", target: ".event-card", title: "Open an activity", body: "Tap a title for when and where, whether it’s on right now (on the night), wheelchair access and bar, the official page, and a note on why you’d like to go." },
-  { group: "Find things", view: "Map", target: ".locate-button", title: "Show where you are", body: "The arrow on the map shows you as a blue dot, and the next stop of your route with the walking time from you. Your location stays on your phone." },
-  { group: "Find things", view: "Our night", aside: "suggested", target: "[data-tour=suggested]", title: "Start from a suggested route", body: "Four themed routes. Previewing never changes anyone’s plan." },
-  { group: "Plan your route", view: "Explore", target: ".event-card .add-buttons", title: "Build your own route first", body: "Every activity has “My route” and “Our route” buttons. Plan your own night, then add the stops you like to the group’s route, or share your whole route under Ideas. In a crew, a Crew button appears too." },
-  { group: "Plan your route", view: "Our night", aside: "route", target: ".route-list .drag-handle", needsNight: true, title: "Drag stops into order", body: "Hold the handle next to a stop and drag it up or down; the list scrolls along. With a keyboard: focus the handle and use the arrow keys." },
-  { group: "Plan your route", view: "Our night", aside: "route", target: ".route-list .stop-summary", needsNight: true, title: "Mark a stop as maybe", body: "Tap a stop’s time, then Maybe. Maybe stops stay in the route but show greyed, with a dotted detour on the map, so everyone sees what’s optional." },
-  { group: "Plan your route", view: "Our night", aside: "route", target: ".view-toggle", needsNight: true, title: "See the night as a timeline", body: "Walking times between stops, clashes with opening hours, “push later stops to fit”, a suggested order, and calendar export." },
-  { group: "Plan your route", view: "Our night", aside: "route", target: ".gmaps-button", needsNight: true, title: "Walk it with Google Maps", body: "The Google Maps button next to List and Timeline opens directions to your next stop, or the whole route in parts." },
-  { group: "Plan your route", view: "Our night", aside: "route", target: ".view-toggle", needsNight: true, title: "Walk, bike or drive", body: "In Timeline, pick Walk, Bike or Car and set the time per stop (say 30 min instead of 45). Tap a leg between two stops to go another way for just that one." },
-  { group: "Plan your route", view: "Our night", aside: "personal", target: ".itinerary-tabs", needsNight: true, title: "Make your own route", body: "Under My route. It shows up for your friends under Ideas, where they can vote on it." },
-  { group: "With your group", view: "Explore", target: ".event-card .reaction-buttons", title: "React instead of just starring", body: "Must, Up for it or Skip, with an optional note in the activity details." },
-  { group: "With your group", view: "Explore", target: ".suggested-filter", title: "Filter by your friends’ picks", body: "Picks shows only what someone reacted to; choose a person to see just theirs." },
-  { group: "With your group", target: ".share-button", title: "Invite friends", body: "One link; everyone who opens it can join and edit." },
-  { group: "With your group", target: ".share-button", needsNight: true, title: "Share a view-only link", body: "Under Invite friends. People with it see your routes, times and places, but no names or votes, and can’t change anything. Handy for parents or friends who join later." },
-  { group: "With your group", view: "Our night", aside: "decide", target: ".itinerary-tabs", needsNight: true, title: "Decide together", body: "Everyone’s reactions in one table, a vote on route ideas, and a draft route from the top picks." },
-  { group: "With your group", view: "Our night", aside: "crews", target: ".itinerary-tabs", needsNight: true, title: "Split into crews", body: "Small groups with their own routes and meet-up points, all on one map." },
-  { group: "With your group", view: "Our night", aside: "activity", target: ".itinerary-tabs", needsNight: true, title: "See who changed what", body: "The Activity tab lists every change. Your own changes can be undone from the message that appears." },
-  { group: "Your spot and your data", target: ".device-button, .profile", needsNight: true, title: "Open your night on any device", body: "Tap your name, then “Open on another device”: scan the code, or email yourself a link. It opens the night as you, with your reactions and routes. Already on a new device? Open the invite link and choose “I’m already in this night”. Don’t join again: that adds a second you. Keep your link private." },
-  { group: "Your spot and your data", view: "Explore", target: ".data-note .footer-link", title: "See what’s stored about you", body: "Your data explains who can see your night, what MuseumHop keeps (no ads or tracking cookies; only cookie-free usage counts), and that everything is deleted 30 days after the night." },
+  { group: "Find things", tab: "programme", target: "[data-tour=search]", title: "Search and filters", body: "Search artists, galleries, shows or streets. Filter by what it is, kind of entry (exhibition, opening, tour, talk), kind of place, free entry, open now or your friends’ picks." },
+  { group: "Find things", tab: "programme", target: ".map-panel", title: "Every venue on the map", body: "Coloured by what’s on there; grey while closed at the time shown. Tap a dot to open it, or a ring to zoom into venues close together." },
+  { group: "Find things", tab: "programme", target: ".pg-main, .pg-rows", title: "Details and the official page", body: "Tap anything for its hours that day, admission, address, how far it is from you, and a link to its page on amsterdamart.com." },
+  { group: "Find things", tab: "programme", target: ".locate-button", title: "Show my location", body: "A blue dot, with walking times from where you stand. Your location stays on your phone." },
+  { group: "Find things", tab: "programme", target: "[data-tour=rides]", title: "Getting around", body: "The free ferries to Noord on the map, plus tips for trams, metro and bikes." },
+  { group: "Plan your day", tab: "day", target: ".my-day, .phone-head", title: "My day, with walking minutes", body: "Your plan for the day as a list, with the walk between stops. Drag a stop by its handle to move it; tap its time to change it or mark it maybe." },
+  { group: "Plan your day", tab: "day", dayView: "timeline", target: ".timeline, .my-day", needsNight: true, title: "Timeline, clashes and a suggested order", body: "See the day on a timeline. Clashes show in red with “Push later stops”; a suggested order walks less and keeps to opening hours. Walk, bike or car; export to your calendar." },
+  { group: "Plan your day", tab: "day", dayView: "ideas", target: "[data-tour=ideas], .route-ideas", title: "Route ideas", body: "Suggested routes for each day, and the routes your friends made. Preview one on the map, then use it." },
+  { group: "Plan your day", tab: "day", target: ".day-actions, .my-day", needsNight: true, title: "Go, Google Maps, and Now", body: "Go opens walking directions to your next stop. On the day itself, My day turns into Now: one stop, how far, one big button." },
+  { group: "Plan your day", tab: "day", target: "[data-wn=print], .ph-print", needsNight: true, title: "Print my day (new)", body: "Your day as a drawing with the stops listed underneath. Print it or save it as a PDF." },
+  { group: "With your group", target: "[data-tour=tab-friends], [data-tour=tab-friends-phone]", title: "Plan with friends", body: "One invite link, everyone gets a colour. No accounts." },
+  { group: "With your group", tab: "programme", target: ".pg-main, .pg-rows", title: "Must-see, Up for it, Skip", body: "React to anything from its card, with an optional note. Your group sees it." },
+  { group: "With your group", tab: "friends", target: ".friends-top", title: "Friends’ picks and Decide", body: "Your picks together, who’s in and what’s split, and Decide for a vote and a draft plan from the favourites." },
+  { group: "With your group", tab: "friends", target: ".crews, .friends-top", needsNight: true, title: "Crews and meet-up points", body: "Split into small groups with their own plans and meet up along the way, with a “We’re here” button." },
+  { group: "With your group", tab: "friends", target: ".activity-panel, .friends-top", needsNight: true, title: "Live changes, activity and undo", body: "Changes show for everyone at once, What changed lists them, and your own can be undone from the message that appears." },
+  { group: "With your group", tab: "friends", target: "[data-tour=invite], .friends-top", needsNight: true, title: "View-only link", body: "Under Invite: people with it see your plans, times and places, but no names or votes, and can’t change anything." },
+  { group: "Your spot and your data", target: ".your-link, .spot-banner, .help-button", needsNight: true, title: "Keep your spot: a personal link", body: "A private link that opens your plan as you on any device, no account. Keep it to yourself." },
+  { group: "Your spot and your data", tab: "programme", target: ".data-note", title: "See what’s stored about you", body: "Your data explains who sees your plan, what ArtHop keeps and that it’s all deleted 30 days after Art Week." },
 ];
 const GROUPS = Array.from(new Set(FEATURES.map((f) => f.group)));
 
@@ -109,7 +102,7 @@ function Spotlight({ spot, step, steps, onBack, onNext, onJump, onClose }: { spo
     measure();
     const timer = setInterval(measure, 50);
     return () => clearInterval(timer);
-  }, [spot.target, spot.view, spot.aside]);
+  }, [spot.target, spot.tab, spot.dayView]);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); if (e.key === "ArrowRight") onNext?.(); if (e.key === "ArrowLeft") onBack?.(); };
     window.addEventListener("keydown", onKey);
@@ -139,98 +132,82 @@ function Spotlight({ spot, step, steps, onBack, onNext, onJump, onClose }: { spo
   </div>;
 }
 
-/** First-visit intro, the spotlight tour and the help drawer. `show` moves the app to the place a step needs. */
+/** First-visit welcome card (board 62), the optional tour and the ? help panel. `show` moves the app to a step's place. */
 export type HelpTab = "what" | "do" | "data";
 
-export function Onboarding({ hold, skipIntro, show, inNight, helpOpen, setHelpOpen, helpTab }: { hold?: boolean; skipIntro?: boolean; show: (p: Place) => void; inNight: boolean; helpOpen: boolean; setHelpOpen: (v: boolean) => void; helpTab?: HelpTab }) {
-  // skipIntro: the "what's next" pop-up greets first-time visitors instead (Museumnacht is over); the intro stays under ?.
-  const [slide, setSlide] = useState<number | null>(introSeen() || skipIntro ? null : 0);
-  useEffect(() => { if (skipIntro) markSeen(); }, []);
+export function Onboarding({ hold, show, inNight, helpOpen, setHelpOpen, helpTab }: { hold?: boolean; show: (p: Place) => void; inNight: boolean; helpOpen: boolean; setHelpOpen: (v: boolean) => void; helpTab?: HelpTab }) {
+  const [welcome, setWelcome] = useState(!introSeen());
   const [hint, setHint] = useState(false), [tour, setTour] = useState<number | null>(null), [single, setSingle] = useState<Spot | null>(null);
   const [tab, setTab] = useState<HelpTab>("what");
   useEffect(() => { if (helpOpen && helpTab) setTab(helpTab); }, [helpOpen, helpTab]);
-
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const typing = (e.target as HTMLElement)?.closest("input,textarea,select,[contenteditable]");
       if (e.key === "?" && !typing) { e.preventDefault(); setHelpOpen(true); }
       if (e.key === "Escape" && helpOpen) setHelpOpen(false);
+      if (e.key === "Escape" && welcome) closeWelcome();
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [helpOpen, setHelpOpen]);
-
-  const introNext = slide !== null && slide < SLIDES.length - 1 ? () => setSlide(slide + 1) : undefined;
-  const introBack = slide ? () => setSlide(slide - 1) : undefined;
-  const introFlip = useFlip(introNext, introBack);
-  useEffect(() => {
-    if (slide === null) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "ArrowRight") introNext?.(); if (e.key === "ArrowLeft") introBack?.(); };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   });
 
-  function closeIntro(thenTour = false) { track("intro-close", { slide: (slide ?? 0) + 1, then: thenTour ? "tour" : "explore" }); markSeen(); setSlide(null); if (thenTour) startTour(); else setHint(true); }
+  function closeWelcome(thenTour = false) { track("intro-close", { then: thenTour ? "tour" : "explore" }); markSeen(); setWelcome(false); if (thenTour) startTour(); else setHint(true); }
   function go(i: number) { show(TOUR[i]); setTour(i); }
   function startTour() { track("tour-start"); setHelpOpen(false); setHint(false); markSeen(); go(0); }
   function showMe(f: Spot) { track("show-me", { feature: f.title }); setHelpOpen(false); show(f); setSingle(f); }
 
   return <>
-    {slide !== null && !hold && <div className="intro-overlay" role="dialog" aria-modal="true" aria-label="Welcome to MuseumHop" onWheel={introFlip.onWheel} onTouchStart={introFlip.onTouchStart} onTouchEnd={introFlip.onTouchEnd}>
-      <div className="intro-slide" key={slide}>
-        {(() => { const S = SLIDES[slide], Icon = S.icon; return <>
-          <span className="intro-icon"><Icon size={26} /></span>
-          <span className="eyebrow">{S.eyebrow}</span><h2>{S.title}</h2><p>{S.body}</p></>; })()}
-        <nav className="intro-dots" aria-label="Intro slides">{SLIDES.map((S, i) => <button key={i} aria-label={`Slide ${i + 1}: ${S.title}`} aria-current={i === slide ? "step" : undefined} className={i === slide ? "on" : ""} onClick={() => setSlide(i)} />)}</nav>
-        <div className="intro-actions">
-          {slide < SLIDES.length - 1
-            ? <><button className="text-button" onClick={() => closeIntro()}>Skip intro</button><span className="intro-steps">{introBack && <button className="secondary" aria-label="Previous slide" onClick={introBack}><ArrowLeft size={16} /></button>}<button className="primary" autoFocus onClick={introNext}>Next<ArrowRight size={16} /></button></span></>
-            : <><span className="intro-steps"><button className="secondary" aria-label="Previous slide" onClick={introBack}><ArrowLeft size={16} /></button><button className="secondary" onClick={() => closeIntro()}>Start exploring</button></span><button className="primary" autoFocus onClick={() => closeIntro(true)}>Take the 30-second tour<ArrowRight size={16} /></button></>}
-        </div>
+    {welcome && !hold && <div className="modal-backdrop welcome-backdrop"><section className="welcome" role="dialog" aria-modal="true" aria-label="Welcome to ArtHop">
+      <h1>Welcome to <span>ArtHop</span></h1>
+      <p className="welcome-lead"><b>Coming from MuseumHop?</b> Everything works the same: the map, your route, planning with friends and your private link. No account needed.</p>
+      <h2 className="eyebrow">New for Art Week</h2>
+      <ul className="welcome-new">{NEW.map((n) => <li key={n.title}><i style={{ background: n.color }} /><div><b>{n.title}</b><span>{n.body}</span></div></li>)}</ul>
+      <div className="two">
+        <button className="btn big" autoFocus onClick={() => closeWelcome()}>Start exploring</button>
+        <button className="btn alt big" onClick={() => closeWelcome(true)}>Show me around · 4 steps</button>
       </div>
-    </div>}
+      <p className="welcome-foot">Open this again any time with the <b>?</b> button at the top. Unofficial fan planner, not affiliated with Amsterdam Art Week.</p>
+    </section></div>}
 
-    {hint && <Spotlight spot={{ target: ".help-button", title: "The intro lives here now", body: "Open it any time from the ? button, along with everything MuseumHop can do." }} onNext={() => setHint(false)} onClose={() => setHint(false)} />}
+    {hint && <Spotlight spot={{ target: ".help-button", title: "Help lives here", body: "The ? button lists everything ArtHop can do, with a “Show me” for each, and replays the tour." }} onNext={() => setHint(false)} onClose={() => setHint(false)} />}
     {tour !== null && <Spotlight spot={TOUR[tour]} step={tour} steps={TOUR.map((t) => t.title)} onJump={go} onClose={() => { track("tour-end", { step: tour + 1, finished: false }); setTour(null); }}
       onBack={tour > 0 ? () => go(tour - 1) : undefined} onNext={() => (tour + 1 < TOUR.length ? go(tour + 1) : (track("tour-end", { step: tour + 1, finished: true }), setTour(null)))} />}
     {single && <Spotlight spot={single} onClose={() => setSingle(null)} />}
 
     {helpOpen && <div className="modal-backdrop help-backdrop" onClick={() => setHelpOpen(false)}>
-      <aside className="help-drawer" role="dialog" aria-modal="true" aria-label="Help" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" aria-label="Close help" onClick={() => setHelpOpen(false)}><X size={20} /></button>
+      <aside className="help-drawer" role="dialog" aria-modal="true" aria-label="How ArtHop works" onClick={(e) => e.stopPropagation()}>
+        <button className="sc-close" aria-label="Close help" onClick={() => setHelpOpen(false)}><X size={20} /></button>
         <div className="help-tabs" role="tablist">
-          <button role="tab" aria-selected={tab === "what"} className={tab === "what" ? "on" : ""} onClick={() => setTab("what")}>What is this?</button>
-          <button role="tab" aria-selected={tab === "do"} className={tab === "do" ? "on" : ""} onClick={() => setTab("do")}>What can I do?</button>
+          <button role="tab" aria-selected={tab === "what"} className={tab === "what" ? "on" : ""} onClick={() => setTab("what")}>How it works</button>
+          <button role="tab" aria-selected={tab === "do"} className={tab === "do" ? "on" : ""} onClick={() => setTab("do")}>Everything it does</button>
           <button role="tab" aria-selected={tab === "data"} className={tab === "data" ? "on" : ""} onClick={() => setTab("data")}>Your data</button>
         </div>
         {tab === "data" ? <YourData /> : tab === "what" ? <div role="tabpanel" className="help-panel">
-          <span className="eyebrow">Start here</span>
-          <h2>Plan Museumnacht with your friends, on one shared map.</h2>
-          <p>MuseumHop lists all 310 activities of Museumnacht Amsterdam 2026 (Saturday 7 November, 19:00–02:00). Pick what you like, build a route together, and see how long the walks between stops take.</p>
+          <h2>How ArtHop works</h2>
+          <p>ArtHop puts the whole Amsterdam Art Week programme (Wednesday 18 to Sunday 22 November 2026) on one map, day by day. Pick a day, add what you like, and your walk draws itself. Plan alone or with friends; no account needed.</p>
+          <h3 className="eyebrow">Everything from MuseumHop is here, plus</h3>
+          <ul className="welcome-new">{NEW.map((n) => <li key={n.title}><i style={{ background: n.color }} /><div><b>{n.title}</b><span>{n.body}</span></div></li>)}
+            <li><i style={{ background: "#00b67a" }} /><div><b>Print my day</b><span>Your day as a drawing, to print or save as a PDF.</span></div></li></ul>
           <div className="help-legend">
             <h3>Reading the map</h3>
-            <p><i className="venue-dot" style={{ width: 16, height: 16 }} />A venue. Bigger dots have more on.</p>
-            <p><i className="venue-dot food" style={{ width: 16, height: 16 }} />Food & drink only.</p>
-            <p><i className="venue-cluster" style={{ width: 26, height: 26 }}>3</i>Three venues close together. Tap to zoom in.</p>
-            <p><i className="venue-pin chosen" style={{ width: 26, height: 26 }}><span>2</span></i>Stop 2 of the route you’re looking at.</p>
+            <p><i className="lg-dot" style={{ background: "#2b3bff" }} />A colour for what’s on: painting, photography, sculpture, video, mixed.</p>
+            <p><i className="lg-dot" style={{ background: "#c2c1ba" }} />Grey: closed at the time on the slider.</p>
+            <p><i className="lg-dot big" style={{ background: "#00b67a" }} />A stop on your day. Bigger means a longer stay; the black line is your walk.</p>
           </div>
-          <p className="help-note">MuseumHop is an unofficial fan planner, not affiliated with Museumnacht Amsterdam / N8. Always check the official listing for times and tickets.</p>
-          <p className="help-contact"><Mail size={15} /><span>Found a bug, or missing something? <a href={CONTACT}>Email the developer</a>; problems get fixed faster that way.<br /><a href={MAKER} target="_blank" rel="noopener">A project by Arian Shafa ↗</a></span></p>
-          <button className="secondary" onClick={() => { setHelpOpen(false); setSlide(0); }}>Replay the intro</button>
-          <button className="primary" onClick={startTour}>Take the 30-second tour<ArrowRight size={16} /></button>
+          <p className="help-note">ArtHop is an unofficial fan planner, not affiliated with Amsterdam Art Week. Titles, times and places come from amsterdamart.com; always check there for changes and tickets.</p>
+          <p className="help-contact"><Mail size={15} /><span>Found a bug, or missing something? <a href={CONTACT}>Email the developer</a>.<br /><a href={MAKER} target="_blank" rel="noopener">A project by Arian Shafa ↗</a></span></p>
+          <div className="two"><button className="btn alt" onClick={() => { setHelpOpen(false); setWelcome(true); }}>Show the welcome again</button><button className="btn" onClick={startTour}>Take the 4-step tour<ArrowRight size={16} /></button></div>
         </div> : <div role="tabpanel" className="help-panel">
-          <span className="eyebrow">Help</span>
-          <h2>What can I do here?</h2>
-          <p>Everything MuseumHop can do, including the parts that are easy to miss.</p>
-          <button className="secondary" onClick={startTour}>Take the 30-second tour instead<ArrowRight size={15} /></button>
+          <h2>Everything ArtHop does</h2>
+          <p>Every MuseumHop function, plus Art Week’s own. Tap Show me to see where it is.</p>
           {GROUPS.map((g) => <section key={g} className="help-group"><h3>{g}</h3><ul className="help-features">{FEATURES.filter((f) => f.group === g).map((f) => <li key={f.title}>
-            <div><b>{f.title}</b><span>{f.body}</span>{f.needsNight && !inNight && <small>Available once you’ve created or joined a night.</small>}</div>
-            <button className="secondary" disabled={f.needsNight && !inNight} onClick={() => showMe(f)}>Show me</button>
+            <div><b>{f.title}</b><span>{f.body}</span>{f.needsNight && !inNight && <small>Available once you’ve saved a plan.</small>}</div>
+            <button className="link show-me" disabled={f.needsNight && !inNight} onClick={() => showMe(f)}>Show me</button>
           </li>)}
-            {g === "With your group" && <li><div><b>Works without signal</b><span>Changes made offline wait on your phone and sync as soon as you’re back online.</span></div></li>}
-            {g === "Your spot and your data" && <li><div><b>Report a problem</b><span>Something broken or missing? <a href={CONTACT}>Email the developer</a>.</span></div></li>}
+            {g === "With your group" && <li><div><b>Works without signal</b><span>Changes made offline wait on your phone and sync when you’re back online.</span></div></li>}
           </ul></section>)}
-          <div className="help-keys"><span className="eyebrow">Keyboard</span><p><kbd>?</kbd>This help</p><p><kbd>Esc</kbd>Close any panel</p><p><kbd>←</kbd><kbd>→</kbd>Tour steps (or swipe / scroll)</p></div>
+          <button className="btn big" onClick={startTour}>Take the 4-step tour</button>
+          <div className="help-keys"><span className="eyebrow">Keyboard</span><p><kbd>?</kbd>This help</p><p><kbd>Esc</kbd>Close any panel</p><p><kbd>←</kbd><kbd>→</kbd>Tour steps</p></div>
         </div>}
       </aside>
     </div>}
@@ -240,52 +217,45 @@ export function Onboarding({ hold, skipIntro, show, inNight, helpOpen, setHelpOp
 /** Plain-language privacy page. Every line here must stay true: change it when the app's data handling changes. */
 function YourData() {
   return <div role="tabpanel" className="help-panel your-data">
-    <span className="eyebrow">Your data</span>
-    <h2>Your night is only visible to the people in it.</h2>
+    <h2>Your plan is only visible to the people in your group.</h2>
     <section>
-      <h3>What MuseumHop keeps</h3>
+      <h3>What ArtHop keeps</h3>
       <ul>
         <li>The name and colour you pick</li>
-        <li>Your reactions, notes, routes, votes, crews and meet-up points</li>
-        <li>A list of changes in your night, so your group sees who changed what</li>
+        <li>Your reactions, notes, plans for each day, votes, crews and meet-up points</li>
+        <li>A list of changes in your group, so everyone sees who changed what</li>
       </ul>
-      <p><b>Just looking around?</b> Then MuseumHop keeps nothing about you, unless you send a wish (below). An anonymous sign-in (no name, email or password) is made only when you create or join a night.</p>
-      <p><b>Not kept:</b> your phone number, contacts or location. No ads and no tracking cookies.</p>
-      <p><b>Your location</b>, only if you tap the arrow on the map: your phone works out the blue dot and the walking times, and the location never leaves it. It isn’t sent to your group, to MuseumHop or anyone else, and it’s forgotten when you close the page. “Open in Google Maps” hands the route’s addresses to Google Maps; Google then sees what you do there.</p>
-      <p><b>Usage statistics:</b> a cookie-free counter run by MuseumHop’s maker (not Google or an ad network) notes which pages and features get used, for example “a route was adopted” or “the map was opened”, plus the browser, device type, country and the site or campaign link that brought you here. It never receives names, notes, search text, invite links or personal links. Add <code>?notrack=1</code> to the address to switch it off in this browser.</p>
-      <p><b>Your email</b>, only if you ask us to email your personal link: MuseumHop keeps a fingerprint of the address (to recognise it when you ask for a new link), never the address itself. Your group never sees it.</p>
-      <p><b>Your wish</b>, only if you send one from the “What should I build next?” box: the events you picked, what you wrote, and your email only if you added one, used only to reply to you. A wish isn’t linked to your night or your sign-in, and nothing else about you (such as your IP address) is stored with it. Only the developer reads wishes, to decide what to build next. They’re stored in the EU and deleted after a year; <a href={CONTACT}>email the developer</a> to have yours deleted sooner.</p>
-      <p><b>In this browser:</b> who you are, your nights, changes waiting to sync, and whether you’ve seen the “what’s next” message. Clearing your browser removes them, which is why a personal link helps.</p>
+      <p><b>Just looking around?</b> Then ArtHop keeps nothing about you. An anonymous sign-in (no name, email or password) is made only when you save a plan, start a group or join one.</p>
+      <p><b>Not kept:</b> your phone number, contacts or location. No ads, no tracking cookies and no usage statistics.</p>
+      <p><b>Your location</b>, only if you tap the arrow on the map: your phone works out the blue dot and the walking times, and the location never leaves it. It isn’t sent to your group, to ArtHop or anyone else, and it’s forgotten when you close the page. “Google Maps” and “Go” hand the addresses of your stops to Google Maps; Google then sees what you do there.</p>
+      <p><b>Your email</b>, only if you ask us to email your personal link: ArtHop keeps a fingerprint of the address (to recognise it when you ask for a new link), never the address itself. Your group never sees it.</p>
+      <p><b>In this browser:</b> who you are, your groups, changes waiting to sync, which stops you’ve reached on a walk, and whether you’ve seen the welcome. Clearing your browser removes them, which is why a personal link helps.</p>
     </section>
     <section>
       <h3>How long</h3>
-      <p>Each night, with everything in it, is deleted automatically 30 days after its date. For Museumnacht 2026 that happens on 8 December 2026. A sign-in that never ended up in a night is removed after a day.</p>
+      <p>Every group, with everything in it, is deleted automatically 30 days after Art Week: on 23 December 2026. A sign-in that never ended up in a group is removed after a day.</p>
     </section>
     <section>
       <h3>Who sees what</h3>
-      <p><b className="ok">Your group</b>, everyone who joined with your night’s invite link, sees names, reactions, notes, routes and the list of changes.</p>
-      <p><b className="ok">People with your view-only link</b>, if your group makes one, see the routes with times and places. No names, reactions or notes. They don’t join the night, and a new link or “turn off” stops the old one.</p>
+      <p><b className="ok">Your group</b>, everyone who joined with your invite link, sees names, reactions, notes, plans and the list of changes.</p>
+      <p><b className="ok">People with your view-only link</b>, if your group makes one, see the plans with times and places. No names, reactions or notes. They don’t join, and a new link or “turn off” stops the old one.</p>
       <p><b className="ok">Only you</b> have your personal link and know which email it goes to.</p>
-      <p><b className="no">Other groups</b> can’t list, search or open your night. There is no public list of nights; the only way in is the invite link. Anyone you forward that link to can join and edit, so share it with your group only.</p>
+      <p><b className="no">Other groups</b> can’t list, search or open yours. There’s no public list; the only way in is the invite link. Anyone you forward it to can join and plan, so share it with your group only.</p>
     </section>
     <section>
       <h3>How it’s enforced</h3>
       <ul>
-        <li>Database rules check that you’re in a night on every read and every change.</li>
+        <li>Database rules check that you’re in a group on every read and every change.</li>
         <li>Invite links are stored only as a fingerprint (hash), and personal links only as a one-way password hash, so a copy of the database doesn’t reveal working links.</li>
         <li>A new personal link turns your old one off.</li>
         <li>Link emails are rate-limited, and asking for a new link by email always gives the same answer, so nobody can use it to find out whether an address is registered.</li>
-        <li>24 automated checks try to break these rules (for example “someone outside the night sees nothing”) whenever they change.</li>
+        <li>Automated checks try to break these rules (for example “someone outside the group sees nothing”) whenever they change.</li>
       </ul>
     </section>
     <section>
       <h3>Services involved</h3>
-      <p>GitHub Pages hosts the site, Supabase stores the plans, Google Fonts serves the fonts, unpkg serves the map code and PDOK (the Dutch government’s map service) serves the map. Like any website, they see your IP address when your browser loads from them. If you ask for your link by email, Resend sends it and keeps a delivery log with your address.</p>
+      <p>GitHub Pages hosts the site, Supabase stores the plans (in the EU, Frankfurt), Google Fonts serves the fonts, unpkg serves the map code and PDOK (the Dutch government’s map service) serves the map. Like any website, they see your IP address when your browser loads from them. If you ask for your link by email, Resend sends it and keeps a delivery log with your address.</p>
     </section>
-    <p className="help-note">MuseumHop is an unofficial fan planner, not affiliated with Museumnacht Amsterdam / N8.</p>
+    <p className="help-note">ArtHop is an unofficial fan planner, not affiliated with Amsterdam Art Week. It uses the programme’s facts (titles, times, places), not its descriptions or images. Questions or a request to delete your data sooner: <a href={CONTACT}>email the developer</a>.</p>
   </div>;
-}
-
-export function HelpButton({ onClick }: { onClick: () => void }) {
-  return <button className="help-button" aria-label="Help and tour" title="Help and tour (?)" onClick={onClick}><HelpCircle size={19} /></button>;
 }

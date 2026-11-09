@@ -1,61 +1,69 @@
 import { useEffect, useMemo, useState } from "react";
-import { Eye, Footprints, Moon } from "lucide-react";
-import { byId, type UiStop } from "../lib/catalogue";
-import { leg } from "../lib/plan";
+import { Eye, Footprints } from "lucide-react";
+import { byId, byMuseum, DAYS, groupOf, setCurrentDay, type UiStop } from "../lib/catalogue";
+import { analyse, leg } from "../lib/plan";
 import { sync, type ViewNight as Night } from "../lib/sync";
-import { BrandMark } from "./brand-mark";
 import { MapView } from "./map-view";
+import { DayBar } from "./days";
+import { DrawnTitle } from "./my-day";
 import { MAKER } from "./onboarding";
 
-/** What someone with a view-only link sees: the group's routes on a map and as a list, refreshed every 30 seconds.
- *  No sign-in, no names; nothing here can change the night. */
+/** What someone with a view-only link sees: the group's plans for each day on a map and as a list, refreshed every
+ *  30 seconds. No sign-in, no names; nothing here can change anything. */
 export function ViewNight({ token }: { token: string }) {
   const [night, setNight] = useState<Night | null | undefined>(undefined), [error, setError] = useState("");
-  const [which, setWhich] = useState(0), [fit, setFit] = useState(1);
+  const [which, setWhich] = useState(0), [fit, setFit] = useState(1), [day, setDay] = useState(DAYS[1].id);
+  setCurrentDay(day);
 
   useEffect(() => {
     let alive = true;
-    const load = () => sync?.viewNight(token).then((n) => { if (alive) { setNight(n); setError(""); } }).catch((e) => alive && setError(e.message));
+    const load = () => sync?.viewNight(token).then((n) => {
+      if (!alive) return;
+      setNight(n); setError("");
+      // Open on the first day that has stops.
+      const first = DAYS.find((d) => n?.routes.some((r) => r.stops.some((s) => s.day === d.id)));
+      if (first && night === undefined) setDay(first.id);
+    }).catch((e) => alive && setError(e.message));
     load();
     const timer = setInterval(load, 30_000);
     const onVisible = () => { if (document.visibilityState === "visible") load(); };
     document.addEventListener("visibilitychange", onVisible);
     return () => { alive = false; clearInterval(timer); document.removeEventListener("visibilitychange", onVisible); };
-  }, [token]);
+  }, [token]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const route = night?.routes[Math.min(which, night.routes.length - 1)];
-  const stops: UiStop[] = useMemo(() => route?.stops.map((s) => ({ id: s.event_id, arrival: s.arrival, duration: s.duration, maybe: s.maybe, fixed: s.fixed })) ?? [], [route]);
-  const lines = useMemo(() => (route ? [{ stops, color: route.color, numbered: true }] : []), [route, stops]);
-  useEffect(() => setFit((f) => f + 1), [which, night === undefined]);
+  const stops: UiStop[] = useMemo(() => route?.stops.filter((s) => s.day === day).map((s) => ({ id: s.event_id, day: s.day, arrival: s.arrival, duration: s.duration, maybe: s.maybe, fixed: s.fixed })) ?? [], [route, day]);
+  const counts = useMemo(() => Object.fromEntries(DAYS.map((d) => [d.id, route?.stops.filter((s) => s.day === d.id).length ?? 0])), [route]);
+  const lines = useMemo(() => (route ? [{ stops, color: "#111", numbered: true }] : []), [route, stops]);
+  const slots = useMemo(() => analyse(stops).slots, [stops]);
+  useEffect(() => setFit((f) => f + 1), [which, day, night === undefined]);
 
   return <main className="view-night">
-    <header className="topbar">
-      <a href="./" className="brand" aria-label="MuseumHop home"><span className="brand-icon"><BrandMark /></span><span>museum<span className="brand-light">hop</span><small>AMSTERDAM, AFTER HOURS</small></span></a>
-      <span className="view-badge"><Eye size={14} />View only</span>
-      <span className="view-date">Sat 7 Nov · 19:00–02:00</span>
+    <header className="top">
+      <div className="top-row"><a href="./" className="brand" aria-label="ArtHop home">arthop</a><span className="brand-sub">Amsterdam Art Week<br />18–22 Nov</span><span className="grow" /><span className="chip"><Eye size={15} />View only</span></div>
+      <DayBar day={day} onDay={setDay} counts={counts} />
     </header>
-    {night === undefined && !error ? <p className="view-message">Loading the night…</p>
+    {night === undefined && !error ? <p className="view-message">Loading…</p>
       : error ? <p className="view-message" role="alert">{error}</p>
-      : !night ? <div className="view-message"><h1>This link doesn’t work anymore</h1><p>The group turned it off or made a new one. Ask them for the current view-only link.</p><a className="primary" href="./">Plan your own night</a></div>
+      : !night ? <div className="view-message"><h1>This link doesn’t work anymore</h1><p>The group turned it off or made a new one. Ask them for the current view-only link.</p><a className="btn" href="./">Plan your own Art Week</a></div>
       : <div className="view-body">
-        <section className="view-map" aria-label="Map of the route"><MapView visible={[]} lines={lines} onSelect={(e) => window.open(e.url, "_blank", "noopener")} focus={null} fit={fit} /></section>
+        <section className="view-map" aria-label="Map of the plan"><MapView visible={[]} lines={lines} onSelect={(e) => window.open(e.url, "_blank", "noopener")} focus={null} fit={fit} isOpen={() => true} /></section>
         <aside className="view-list">
-          <span className="eyebrow">SHARED WITH YOU</span>
-          {night.routes.length > 1 && <nav className="itinerary-tabs view-tabs" aria-label="Routes">{night.routes.map((r, i) => <button key={r.title + i} className={i === which ? "active" : ""} onClick={() => setWhich(i)}>{r.title}</button>)}</nav>}
-          <h1>{route?.title ?? "Our route"}</h1>
-          {!stops.length ? <p className="view-empty">No stops yet. This page updates by itself when the group adds some.</p>
-            : <ol className="view-stops">{stops.map((s, i) => {
+          <span className="eyebrow">Shared with you</span>
+          {night.routes.length > 1 && <div className="seg" role="group" aria-label="Plans">{night.routes.map((r, i) => <button key={r.title + i} className={i === which ? "on" : ""} aria-pressed={i === which} onClick={() => setWhich(i)}>{r.title}</button>)}</div>}
+          <DrawnTitle day={day} as="h1" />
+          {!stops.length ? <p className="view-empty">Nothing planned for this day yet. This page updates by itself when the group adds stops.</p>
+            : <ol className="day-stops">{slots.map((s, i) => {
               const e = byId.get(s.id), walk = i ? leg(stops[i - 1].id, s.id) : null;
-              return <li key={s.id + i} className={s.maybe ? "maybe" : ""}>
-                {walk && walk.minutes > 0 && <small className="view-walk"><Footprints size={11} />{walk.minutes} min walk</small>}
-                <div className="view-stop"><span className="stop-number">{i + 1}</span><div>
-                  <a href={e?.url} target="_blank" rel="noreferrer"><b>{e?.title ?? "Activity"}</b></a>
-                  <p>{e?.venue}{s.arrival ? ` · arrive ${s.arrival}` : ""} · {s.duration} min{s.fixed ? " · fixed time" : ""}{s.maybe && <span className="maybe-tag">maybe</span>}</p>
-                </div></div>
+              return <li key={s.id + i} className={"ds-item" + (s.maybe ? " maybe" : "")}>
+                {walk && walk.minutes > 0 && <div className="ds-leg"><Footprints size={12} /> {walk.minutes} min walk</div>}
+                <div className="ds-row"><span className="ds-time">{s.arrival || "–"}</span><i className="ds-dot" style={{ background: groupOf(e).color }} />
+                  <a className="ds-body" href={e?.url} target="_blank" rel="noreferrer"><b>{e?.kind === "venue" ? e.title : byMuseum.get(e?.museumId ?? "")?.name ?? e?.venue}</b><small>{e?.kind === "venue" ? "" : e?.title + " · "}{s.duration} min{s.fixed ? " · fixed time" : ""}{s.maybe ? " · maybe" : ""}</small></a></div>
               </li>;
             })}</ol>}
-          <p className="view-foot"><Moon size={13} />Updates by itself as the group changes the plan. Want to help plan? Ask the group for their invite link.</p>
-          <p className="view-foot"><a href="./">Plan your own night with MuseumHop</a> · <a href={MAKER} target="_blank" rel="noopener">A project by Arian Shafa ↗</a></p>
+          <p className="view-foot">Updates by itself as the group changes the plan. Want to help plan? Ask the group for their invite link.</p>
+          <p className="view-foot"><a href="./">Plan your own Art Week with ArtHop</a> · <a href={MAKER} target="_blank" rel="noopener">A project by Arian Shafa ↗</a></p>
+          <p className="view-foot">Unofficial fan planner, not affiliated with Amsterdam Art Week.</p>
         </aside>
       </div>}
   </main>;

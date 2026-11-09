@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { MapPin, Plus, Sparkles, Trash2, Users } from "lucide-react";
-import { byId, COLORS, initials, minute, type Item, type UiStop } from "../lib/catalogue";
+import { byId, COLORS, hoursText, initials, minute, type Item, type UiStop } from "../lib/catalogue";
 import { replaceRouteOps, type Derived } from "../lib/night";
 import { meetupIdeas } from "../lib/plan";
 import { newId, type Crew, type Data, type Op } from "../lib/sync";
@@ -27,7 +27,7 @@ const TIMES = Array.from({ length: 28 }, (_, i) => { const n = 19 * 60 + i * 15;
 /** Optional sub-groups with their own routes, and the points where they meet up. */
 export function Crews({ data, night, userId, canWrite, shared, run, onPick, onChooseStops, onPreview, onPropose, routeView, toggle }: Props) {
   const [name, setName] = useState(""), [color, setColor] = useState(COLORS[1]);
-  const [at, setAt] = useState("22:30"), [where, setWhere] = useState(""), [note, setNote] = useState("");
+  const [at, setAt] = useState("17:30"), [where, setWhere] = useState(""), [note, setNote] = useState("");
   const crews = [...data.ah_crews].sort((a, b) => a.created_at.localeCompare(b.created_at));
   const membersOf = (crewId: string) => data.ah_crew_members.filter((c) => c.crew_id === crewId);
   const myRow = data.ah_crew_members.find((c) => c.user_id === userId);
@@ -36,7 +36,7 @@ export function Crews({ data, night, userId, canWrite, shared, run, onPick, onCh
   const myStops = myCrew ? crewStops(myCrew.id) : [];
   const myRoute = myCrew ? night.crewRoute(myCrew.id) : undefined;
   const loose = night.members.filter((m) => !m.fictional && !data.ah_crew_members.some((c) => c.user_id === m.user_id));
-  const meetups = [...data.ah_meetups].sort((a, b) => minute(a.at) - minute(b.at));
+  const meetups = data.ah_meetups.filter((m) => m.day === night.day).sort((a, b) => minute(a.at) - minute(b.at)); // this day only
   const ideas = useMemo(() => meetupIdeas(crews.map((c) => ({ crewId: c.id, stops: crewStops(c.id) })))
     .filter((i) => !meetups.some((m) => m.event_id === i.eventId && Math.abs(minute(m.at) - minute(i.at)) < 60)),
     // crewStops reads from data
@@ -67,7 +67,7 @@ export function Crews({ data, night, userId, canWrite, shared, run, onPick, onCh
     if (!night.night || !eventId) return;
     const id = newId();
     run([
-      { t: "insert", table: "ah_meetups", row: { id, night_id: night.night.id, at: time, event_id: eventId, note: text, created_by: userId, created_at: new Date().toISOString() } },
+      { t: "insert", table: "ah_meetups", row: { id, night_id: night.night.id, day: night.day, at: time, event_id: eventId, note: text, created_by: userId, created_at: new Date().toISOString() } },
       ...(myCrew ? [{ t: "insert", table: "ah_meetup_crews", row: { id: newId(), night_id: night.night.id, meetup_id: id, crew_id: myCrew.id, confirmed_at: new Date().toISOString(), arrived_at: null } } as Op] : []),
     ], "Proposed a meet-up");
   }
@@ -133,7 +133,7 @@ export function Crews({ data, night, userId, canWrite, shared, run, onPick, onCh
             return (
               <article key={m.id} className={"meetup" + (all ? " agreed" : "")}>
                 <div className="meetup-top"><b>{m.at}</b>{all && <span className="pill">All crews agreed</span>}</div>
-                <button className="meetup-title" onClick={() => e && onPick(e)}>{e?.title}<small>{e?.venue} · on {e?.time.replace(" - ", "–")}</small></button>
+                <button className="meetup-title" onClick={() => e && onPick(e)}>{e?.title}<small>{e?.venue} · on {hoursText(e)}</small></button>
                 {m.note && <p>{m.note}</p>}
                 <div className="meetup-crews">{crews.map((c) => {
                   const r = rows.find((x) => x.crew_id === c.id);

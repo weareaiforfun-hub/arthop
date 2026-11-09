@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowUpRight, ChevronDown, GripVertical, X } from "lucide-react";
-import { byId, byMuseum, minute, warnings, type Item, type UiStop } from "../lib/catalogue";
+import { byId, byMuseum, hoursText, minute, warnings, type Item, type UiStop } from "../lib/catalogue";
 import { maybeOps, removeOps, reorderOps, timingOps } from "../lib/night";
 import { useReorder } from "../lib/reorder";
 import { TRAVELMODE } from "../lib/location";
@@ -36,7 +36,7 @@ function RouteStop({ s, index, route, onPick, run, routeName, handle, style, lif
         <button className="stop-title" onClick={() => onPick(e)}>{e.title}</button>
         <button className="remove-stop" aria-label={"Remove stop: " + e.title} onClick={() => run(removeOps(s), `Removed ${e.title} from ${routeName}`)}><X size={14} /></button>
       </div>
-      <p>{e.venue} · {e.time}{s.maybe && <span className="maybe-tag">maybe</span>}</p>
+      <p>{e.venue} · {hoursText(e, s.day)}{s.maybe && <span className="maybe-tag">maybe</span>}</p>
       {s.reason && <p className="chosen-reason">{s.reason}</p>}{s.practical && <small className="chosen-practical">{s.practical}</small>}
       <button className="stop-summary" aria-expanded={open} onClick={() => setOpen(!open)}>
         {s.arrival ? `Arrive ${s.arrival}` : "Set a time"} · {s.duration} min{s.maybe ? " · maybe" : ""}<ChevronDown size={13} />
