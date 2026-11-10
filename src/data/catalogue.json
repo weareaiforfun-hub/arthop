@@ -1,7 +1,7 @@
 {
  "source": "https://amsterdamart.com/en/programme/",
- "importedAt": "2026-11-09",
- "importedAtTime": "2026-11-09T21:34:41.333Z",
+ "importedAt": "2026-11-10",
+ "importedAtTime": "2026-11-10T13:03:04.520Z",
  "days": [
   "2026-11-18",
   "2026-11-19",
@@ -2943,28 +2943,6 @@
    "admission": "Free admission"
   },
   {
-   "id": "art-market-panel-talk",
-   "url": "https://amsterdamart.com/en/programme/art-market-panel-talk/",
-   "title": "Art Market & Panel Talk",
-   "venue": "CBK Zuidoost",
-   "museumId": "cbk-zuid-oost",
-   "kind": "event",
-   "tags": [
-    "Other"
-   ],
-   "disciplines": [
-    "Mixed Media"
-   ],
-   "days": {
-    "2026-11-21": [
-     "12:00",
-     "17:00"
-    ]
-   },
-   "dates": "Saturday 21 November 2026 · 12:00—17:00",
-   "admission": "Free admission"
-  },
-  {
    "id": "art-run-culture-sniffers-x-so-much-fun-running-club-starting-point-enari-gallery",
    "url": "https://amsterdamart.com/en/programme/art-run-culture-sniffers-x-so-much-fun-running-club-starting-point-enari-gallery/",
    "title": "Art Run: culture sniffers x so much fun running club | Starting point: Enari Gallery",
@@ -4017,6 +3995,28 @@
    "admission": "Free admission"
   },
   {
+   "id": "performance-finitude-elise-van-staveren",
+   "url": "https://amsterdamart.com/en/programme/performance-finitude-elise-van-staveren/",
+   "title": "Exhibition View Over Drinks: Finitude | Elise van Staveren",
+   "venue": "Gallery van Fanny Freytag",
+   "museumId": "gallery-van-fanny-freytag",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-20": [
+     "17:00",
+     "20:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 17:00—20:00",
+   "admission": "Free admission"
+  },
+  {
    "id": "exhibition-walkthrough-with-curator-alessandra-laitempergher",
    "url": "https://amsterdamart.com/en/programme/exhibition-walkthrough-with-curator-alessandra-laitempergher/",
    "title": "Exhibition Walkthrough with curator Alessandra Laitempergher",
@@ -4060,28 +4060,6 @@
    },
    "dates": "Saturday 21 November 2026 · 14:00—16:00",
    "admission": "With ticket"
-  },
-  {
-   "id": "performance-finitude-elise-van-staveren",
-   "url": "https://amsterdamart.com/en/programme/performance-finitude-elise-van-staveren/",
-   "title": "Exhibitions View Over Drinks: Finitude | Elise van Staveren",
-   "venue": "Gallery van Fanny Freytag",
-   "museumId": "gallery-van-fanny-freytag",
-   "kind": "event",
-   "tags": [
-    "Other"
-   ],
-   "disciplines": [
-    "Mixed Media"
-   ],
-   "days": {
-    "2026-11-20": [
-     "17:00",
-     "20:00"
-    ]
-   },
-   "dates": "Friday 20 November 2026 · 17:00—20:00",
-   "admission": "Free admission"
   },
   {
    "id": "eye-filmmuseum-family-sunday",
@@ -5555,30 +5533,6 @@
    "admission": "Free admission"
   },
   {
-   "id": "opening-finitude-elise-van-staveren",
-   "url": "https://amsterdamart.com/en/programme/opening-finitude-elise-van-staveren/",
-   "title": "Opening: Finitude | Elise van Staveren",
-   "venue": "Gallery van Fanny Freytag",
-   "museumId": "gallery-van-fanny-freytag",
-   "kind": "event",
-   "tags": [
-    "Opening",
-    "Other"
-   ],
-   "disciplines": [
-    "Mixed Media",
-    "Painting"
-   ],
-   "days": {
-    "2026-11-19": [
-     "17:00",
-     "20:00"
-    ]
-   },
-   "dates": "Thursday 19 November 2026 · 17:00—20:00",
-   "admission": "Free admission"
-  },
-  {
    "id": "opening-heaving-roomwith-special-activation-by-one-of-the-artists",
    "url": "https://amsterdamart.com/en/programme/opening-heaving-roomwith-special-activation-by-one-of-the-artists/",
    "title": "Opening: Heaving Room with Sound Performance",
@@ -5694,6 +5648,28 @@
    },
    "dates": "Friday 20 November 2026 · 18:00—20:00",
    "admission": "With ticket"
+  },
+  {
+   "id": "art-market-panel-talk",
+   "url": "https://amsterdamart.com/en/programme/art-market-panel-talk/",
+   "title": "Panel Talk",
+   "venue": "CBK Zuidoost",
+   "museumId": "cbk-zuid-oost",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-21": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 12:00—17:00",
+   "admission": "Free admission"
   },
   {
    "id": "parallel-processes-brian-elstak-willem-harbers-roos-van-haaften",
