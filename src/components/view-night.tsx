@@ -43,9 +43,9 @@ export function ViewNight({ token }: { token: string }) {
       <div className="top-row"><a href="./" className="brand" aria-label="ArtHop home">arthop</a><span className="brand-sub">Amsterdam Art Week<br />18–22 Nov</span><span className="grow" /><span className="chip"><Eye size={15} />View only</span></div>
       <DayBar day={day} onDay={setDay} counts={counts} />
     </header>
-    {night === undefined && !error ? <p className="view-message">Loading…</p>
-      : error ? <p className="view-message" role="alert">{error}</p>
-      : !night ? <div className="view-message"><h1>This link doesn’t work anymore</h1><p>The group turned it off or made a new one. Ask them for the current view-only link.</p><a className="btn" href="./">Plan your own Art Week</a></div>
+    {night === undefined && !error ? <div className="view-message"><p>Loading…</p><SiteNote /></div>
+      : error ? <div className="view-message"><p role="alert">{error}</p><SiteNote /></div>
+      : !night ? <div className="view-message"><h1>This link doesn’t work anymore</h1><p>The group turned it off or made a new one. Ask them for the current view-only link.</p><a className="btn" href="./">Plan your own Art Week</a><SiteNote /></div>
       : <div className="view-body">
         <section className="view-map" aria-label="Map of the plan"><MapView visible={[]} lines={lines} onSelect={(e) => window.open(e.url, "_blank", "noopener")} focus={null} fit={fit} isOpen={() => true} /></section>
         <aside className="view-list">
