@@ -1,7 +1,7 @@
 {
  "source": "https://amsterdamart.com/en/programme/",
- "importedAt": "2026-11-10",
- "importedAtTime": "2026-11-10T13:03:04.520Z",
+ "importedAt": "2026-11-11",
+ "importedAtTime": "2026-11-11T12:13:41.567Z",
  "days": [
   "2026-11-18",
   "2026-11-19",
@@ -2686,6 +2686,42 @@
  ],
  "events": [
   {
+   "id": "vrij-denken",
+   "url": "https://amsterdamart.com/en/programme/vrij-denken/",
+   "title": "‘Vrij Denken’",
+   "venue": "Luther Museum",
+   "museumId": "luther-museum",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Other",
+    "Painting",
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-19": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-20": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-21": [
+     "11:00",
+     "17:00"
+    ],
+    "2026-11-22": [
+     "11:00",
+     "17:00"
+    ]
+   },
+   "dates": "28 October 2026 up to 28 March 2027",
+   "admission": "With ticket"
+  },
+  {
    "id": "51-years-of-de-appel-film-screening-panel-discussion-final-cut-2026",
    "url": "https://amsterdamart.com/en/programme/51-years-of-de-appel-film-screening-panel-discussion-final-cut-2026/",
    "title": "51 Years of de Appel | Film Screening & Panel Discussion: Final Cut (2026)",
@@ -3488,6 +3524,40 @@
     ]
    },
    "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "solo-exhibition-marjolein-rothman",
+   "url": "https://amsterdamart.com/en/programme/solo-exhibition-marjolein-rothman/",
+   "title": "Blue Hour | Marjolein Rothman",
+   "venue": "dudokdegroot",
+   "museumId": "gallery-dudokdegroot",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "13:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 up to 22 November 2026",
    "admission": "Free admission"
   },
   {
@@ -6326,40 +6396,6 @@
     ]
    },
    "dates": "19 November 2026 up to 6 February 2027",
-   "admission": "Free admission"
-  },
-  {
-   "id": "solo-exhibition-marjolein-rothman",
-   "url": "https://amsterdamart.com/en/programme/solo-exhibition-marjolein-rothman/",
-   "title": "Solo Exhibition | Marjolein Rothman",
-   "venue": "dudokdegroot",
-   "museumId": "gallery-dudokdegroot",
-   "kind": "exhibition",
-   "tags": [
-    "Exhibition"
-   ],
-   "disciplines": [
-    "Painting"
-   ],
-   "days": {
-    "2026-11-19": [
-     "13:00",
-     "21:00"
-    ],
-    "2026-11-20": [
-     "12:00",
-     "18:00"
-    ],
-    "2026-11-21": [
-     "12:00",
-     "18:00"
-    ],
-    "2026-11-22": [
-     "12:00",
-     "17:00"
-    ]
-   },
-   "dates": "19 up to 22 November 2026",
    "admission": "Free admission"
   },
   {
