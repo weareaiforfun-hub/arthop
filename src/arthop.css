@@ -723,3 +723,10 @@ button.tb-now { text-decoration: underline; text-decoration-thickness: 2px; }
   .panel { transition: height .45s var(--spring), background-color .3s ease; }
   .day-bar .day, .pg-add, .tabbar button { transition: background-color .3s ease, flex-grow .4s var(--spring), color .2s; }
 }
+
+/* Phone sheets: a bigger grip you can drag (sheet-drag.ts); the sheet follows your finger and springs to its height. */
+@media (max-width: 760px) {
+  .sheet-handle, .card-grip { height: 34px; touch-action: none; cursor: grab; }
+  .sheet-handle span, .card-grip span { margin-top: 12px; }
+  .sheet-backdrop.sheet-mode .card-sheet { transition: height .4s var(--spring); }
+}

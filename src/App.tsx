@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Accessibility, ArrowUpRight, Check, Layers, LocateFixed, Map as MapIcon, MapPin, Minus, Navigation, Plus, Route, Search, SlidersHorizontal, Undo2, Users, X } from "lucide-react";
+import { useSheetDrag } from "./lib/sheet-drag";
 import { activities, byId, byMuseum, clock, COLORS, dayOf, DAYS, dayRange, disciplineOf, GROUPS, initials, KIND_LABEL, museumItem, museums, onDay, openAt, setCurrentDay, type GroupId, type Item, type Kind, type UiStop } from "./lib/catalogue";
 import { addStopOps, derive, personalRouteOps, replaceRouteOps, rescheduleOps, useSync } from "./lib/night";
 import { newId, sync, type Op } from "./lib/sync";
@@ -323,11 +324,20 @@ export default function App() {
   const isOpen = useCallback((id: string) => openVenues.has(id), [openVenues]);
   /** A tap on the map: on a phone the details open as a small sheet over the map; drag it up for more. */
   function pickFromMap(e: Item) { pick(e); if (isPhone()) setCardSize("peek"); }
-  const cardDrag = useRef<number | null>(null), cardDragged = useRef(false);
-  const resizeCard = (up: boolean) => {
-    const order = ["peek", "half", "full"] as const, i = order.indexOf(cardSize) + (up ? 1 : -1);
-    if (i < 0) setSelected(null); else setCardSize(order[Math.min(i, 2)]);
-  };
+  // Phone sheets follow your finger and settle on small, half or full (sheet-drag.ts).
+  const cardGrip = useRef<HTMLButtonElement>(null), listGrip = useRef<HTMLButtonElement>(null);
+  const cardDrag = useSheetDrag({
+    sheet: () => cardGrip.current?.closest(".card-sheet") as HTMLElement | null,
+    heights: () => ({ peek: innerHeight * 0.38, half: innerHeight * 0.62, full: innerHeight * 0.88 }),
+    size: cardSize, canClose: true,
+    onSize: (s) => (s ? setCardSize(s) : setSelected(null)),
+  });
+  const listDrag = useSheetDrag({
+    sheet: () => listGrip.current?.closest(".panel") as HTMLElement | null,
+    heights: () => { const h = listGrip.current?.closest(".workspace")?.clientHeight ?? innerHeight; return { peek: 150, half: h * 0.5, full: h - 150 }; },
+    size: sheet,
+    onSize: (s) => s && setSheet(s),
+  });
   function pick(e: Item) { setCardSize("full"); setSelected(e); setFocus(e.museumId); setNote(data?.ah_reactions.find((r) => r.event_id === e.id && r.user_id === userId)?.note || ""); track("details-open", { kind: e.kind }); }
   const likes = (id: string) => {
     const who = suggestions.filter((s) => s.event_id === id && s.user_id !== userId).map((s) => nameOf(s.user_id)).filter(Boolean);
@@ -546,7 +556,7 @@ export default function App() {
       {/* ---------- the side panel (desktop) / the tab's content (phone) ---------- */}
       <aside className="panel" aria-label="Programme and plan">
         <nav className="panel-tabs" role="tablist" aria-label="Views">{(["programme", "day", "friends"] as Tab[]).map((t) => <button key={t} role="tab" aria-selected={tab === t} className={tab === t ? "on" : ""} onClick={() => { setTab(t); if (t === "friends") setFriendsView("top"); if (t === "day") setFit((f) => f + 1); }} data-tour={"tab-" + t}>{tabLabel(t)}</button>)}</nav>
-        <button className="sheet-handle" aria-label={sheet === "full" ? "Show more map" : "Show more list"} onClick={() => setSheet(sheet === "peek" ? "half" : sheet === "half" ? "full" : "peek")}><span /></button>
+        <button ref={listGrip} className="sheet-handle" aria-label={sheet === "full" ? "Show more map" : "Show more list"} {...listDrag}><span /></button>
         <div className="panel-body">
           {tab === "programme" ? programme : tab === "day" ? (nowMode && stops.length ? nowCard : myDay) : friends}
           <SiteNote onData={() => { setHelpTab("data"); setHelpOpen(true); }} />
@@ -563,9 +573,7 @@ export default function App() {
 
     {(toast || undo) && <div className="toast" role="status"><Check size={17} /><span>{toast || undo!.text}</span>{!toast && undo && <button className="toast-undo" onClick={() => { sync!.apply(undo.ops); setUndo(null); }}><Undo2 size={14} />Undo</button>}</div>}
     {selected && isPhone() && <div className={"sheet-backdrop" + (cardSize !== "full" ? " sheet-mode " + cardSize : "")} onClick={() => setSelected(null)}><div className="card-sheet" onClick={(e) => e.stopPropagation()}>
-      <button className="card-grip" aria-label={cardSize === "full" ? "Show less" : "Show more"} onClick={() => { if (cardDragged.current) { cardDragged.current = false; return; } setCardSize(cardSize === "peek" ? "half" : cardSize === "half" ? "full" : "peek"); }}
-        onPointerDown={(e) => { cardDrag.current = e.clientY; cardDragged.current = false; e.currentTarget.setPointerCapture(e.pointerId); }}
-        onPointerUp={(e) => { const y = cardDrag.current; cardDrag.current = null; if (y == null || Math.abs(e.clientY - y) < 30) return; cardDragged.current = true; resizeCard(e.clientY < y); }}><span /></button>
+      <button ref={cardGrip} className="card-grip" aria-label={cardSize === "full" ? "Show less" : "Show more"} {...cardDrag}><span /></button>
       {card()}</div></div>}
     {filtersOpen && isPhone() && <div className="sheet-backdrop" onClick={() => setFiltersOpen(false)}><div className="card-sheet" onClick={(e) => e.stopPropagation()}>{filterPanel}</div></div>}
     {printOpen && <PrintDay day={day} stops={stops} title={dayLabel} onClose={() => setPrintOpen(false)} />}
