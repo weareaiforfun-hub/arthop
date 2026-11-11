@@ -675,3 +675,50 @@ button.tb-now { text-decoration: underline; text-decoration-thickness: 2px; }
   .sheet-backdrop.sheet-mode.peek .card-sheet { height: 38dvh; }
   .sheet-backdrop.sheet-mode.half .card-sheet { height: 62dvh; }
 }
+
+/* =====================================================================================================================
+   Day colours + softened colour map (round 14, board 71 A with map 70·4, approved 11 Nov 2026). Each day has its
+   own colour; the chosen day tints the list, its buttons and the tab dock. The map shows Amsterdam's real green and
+   blue, softened. Dot colours (painting, photo, …) are unchanged. Delete this block to go back to grey.
+   ===================================================================================================================== */
+:root { --day: #19b886; --day-tint: #e6f7ef; --day-pale: #d4f3e6; }
+[data-day="2026-11-18"] { --day: #9d87ff; --day-tint: #f0ecff; --day-pale: #e3ddff; }
+[data-day="2026-11-19"] { --day: #ffcf1f; --day-tint: #fff7d1; --day-pale: #fff0a8; }
+[data-day="2026-11-20"] { --day: #ff6fb5; --day-tint: #ffeaf4; --day-pale: #ffd9ec; }
+[data-day="2026-11-21"] { --day: #19b886; --day-tint: #e6f7ef; --day-pale: #d4f3e6; }
+[data-day="2026-11-22"] { --day: #ff8a3d; --day-tint: #ffeedf; --day-pale: #ffe0c7; }
+
+.map-canvas .leaflet-tile-pane { filter: saturate(.55) brightness(1.07) contrast(.9); }
+.map-canvas .leaflet-tile { filter: none; } /* styles.css (MuseumHop) greys each tile */
+
+/* every day pill in its own colour; the chosen one solid (dark text keeps 4.5:1 on all five) */
+.day-bar .day { background: var(--day-pale); color: var(--ink); }
+.day-bar .day span { color: #3d3a33; }
+.day-bar .day.on { background: var(--day); color: var(--ink); }
+.day-bar .day.on span { color: var(--ink); }
+.day-count { background: var(--ink); color: #fff; }
+
+/* the chosen day tints the list, its buttons and the dock */
+.panel { background: var(--day-tint); }
+.pg-row, .site-note, .notice, .md-empty, .tl-suggest, .idea-card { background: rgba(255, 255, 255, .85) !important; }
+.ds-leg { background: rgba(255, 255, 255, .85); }
+.ds-leg.tight { background: #ffe2dc; }
+.ds-dot { box-shadow: 0 0 0 3px var(--day-tint), 0 3px 9px rgba(17, 17, 17, .2); }
+.pg-add { background: var(--day); color: var(--ink); }
+.panel-tabs { background: rgba(255, 255, 255, .85); box-shadow: 0 0 0 10px var(--day-tint); }
+.panel-tabs button.on, .seg button.on { background: var(--day); color: var(--ink); }
+.tb-track input::-webkit-slider-thumb { background: var(--day); box-shadow: 0 0 0 4px #fff, 0 4px 12px rgba(17, 17, 17, .3); }
+.tb-track input::-moz-range-thumb { background: var(--day); }
+@media (max-width: 760px) {
+  .tabbar button.on { background: var(--day); color: var(--ink); }
+  .sheet-handle { background: var(--day-tint); }
+  .tab-day .panel, .tab-friends .panel, .phone-head { background: var(--day-tint); }
+  .tab-day .workspace, .tab-friends .workspace { background: var(--day-tint); }
+}
+@media (min-width: 761px) {
+  .panel-tabs { box-shadow: 0 0 0 10px var(--day-tint); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .panel { transition: height .45s var(--spring), background-color .3s ease; }
+  .day-bar .day, .pg-add, .tabbar button { transition: background-color .3s ease, flex-grow .4s var(--spring), color .2s; }
+}

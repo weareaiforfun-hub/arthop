@@ -479,7 +479,7 @@ export default function App() {
       friends={friendsSaid} onPick={pick} onClose={() => setSelected(null)} />;
   }
 
-  return <main className={"app tab-" + tab + (nowMode && tab === "day" && stops.length ? " now-mode" : "") + " sheet-" + sheet}>
+  return <main data-day={day} className={"app tab-" + tab + (nowMode && tab === "day" && stops.length ? " now-mode" : "") + " sheet-" + sheet}>
     {/* ---------- header: one row plus the days on desktop; search, filters and ? on phones ---------- */}
     <header className="top">
       <div className="top-row">

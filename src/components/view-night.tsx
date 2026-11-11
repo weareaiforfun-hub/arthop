@@ -38,7 +38,7 @@ export function ViewNight({ token }: { token: string }) {
   const slots = useMemo(() => analyse(stops).slots, [stops]);
   useEffect(() => setFit((f) => f + 1), [which, day, night === undefined]);
 
-  return <main className="view-night">
+  return <main className="view-night" data-day={day}>
     <header className="top">
       <div className="top-row"><a href="./" className="brand" aria-label="ArtHop home">arthop</a><span className="brand-sub">Amsterdam Art Week<br />18–22 Nov</span><span className="grow" /><span className="chip"><Eye size={15} />View only</span></div>
       <DayBar day={day} onDay={setDay} counts={counts} />

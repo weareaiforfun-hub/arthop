@@ -3,7 +3,7 @@ import { clock, DAYS, dayOf, dayRange, minute } from "../lib/catalogue";
 /** The five days of Art Week, each with its theme (board 32). Picking one changes the whole site. */
 export function DayBar({ day, onDay, counts, compact }: { day: string; onDay: (id: string) => void; counts?: Record<string, number>; compact?: boolean }) {
   return <nav className={"day-bar" + (compact ? " compact" : "")} aria-label="Art Week days" data-tour="days">
-    {DAYS.map((d) => <button key={d.id} className={"day" + (d.id === day ? " on" : "")} aria-pressed={d.id === day} onClick={() => onDay(d.id)}>
+    {DAYS.map((d) => <button key={d.id} data-day={d.id} className={"day" + (d.id === day ? " on" : "")} aria-pressed={d.id === day} onClick={() => onDay(d.id)}>
       <b>{compact ? d.short : d.label}</b>
       {(!compact || (d.id === day && d.night)) && <span>{compact ? "Gallery Night" : d.theme}</span>}
       {counts?.[d.id] ? <i className="day-count" title={`${counts[d.id]} ${counts[d.id] === 1 ? "stop" : "stops"} planned`}>{counts[d.id]}</i> : null}
