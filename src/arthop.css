@@ -493,3 +493,171 @@ button.tb-now { text-decoration: underline; text-decoration-thickness: 2px; }
   .panel-tabs { margin: 0 16px; } .panel-body { padding: 18px 16px 32px; }
   .drawn-title { font-size: 40px; }
 }
+
+/* =====================================================================================================================
+   Bubbly (round 13, boards 67–69, approved 11 Nov 2026): same colours, map, walk drawing and fonts, but round, soft,
+   floating parts. On a computer the map fills the window and the header, days, time bar and plan panel float over it.
+   Everything below overrides the square look above; delete this block to go back.
+   ===================================================================================================================== */
+:root { --soft: #f3eee2; --soft2: #f8f4ea; --float: 0 1px 2px rgba(17, 17, 17, .06), 0 12px 32px rgba(17, 17, 17, .13); --spring: cubic-bezier(.3, 1.3, .5, 1); }
+
+/* shapes everywhere */
+.btn, .primary, .sc-add { border: 0; border-radius: 999px; }
+.btn.alt, .secondary { border: 0; border-radius: 999px; background: var(--soft); }
+.btn.alt:hover, .secondary:hover { background: #ebe4d4; }
+.chip { border: 0; border-radius: 999px; background: var(--soft); min-height: 42px; }
+.chip.on { background: var(--ink); color: #fff; }
+.chip .badge { top: -6px; right: -6px; background: var(--yellow); box-shadow: 0 0 0 2px #fff; }
+.live-chip { background: #dcf4ea; }
+.live-chip.offline { background: #ffe2dc; }
+.seg { border: 0; background: var(--soft); border-radius: 999px; padding: 4px; gap: 2px; }
+.seg button, .seg button + button { border: 0; border-radius: 999px; background: none; min-height: 40px; color: var(--muted); }
+.seg button.on { background: var(--ink); color: #fff; }
+.notice, .md-empty { border: 0; border-radius: 22px; background: var(--soft2); }
+.decide-box { border: 0; border-radius: 22px; background: #ffe7f2; }
+.site-note { border-top: 0; background: var(--soft2); border-radius: 22px; padding: 14px 18px; }
+.filters-panel, .stop-card { border: 0; border-radius: 28px; box-shadow: var(--float); }
+.fp-person, .ds-timing input, .ds-timing select, .sc-note textarea { border: 0; border-radius: 14px; background: var(--soft); }
+.sc-close { border: 0; border-radius: 50%; background: var(--soft); }
+.reaction-buttons.big button { border: 0; border-radius: 999px; }
+.reaction-buttons.big button:not(.on) { background: var(--soft); }
+.sc-add.added { background: var(--yellow); }
+.sc-here { border-top: 1px solid var(--line); }
+.pick-state { border: 0; border-radius: 999px; background: var(--soft); }
+.pick-state.in { background: var(--green); } .pick-state.split { background: var(--yellow); }
+.fp-dot, .lg-grid i, .lg-dot, .sc-dot, .sc-here button i { border: 0; box-shadow: 0 0 0 2px #fff, 0 1px 4px rgba(17, 17, 17, .2); }
+
+/* programme items: soft cards */
+.pg-row { background: var(--soft2); border-bottom: 0; border-radius: 22px; padding: 6px 8px 6px 16px; margin-bottom: 8px; grid-template-columns: 20px minmax(0, 1fr) 48px; }
+.pg-dot { border: 0; box-shadow: 0 0 0 3px #fff, 0 3px 8px rgba(17, 17, 17, .15); }
+.pg-add { width: 48px; height: 48px; border: 0; }
+
+/* map: floating round buttons and cards */
+.map-btn { border: 0; border-radius: 999px; box-shadow: var(--float); }
+.map-legend, .locate-note, .locate-explain, .locate-off, .map-error, .ride-card, .getting-around.in-map { border: 0; border-radius: 22px; box-shadow: var(--float); }
+.getting-around.in-map { border-radius: 28px; }
+.ga-mode { border: 0; border-radius: 18px; background: var(--soft2); }
+.preview-banner { border: 0; border-radius: 999px; box-shadow: var(--float); }
+.venue-dot span { border: 2px solid #fff; box-shadow: 0 1px 4px rgba(17, 17, 17, .35); }
+.venue-dot.closed span { border-color: #fff; }
+.venue-cluster span { border: 0; box-shadow: var(--float); }
+.ride-pin span { border: 2px solid #fff; border-radius: 50%; box-shadow: 0 1px 4px rgba(17, 17, 17, .3); }
+.leaflet-tooltip { border: 0; border-radius: 12px; box-shadow: var(--float); }
+
+/* time bar: a rounded track and a knob */
+.tb-rail, .tb-night { border-radius: 7px; }
+.tb-track input::-webkit-slider-thumb { width: 28px; height: 28px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 4px #fff, 0 4px 12px rgba(17, 17, 17, .3); }
+.tb-track input::-moz-range-thumb { width: 28px; height: 28px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 4px #fff, 0 4px 12px rgba(17, 17, 17, .3); }
+
+/* My day: stops are bubbles, sized by stay (my-day.tsx), on one flowing line */
+.ds-row { grid-template-columns: 22px 60px 34px minmax(0, 1fr) auto; }
+.ds-dot { border: 0; justify-self: center; box-shadow: 0 0 0 3px #fff, 0 3px 9px rgba(17, 17, 17, .2); }
+.day-stops { position: relative; }
+.day-stops > li { position: relative; }
+.day-stops::before { content: ""; position: absolute; left: 111px; width: 16px; top: 28px; bottom: 28px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='60' viewBox='0 0 16 60'%3E%3Cpath d='M8 0C14 10 14 20 8 30C2 40 2 50 8 60' fill='none' stroke='%23111' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E") center top / 16px 60px repeat-y; }
+.ds-leg { margin: 4px 0 4px 140px; width: fit-content; border-left: 0; padding: 3px 12px; background: var(--soft); border-radius: 14px; font-size: 14px; }
+.ds-leg.tight { background: #ffe2dc; color: #a3271a; }
+.ds-warn { margin-left: 140px; }
+.ds-edit { margin-left: 140px; border: 0; border-radius: 20px; box-shadow: var(--float); }
+.ds-item.lifted { border-radius: 18px; box-shadow: var(--float); }
+
+/* MuseumHop's parts (timeline, ideas, crews, dialogs), made round again */
+.tl-block { border-radius: 16px !important; border: 0 !important; background: var(--soft) !important; }
+.tl-suggest, .tl-alert, .tl-summary > div, .idea-card, .meetup, .crew-card, .decide-row { border-radius: 22px !important; }
+.tl-suggest, .idea-card { border: 0 !important; background: var(--soft2) !important; }
+.tl-alert { border: 0 !important; background: #ffe2dc !important; }
+.reaction-buttons:not(.big) button { border-radius: 999px !important; }
+.welcome { border: 0; border-radius: 32px; box-shadow: 0 24px 70px rgba(17, 17, 17, .28); }
+.name-modal, .keep-spot, .detail-modal { border-radius: 28px !important; border: 0 !important; box-shadow: 0 24px 70px rgba(17, 17, 17, .28) !important; }
+.join-form input, .keep-spot input[type=email] { border: 0 !important; border-radius: 16px !important; background: var(--soft) !important; }
+.help-drawer { border-left: 0; border-radius: 28px 0 0 28px !important; box-shadow: var(--float); }
+.help-tabs { border-bottom: 0; background: var(--soft); border-radius: 999px; padding: 4px; }
+.help-tabs button { border-bottom: 0; margin: 0; border-radius: 999px; min-height: 40px; }
+.help-tabs button.on { background: var(--ink) !important; color: #fff; }
+.spotlight-card { border-radius: 22px !important; border: 0; box-shadow: var(--float) !important; }
+.spotlight-hole { border-radius: 18px !important; }
+.toast { border-radius: 999px !important; box-shadow: var(--float); }
+.view-map { border-right: 0; }
+
+/* the computer: map in the whole window, everything else floats over it */
+@media (min-width: 761px) {
+  .app { --pw: min(560px, 38vw); position: relative; }
+  .top { position: absolute; top: 0; left: 0; right: 0; background: none; border: 0; padding: 14px 16px 0; gap: 12px; pointer-events: none; }
+  .top > * { pointer-events: auto; }
+  .top-row { background: rgba(255, 255, 255, .95); border-radius: 999px; box-shadow: var(--float); padding: 8px 10px 8px 22px; min-height: 60px; box-sizing: border-box; }
+  .brand { font-size: 30px; letter-spacing: -1.4px; }
+  .filters-pop { top: 84px; }
+  .day-bar { display: flex; width: calc(100% - var(--pw) - 16px); padding: 0; gap: 8px; }
+  .day { flex: 1 1 0; min-width: 0; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .95); box-shadow: var(--float); justify-content: center; }
+  .day.on { flex-grow: 2.3; background: var(--ink); box-shadow: 0 10px 26px rgba(17, 17, 17, .28); }
+  .day span { color: var(--muted); } .day.on span { color: #fff; }
+  .day-count { top: -4px; right: 6px; box-shadow: 0 0 0 2px #fff; }
+  .error-banner, .spot-banner { position: absolute; z-index: 1100; top: 140px; left: 16px; width: auto; border: 0; border-radius: 999px; box-shadow: var(--float); padding: 10px 18px; }
+  .workspace { grid-template-columns: minmax(0, 1fr) var(--pw); }
+  .map-panel { grid-column: 1 / -1; grid-row: 1 / -1; border-right: 0; }
+  .time-wrap { position: relative; z-index: 650; grid-column: 1; grid-row: 2; margin: 0 16px 16px; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .96); box-shadow: var(--float); }
+  .time-bar { min-height: 60px; padding: 0 26px; }
+  .panel { position: relative; z-index: 800; grid-column: 2; grid-row: 1 / -1; margin: 86px 16px 16px 0; border-radius: 32px; background: #fff; box-shadow: var(--float); padding-top: 12px; }
+  .panel-tabs { top: 10px; margin: 0 18px; background: var(--soft); border-bottom: 0; border-radius: 999px; padding: 4px; box-shadow: 0 0 0 10px #fff; }
+  .panel-tabs button { min-height: 44px; border-bottom: 0; margin: 0; border-radius: 999px; font-size: 16px; }
+  .panel-tabs button.on { background: var(--ink); color: #fff; }
+  .panel-body { padding: 20px 22px 28px; }
+  .rides-button, .map-panel .rides-button { top: 140px; right: calc(var(--pw) + 32px); }
+  .map-controls { right: calc(var(--pw) + 32px); }
+  .map-legend { right: calc(var(--pw) + 32px); bottom: 100px; width: 280px; }
+  .locate-off { right: calc(var(--pw) + 96px); }
+  .map-credit { left: 28px; bottom: 96px; }
+  .locate-note, .locate-explain, .map-error { top: 140px; }
+  .preview-banner { top: 140px; left: calc((100% - var(--pw)) / 2); }
+  .getting-around.in-map { top: 140px; right: calc(var(--pw) + 32px); max-height: calc(100% - 260px); }
+  .ride-card { bottom: 100px; }
+}
+@media (min-width: 761px) and (max-width: 1600px) {
+  .day:not(.on) span { display: none; }
+}
+@media (min-width: 761px) and (max-width: 1180px) {
+  .app { --pw: 400px; }
+  .workspace { grid-template-columns: minmax(0, 1fr) var(--pw); }
+}
+
+/* the phone: floating search and days, a sheet with round corners, a floating tab dock */
+@media (max-width: 760px) {
+  .app { position: relative; }
+  .search, .filters-button, .help-button { background: rgba(255, 255, 255, .96); box-shadow: var(--float); }
+  .filters-button.on { background: var(--ink); }
+  .day { border: 0; border-radius: 999px; background: rgba(255, 255, 255, .96); box-shadow: var(--float); min-height: 48px; }
+  .day.on { background: var(--ink); }
+  .day-bar { padding-bottom: 14px; }
+  .panel { border-top: 0; border-radius: 28px 28px 0 0; box-shadow: 0 -10px 30px rgba(17, 17, 17, .12); }
+  .sheet-handle span { width: 44px; height: 5px; background: #d9d3c4; }
+  .panel-body { padding-bottom: 112px; }
+  .tab-day .map-panel { border: 0; border-radius: 28px; margin: 0 16px; box-shadow: var(--float); }
+  .tab-day .open-map { border-radius: 999px; }
+  .ph-print { border: 0; border-radius: 50%; box-shadow: var(--float); }
+  .tabbar { position: absolute; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); border: 0; border-radius: 999px; padding: 6px; background: rgba(255, 255, 255, .96); box-shadow: var(--float); }
+  .tabbar button { min-height: 56px; border-top: 0; margin: 0; border-radius: 999px; font-size: 13px; }
+  .tabbar button.on { flex: 1.6; background: var(--ink); color: #fff; flex-direction: row; gap: 8px; white-space: nowrap; }
+  .tabbar .badge { top: 2px; }
+  .card-sheet { border-top: 0; border-radius: 28px 28px 0 0; }
+  .welcome { border-radius: 28px 28px 0 0; }
+  .getting-around.in-map { border-radius: 28px 28px 0 0; }
+  .toast { bottom: calc(96px + env(safe-area-inset-bottom)) !important; }
+  .view-map { border-bottom: 0; }
+  .ds-row { grid-template-columns: 22px 54px 34px minmax(0, 1fr) auto; }
+  .day-stops::before { left: 101px; }
+  .ds-leg, .ds-warn { margin-left: 128px; }
+  .ds-edit { margin-left: 0; }
+}
+
+/* motion: the sheet springs, the black day grows, stops pop in, the walk line draws itself; still if asked */
+@media (prefers-reduced-motion: no-preference) {
+  .day { transition: flex-grow .4s var(--spring), background-color .2s, color .2s, box-shadow .2s; }
+  .panel { transition: height .45s var(--spring); }
+  .ds-dot { animation: ah-pop .4s var(--spring) both; }
+  .stop-card, .filters-panel, .card-sheet, .welcome, .spotlight-card { animation: ah-in .32s var(--spring) both; }
+  .walk-line { stroke-dasharray: 12000; stroke-dashoffset: 12000; animation: ah-draw 1.4s ease-out .1s forwards; }
+  .seg button, .panel-tabs button, .tabbar button, .chip, .btn { transition: background-color .2s, color .2s; }
+}
+@keyframes ah-pop { from { transform: scale(.3); } to { transform: scale(1); } }
+@keyframes ah-in { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes ah-draw { to { stroke-dashoffset: 0; } }

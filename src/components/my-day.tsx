@@ -28,6 +28,9 @@ export function daySummary(day: string, stops: UiStop[]) {
 
 /** The day's stops in order: time, colour, what and how long, who else is going; walks in between, with clashes.
  *  Drag a stop by its handle to move it; tap its time to change it, mark it maybe or remove it. */
+/** A stop's bubble grows with how long you stay there (board 68): 15 min ≈ 20 px, 90 min and up 34 px. */
+const bubble = (minutes: number) => Math.round(Math.min(34, Math.max(18, 16 + minutes / 4)));
+
 export function DayStops({ stops, run, canEdit, onPick, faces, routeName, onReschedule }: {
   stops: UiStop[]; run: Run; canEdit: boolean; onPick: (e: Item) => void; faces: (id: string) => Face[]; routeName: string;
   onReschedule: ((next: UiStop[], label: string) => void) | null;
@@ -50,9 +53,9 @@ export function DayStops({ stops, run, canEdit, onPick, faces, routeName, onResc
             : `${s.walk.minutes} min ${s.walk.mode === "foot" ? "walk" : s.walk.mode === "bike" ? "by bike" : "by car"}`}
         </div>}
         <div className="ds-row">
-          {canEdit && <button className="ds-grip" {...handle(i, e.title)}><GripVertical size={16} /></button>}
+          {canEdit ? <button className="ds-grip" {...handle(i, e.title)}><GripVertical size={16} /></button> : <span className="ds-grip" aria-hidden="true" />}
           <button className={"ds-time" + (s.estimated ? " estimated" : "")} aria-expanded={open === key} aria-label={`Time and options for ${e.title}: ${clock(s.start)}`} onClick={() => setOpen(open === key ? null : key)}>{clock(s.start)}</button>
-          <i className="ds-dot" style={{ background: groupOf(e).color }} aria-hidden="true" />
+          <i className="ds-dot" style={{ background: groupOf(e).color, width: bubble(s.duration), height: bubble(s.duration) }} aria-hidden="true" />
           <button className="ds-body" onClick={() => onPick(e)}>
             <b>{e.kind === "venue" ? e.title : m?.name ?? e.venue}</b>
             <small>{e.kind === "venue" ? disciplineOf(e) : e.title} · {s.duration} min{s.maybe ? " · maybe" : ""}{s.fixed ? " · fixed time" : ""}</small>

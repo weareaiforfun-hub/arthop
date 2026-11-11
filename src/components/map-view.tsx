@@ -35,6 +35,26 @@ type Leaflet = any; // loaded from the CDN at runtime, as before
 
 /** Loads Leaflet once: a second copy (e.g. from a double mount) breaks lines drawn on a map made by the first. */
 let leafletLoading: Promise<void> | null = null;
+/** On a computer the header, the plan panel and the time bar float over the map (round 13). How much of the map's
+ *  top, right and bottom they cover, so fitted routes stay in the part you can see. Zero on phones. */
+function covered(el: HTMLElement | null) {
+  const none = { top: 0, right: 0, bottom: 0 };
+  const app = el?.closest(".app");
+  if (!el || !app || el.offsetWidth <= 700 || window.innerWidth <= 760) return none;
+  const r = el.getBoundingClientRect(), box = (sel: string) => app.querySelector(sel)?.getBoundingClientRect();
+  const top = box(".top"), panel = box(".panel"), time = box(".time-wrap");
+  return {
+    top: top ? Math.max(0, top.bottom - r.top) : 0,
+    right: panel && panel.left > r.left + 200 ? Math.max(0, r.right - panel.left) : 0,
+    bottom: time ? Math.max(0, r.bottom - time.top) : 0,
+  };
+}
+/** fitBounds padding: `base` px all round, plus whatever floats over the map. */
+function clearPad(el: HTMLElement | null, base: number, x = 0) {
+  const c = covered(el);
+  return { paddingTopLeft: [base + x, base + c.top] as [number, number], paddingBottomRight: [base + x + c.right, base + c.bottom] as [number, number] };
+}
+
 function loadLeaflet() {
   if ((window as any).L) return Promise.resolve();
   // Bundled with the site rather than loaded from a CDN, so no visitor's IP address goes to a third party for it.
@@ -151,7 +171,7 @@ export function MapView({ visible, lines, onSelect, focus, fit, transport, me, l
           container.appendChild(button);
         }
         marker.bindPopup(container);
-      } else marker.on("click", () => map.current.fitBounds(c.map((v) => [v.m.lat, v.m.lng]), { padding: [80, 80], maxZoom: Math.min(zoom + 3, 18) }));
+      } else marker.on("click", () => map.current.fitBounds(c.map((v) => [v.m.lat, v.m.lng]), { ...clearPad(element.current, 80), maxZoom: Math.min(zoom + 3, 18) }));
     }
 
     const at = (stops: UiStop[]) => stops.map((s) => byMuseum.get(byId.get(s.id)?.museumId || "")).filter((m) => m?.lat != null).map((m) => [m!.lat!, m!.lng!] as [number, number]);
@@ -174,7 +194,7 @@ export function MapView({ visible, lines, onSelect, focus, fit, transport, me, l
         const path = smooth(sure);
         L.polyline(path, { color: "#111", weight: 7, opacity: 1, lineCap: "round", lineJoin: "round", interactive: false, className: "walk-line" }).addTo(line.current);
         const shifted = path.map(([lat, lng]) => { const p = map.current.project([lat, lng], zoom); return map.current.unproject([p.x + 5, p.y + 4], zoom); });
-        L.polyline(shifted, { color: "#111", weight: 1.6, opacity: 0.9, lineCap: "round", interactive: false }).addTo(line.current);
+        L.polyline(shifted, { color: "#111", weight: 1.6, opacity: 0.9, lineCap: "round", interactive: false, className: "walk-line" }).addTo(line.current);
       }
       // One dot per stop; a second visit to the same venue the same day shares it. Labels go right or left of their dot,
       // or a little above or below, wherever they don't cover another label or dot.
@@ -237,7 +257,7 @@ export function MapView({ visible, lines, onSelect, focus, fit, transport, me, l
     const mode = transport.modes.find((m) => m.id === transport.selected!.mode), i = transport.selected.stop;
     if (!mode) return;
     const ends = [i, ...(mode.lines ?? []).filter((l) => l.includes(i)).flat()].map((n) => stopPoint(mode.stops[n])).filter(Boolean);
-    if (ends.length) move(() => map.current?.fitBounds(ends, { padding: [90, 90], maxZoom: 15 }));
+    if (ends.length) move(() => map.current?.fitBounds(ends, { ...clearPad(element.current, 90), maxZoom: 15 }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, selectedKey]);
 
@@ -246,7 +266,7 @@ export function MapView({ visible, lines, onSelect, focus, fit, transport, me, l
   useEffect(() => {
     if (!ready || !ridesShown) return;
     const points = (transport?.modes ?? []).flatMap((m) => m.stops.map(stopPoint)).filter(Boolean);
-    if (points.length) move(() => map.current?.fitBounds(points, { padding: [40, 40], maxZoom: 15 }));
+    if (points.length) move(() => map.current?.fitBounds(points, { ...clearPad(element.current, 40), maxZoom: 15 }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, ridesShown]);
 
@@ -289,7 +309,7 @@ export function MapView({ visible, lines, onSelect, focus, fit, transport, me, l
     const all = lines.flatMap((l) => l.stops), sure = all.filter((s) => !s.maybe);
     const ms = (sure.length ? sure : all).map((s) => byMuseum.get(byId.get(s.id)?.museumId || "")).filter((m) => m?.lat != null);
     move(() => {
-      if (ms.length) map.current?.fitBounds(ms.map((m) => [m!.lat, m!.lng]), { ...(element.current!.offsetWidth > 700 ? { paddingTopLeft: [150, 70], paddingBottomRight: [190, 90] } : { paddingTopLeft: [40, 40], paddingBottomRight: [40, 40] }), maxZoom: 16 });
+      if (ms.length) map.current?.fitBounds(ms.map((m) => [m!.lat, m!.lng]), { ...(element.current!.offsetWidth > 700 ? clearPad(element.current, 40, 130) : { paddingTopLeft: [40, 40], paddingBottomRight: [40, 40] }), maxZoom: 16 });
       else map.current?.setView([52.37, 4.9], 13);
     });
     // Refit only when asked (fit counter), not on every edit.
