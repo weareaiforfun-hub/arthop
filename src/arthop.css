@@ -79,7 +79,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .map-panel { grid-column: 1; grid-row: 1; position: relative; border-right: 2px solid var(--ink); overflow: hidden; min-height: 0; background: #f1ede3; border-radius: 0; margin: 0; }
 .map-canvas { position: absolute; inset: 0; background: var(--paper); z-index: 0; }
 /* The real PDOK map, in grey with a cream wash, so the colour dots and the black line carry the colour (board 56). */
-.map-canvas .leaflet-tile-pane { filter: grayscale(1) contrast(.9) brightness(1.06); mix-blend-mode: multiply; }
+/* Filtered per tile, with no blend mode, so zooming stays smooth (a filter or blend on the whole pane is redrawn on
+   every animation frame). The faint sepia stands in for the old multiply over the paper colour. */
+.map-canvas .leaflet-tile { filter: grayscale(1) contrast(.9) brightness(1.04) sepia(.06); }
 .time-wrap { grid-column: 1; grid-row: 2; border-top: 2px solid var(--ink); border-right: 2px solid var(--ink); background: #fff; }
 .panel { grid-column: 2; grid-row: 1 / span 2; min-height: 0; overflow: auto; background: var(--paper); display: flex; flex-direction: column; }
 .panel-tabs { position: sticky; top: 0; z-index: 3; display: flex; margin: 0 28px; background: var(--paper); border-bottom: 2px solid var(--line); }
