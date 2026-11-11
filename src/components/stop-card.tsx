@@ -47,10 +47,10 @@ export function StopCard({ item, day, at, me, stopNumber, routeLabel, inRoute, o
       : <button className="text-button sc-add-note" onClick={() => setNoteOpen(true)}>Add a note for your group</button>}
     <div className="sc-actions">
       <a className="sc-official" href={item.url} target="_blank" rel="noreferrer">Official page<ArrowUpRight size={16} /></a>
-      <button className={"sc-add" + (inRoute ? " added" : "")} onClick={onAdd} disabled={inRoute || !on} data-wn="add">
+      <button className={"sc-add" + (inRoute ? " added" : "")} data-track={inRoute ? "Already in plan" : on ? "Add to plan" : "Not on this day"} onClick={onAdd} disabled={inRoute || !on} data-wn="add">
         {inRoute ? <>In your {routeLabel}<Check size={17} /></> : on ? <><Plus size={17} />Add to {routeLabel}</> : <>Not on {d.name}</>}</button>
     </div>
-    {on && also.length > 0 && <p className="sc-also">Also add to: {also.map((a) => <button key={a.label} className="text-button" disabled={a.added} onClick={a.onAdd}>{a.added ? <Check size={13} /> : <Plus size={13} />}{a.label}</button>)}</p>}
+    {on && also.length > 0 && <p className="sc-also">Also add to: {also.map((a) => <button key={a.label} data-track="Also add to another plan" className="text-button" disabled={a.added} onClick={a.onAdd}>{a.added ? <Check size={13} /> : <Plus size={13} />}{a.label}</button>)}</p>}
     {here.length > 0 && <div className="sc-here"><h3>What’s on here during Art Week</h3>{here.map((e) => <button key={e.id} onClick={() => onPick(e)} className={onDay(e, day) ? "" : "off"}>
       <i style={{ background: onDay(e, day) ? groupOf(e).color : CLOSED }} /><span>{e.title}<small>{onDay(e, day) ? hoursText(e, day) : "Not on " + d.name} · {daysText(e)}</small></span><ChevronRight size={16} /></button>)}</div>}
     <p className="sc-source">From <a href={item.url} target="_blank" rel="noreferrer">amsterdamart.com</a>. Times can change: always check the official page.</p>

@@ -52,7 +52,7 @@ const FEATURES: Feature[] = [
   { group: "With your group", tab: "friends", target: ".activity-panel, .friends-top", needsNight: true, title: "Live changes, activity and undo", body: "Changes show for everyone at once, What changed lists them, and your own can be undone from the message that appears." },
   { group: "With your group", tab: "friends", target: "[data-tour=invite], .friends-top", needsNight: true, title: "View-only link", body: "Under Invite: people with it see your plans, times and places, but no names or votes, and can’t change anything." },
   { group: "Your spot and your data", target: ".your-link, .spot-banner, .help-button", needsNight: true, title: "Keep your spot: a personal link", body: "A private link that opens your plan as you on any device, no account. Keep it to yourself." },
-  { group: "Your spot and your data", tab: "programme", target: ".site-note", title: "See what’s stored about you", body: "Your data explains who sees your plan, what ArtHop keeps and that it’s all deleted 30 days after Art Week." },
+  { group: "Your spot and your data", tab: "programme", target: ".site-note", title: "See what’s stored about you", body: "Your data explains who sees your plan, what ArtHop keeps (no ads or tracking cookies; only cookie-free usage counts) and that it’s all deleted 30 days after Art Week." },
 ];
 const GROUPS = Array.from(new Set(FEATURES.map((f) => f.group)));
 
@@ -227,7 +227,8 @@ function YourData() {
         <li>A list of changes in your group, so everyone sees who changed what</li>
       </ul>
       <p><b>Just looking around?</b> Then ArtHop keeps nothing about you. An anonymous sign-in (no name, email or password) is made only when you save a plan, start a group or join one.</p>
-      <p><b>Not kept:</b> your phone number, contacts or location. No ads, no tracking cookies and no usage statistics.</p>
+      <p><b>Not kept:</b> your phone number, contacts or location. No ads and no tracking cookies.</p>
+      <p><b>Usage statistics:</b> a cookie-free counter run by ArtHop’s maker (not Google or an ad network) notes which pages and features get used, for example “a route was adopted” or “the map was opened”, plus the browser, device type, country and the site or campaign link that brought you here. It never receives names, notes, search text, invite links or personal links. Add <code>?notrack=1</code> to the address to switch it off in this browser.</p>
       <p><b>Your location</b>, only if you tap the arrow on the map: your phone works out the blue dot and the walking times, and the location never leaves it. It isn’t sent to your group, to ArtHop or anyone else, and it’s forgotten when you close the page. “Google Maps” and “Go” hand the addresses of your stops to Google Maps; Google then sees what you do there.</p>
       <p><b>Your email</b>, only if you ask us to email your personal link: ArtHop keeps a fingerprint of the address (to recognise it when you ask for a new link), never the address itself. Your group never sees it.</p>
       <p><b>In this browser:</b> who you are, your groups, changes waiting to sync, which stops you’ve reached on a walk, and whether you’ve seen the welcome. Clearing your browser removes them, which is why a personal link helps.</p>

@@ -99,7 +99,7 @@ export function DayActions({ day, go, onMaps, onPrint, hasStops }: { day: string
 export function RouteSwitch({ choices, kind, onKind }: { choices: RouteChoice[]; kind: RouteChoice["kind"]; onKind: (k: RouteChoice["kind"]) => void }) {
   if (choices.length < 2) return null;
   return <div className="seg route-switch" role="group" aria-label="Whose plan">
-    {choices.map((c) => <button key={c.kind} aria-pressed={kind === c.kind} className={kind === c.kind ? "on" : ""} onClick={() => onKind(c.kind)}>{c.label}</button>)}
+    {choices.map((c) => <button key={c.kind} data-track={c.kind === "crew" ? "Crew" : c.label} aria-pressed={kind === c.kind} className={kind === c.kind ? "on" : ""} onClick={() => onKind(c.kind)}>{c.label}</button>)}
   </div>;
 }
 

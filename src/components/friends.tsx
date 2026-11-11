@@ -42,7 +42,7 @@ export function FriendsTop({ data, night, userId, day, onInvite, onPick, onDecid
     <div className="picks-head"><h3>Your picks together</h3><span>{rows.length ? `${split} split` : ""}</span></div>
     {!rows.length && <p className="friends-note">Nothing picked for {d.name} yet. Open anything on the map and tap Must-see, Up for it or Skip; your group sees it here.</p>}
     <ul className="picks">{rows.slice(0, 6).map((r) => <li key={r.id}>
-      <button onClick={() => onPick(r.item!)}><b>{r.item!.title}</b>
+      <button data-track="Group pick" onClick={() => onPick(r.item!)}><b>{r.item!.title}</b>
         <small>{[...r.by.entries()].map(([uid, v]) => `${name(uid)}: ${short[v]}`).join(" · ")}{r.state === "waiting" ? ` · waiting on ${r.missing.map((m) => name(m.user_id)).join(" and ")}` : ""}</small></button>
       <span className={"pick-state " + r.state}>{r.state === "in" ? "All in" : r.state === "split" ? "Split" : r.state === "waiting" ? "Waiting" : "Skip"}</span>
     </li>)}</ul>

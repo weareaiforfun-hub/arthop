@@ -109,7 +109,7 @@ export function Decide({ data, night, userId, proposals, onPick, onReact, onDead
         <button className={filter.kind === "agreed" ? "on" : ""} onClick={() => setFilter({ kind: "agreed" })}>Agreed {rows.filter(agreed).length}</button>
         <button className={filter.kind === "split" ? "on" : ""} onClick={() => setFilter({ kind: "split" })}>Split {rows.filter(split).length}</button>
         {real.filter((m) => waitingOn(m.user_id) > 0).map((m) => (
-          <button key={m.user_id} className={filter.kind === "waiting" && filter.userId === m.user_id ? "on" : ""} onClick={() => setFilter({ kind: "waiting", userId: m.user_id })}>
+          <button key={m.user_id} data-track={m.user_id === userId ? "Waiting on you" : "Waiting on someone"} className={filter.kind === "waiting" && filter.userId === m.user_id ? "on" : ""} onClick={() => setFilter({ kind: "waiting", userId: m.user_id })}>
             {m.user_id === userId ? "Waiting on you" : "Waiting on " + m.display_name} {waitingOn(m.user_id)}
           </button>
         ))}
@@ -152,7 +152,7 @@ export function Decide({ data, night, userId, proposals, onPick, onReact, onDead
         <div className="idea-poll">
           <h4>Or pick one of the route ideas</h4>
           {ideas.map((p) => (
-            <button key={p.id} className={"poll-option" + (myVote === p.id ? " on" : "")} aria-pressed={myVote === p.id} onClick={() => onVote(myVote === p.id ? null : p.id)}>
+            <button key={p.id} data-track="Vote for a route idea" className={"poll-option" + (myVote === p.id ? " on" : "")} aria-pressed={myVote === p.id} onClick={() => onVote(myVote === p.id ? null : p.id)}>
               <span>{myVote === p.id && <Check size={12} />}{p.title}<small>{p.votes} {p.votes === 1 ? "vote" : "votes"}</small></span>
               <i style={{ width: `${(p.votes / totalVotes) * 100}%` }} />
             </button>

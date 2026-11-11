@@ -140,7 +140,7 @@ export function Crews({ data, night, userId, canWrite, shared, run, onPick, onCh
                   return <span key={c.id} className={"crew-chip" + (r?.arrived_at ? " here" : r ? " ok" : "")}><i style={{ background: c.color }} />{c.name}: {r?.arrived_at ? "here since " + new Date(r.arrived_at).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) : r ? "confirmed" : "not yet"}</span>;
                 })}</div>
                 {myCrew && <div className="meetup-actions">
-                  {!mine ? <button className="primary" onClick={() => setMine(m.id, {})}>Confirm for {myCrew.name}</button>
+                  {!mine ? <button className="primary" data-track="Confirm for our crew" onClick={() => setMine(m.id, {})}>Confirm for {myCrew.name}</button>
                     : <><button className="secondary" onClick={() => setMine(m.id, { arrived_at: mine.arrived_at ? null : new Date().toISOString() })}>{mine.arrived_at ? "Not there yet" : "We’re here"}</button>
                       <button className="text-button" onClick={() => setMine(m.id, { confirmed_at: null })}>Withdraw</button></>}
                   {canWrite && <button className="icon-button" aria-label={"Remove meet-up at " + e?.title} onClick={() => run([{ t: "delete", table: "ah_meetups", id: m.id }], "Removed a meet-up")}><Trash2 size={13} /></button>}
@@ -194,7 +194,7 @@ function CrewCard({ crew, data, night, userId, canWrite, mine, loose, count, mem
         {rows.map((r) => {
           const m = night.memberOf.get(r.user_id);
           return <span key={r.id} className="crew-person"><span className="avatar" style={{ background: m?.color, color: "#fff" }}>{initials(m?.display_name ?? "?")}</span>{r.user_id === userId ? "You" : m?.display_name}
-            {canWrite && r.user_id !== userId && <button aria-label={`Remove ${m?.display_name} from ${crew.name}`} onClick={() => onRemove(r.id)}>×</button>}</span>;
+            {canWrite && r.user_id !== userId && <button data-track="Remove from crew" aria-label={`Remove ${m?.display_name} from ${crew.name}`} onClick={() => onRemove(r.id)}>×</button>}</span>;
         })}
       </div>
       {canWrite && <div className="crew-actions">
@@ -204,7 +204,7 @@ function CrewCard({ crew, data, night, userId, canWrite, mine, loose, count, mem
             <select value="" onChange={(e) => e.target.value && onAdd(e.target.value)}><option value="">+ Add someone</option>{loose.filter((m) => m.user_id !== userId).map((m) => <option key={m.user_id} value={m.user_id}>{m.display_name}</option>)}</select>
           </label>
         )}
-        {!rows.length && <button className="icon-button" aria-label={"Delete " + crew.name} onClick={onDelete}><Trash2 size={13} /></button>}
+        {!rows.length && <button className="icon-button" data-track="Delete crew" aria-label={"Delete " + crew.name} onClick={onDelete}><Trash2 size={13} /></button>}
       </div>}
     </article>
   );

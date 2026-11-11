@@ -23,13 +23,13 @@ export function ShareDialog({ invite, nightId, canPlan, onClose }: { invite: str
   }
 
   return <div className="modal-backdrop" onClick={onClose}>
-    <section className="keep-spot share-dialog" role="dialog" aria-modal="true" aria-label="Share your night" onClick={(e) => e.stopPropagation()}>
+    <section className="keep-spot share-dialog" role="dialog" aria-modal="true" aria-label="Share your plan" onClick={(e) => e.stopPropagation()}>
       <button className="modal-close" aria-label="Close" onClick={onClose}><X size={20} /></button>
-      <span className="eyebrow">Museumnacht 2026</span>
-      <h2>Share your night</h2>
+      <span className="eyebrow">Amsterdam Art Week 2026</span>
+      <h2>Share your plan</h2>
       <div className="spot-option best">
         <b><PencilLine size={16} />Plan together</b>
-        <p>Friends who open this link join the night and can add, move and vote.</p>
+        <p>Friends who open this link join your group and can add, move and vote.</p>
         <code className="spot-link">{inviteUrl}</code>
         <div className="spot-actions"><button className="primary" onClick={() => copy(inviteUrl, "invite")}>{copied === "invite" ? <><Check size={15} />Copied</> : <><Copy size={15} />Copy invite link</>}</button></div>
       </div>

@@ -50,7 +50,7 @@ export function ViewNight({ token }: { token: string }) {
         <section className="view-map" aria-label="Map of the plan"><MapView visible={[]} lines={lines} onSelect={(e) => window.open(e.url, "_blank", "noopener")} focus={null} fit={fit} isOpen={() => true} /></section>
         <aside className="view-list">
           <span className="eyebrow">Shared with you</span>
-          {night.routes.length > 1 && <div className="seg" role="group" aria-label="Plans">{night.routes.map((r, i) => <button key={r.title + i} className={i === which ? "on" : ""} aria-pressed={i === which} onClick={() => setWhich(i)}>{r.title}</button>)}</div>}
+          {night.routes.length > 1 && <div className="seg" role="group" aria-label="Plans">{night.routes.map((r, i) => <button key={r.title + i} data-track="Switch plan" className={i === which ? "on" : ""} aria-pressed={i === which} onClick={() => setWhich(i)}>{r.title}</button>)}</div>}
           <DrawnTitle day={day} as="h1" />
           {!stops.length ? <p className="view-empty">Nothing planned for this day yet. This page updates by itself when the group adds stops.</p>
             : <ol className="day-stops">{slots.map((s, i) => {
