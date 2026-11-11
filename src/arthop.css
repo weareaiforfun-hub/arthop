@@ -110,6 +110,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .lg-grid i, .lg-dot { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--ink); display: inline-block; flex: 0 0 auto; }
 .lg-dot.big { width: 22px; height: 22px; }
 .map-legend p { margin: 0; color: var(--ink); }
+.map-legend { white-space: normal; } /* styles.css (MuseumHop) sets nowrap, which pushed "Grey: closed at …" out of the box */
 .map-credit { position: absolute; left: 20px; bottom: 14px; z-index: 500; font-size: 13px; color: var(--muted); margin: 0; }
 .leaflet-control-attribution { display: none; }
 .map-error { position: absolute; left: 20px; top: 80px; z-index: 600; background: #fff; border: 2px solid var(--ink); padding: 10px; }
