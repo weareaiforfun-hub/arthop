@@ -18,6 +18,8 @@ Built from MuseumHop (`~/Claude/museumhop`, weareaiforfun-hub/museumhop) in Nove
   to the participant terms for galleries (Thu 13–21, Fri–Sat 12–18, Sun 12–17) and project spaces (Fri–Sat 12–18,
   Sun 12–17). Neighbourhoods and missing pins come from PDOK's address lookup. Pages are cached in `scripts/.cache`.
 - Travel times: `npm run walk-matrix` (OSRM foot, bike and car tables between venues).
+  Travel times are derived from OpenStreetMap data, © OpenStreetMap contributors, and are available under the
+  [Open Database License (ODbL)](https://opendatacommons.org/licenses/odbl/).
 - Suggested routes: `node scripts/build-route-ideas.mjs` (hand-picked entries, times worked out to fit).
 
 ## How it holds together
