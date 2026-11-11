@@ -300,7 +300,10 @@ export function MapView({ visible, lines, onSelect, focus, fit, transport, me, l
   useEffect(() => {
     if (!ready || !focus) return;
     const m = byMuseum.get(focus);
-    if (m?.lat != null) move(() => map.current?.flyTo([m.lat, m.lng], 15, { duration: 0.6 }));
+    // On a phone the details open as a small sheet over the lower part of the map, so the venue sits a bit higher.
+    if (m?.lat != null) move(() => { const mp = map.current; if (!mp) return;
+      const up = window.matchMedia("(max-width: 760px)").matches ? mp.getSize().y * 0.22 : 0;
+      mp.flyTo(up ? mp.unproject(mp.project([m.lat!, m.lng!], 15).add([0, up]), 15) : [m.lat!, m.lng!], 15, { duration: 0.6 }); });
   }, [focus, ready]);
 
   useEffect(() => {

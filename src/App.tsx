@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Accessibility, ArrowUpRight, Check, Layers, LocateFixed, Map as MapIcon, MapPin, Minus, Navigation, Plus, Route, Search, SlidersHorizontal, Undo2, Users, X } from "lucide-react";
 import { activities, byId, byMuseum, clock, COLORS, dayOf, DAYS, dayRange, disciplineOf, GROUPS, initials, KIND_LABEL, museumItem, museums, onDay, openAt, setCurrentDay, type GroupId, type Item, type Kind, type UiStop } from "./lib/catalogue";
 import { addStopOps, derive, personalRouteOps, replaceRouteOps, rescheduleOps, useSync } from "./lib/night";
@@ -86,6 +86,7 @@ export default function App() {
   const [ridesOpen, setRidesOpen] = useState(false), [layers, setLayers] = useState(() => new Set(MODES.filter((m) => m.on).map((m) => m.id)));
   const [hideVenues, setHideVenues] = useState(false), [ride, setRide] = useState<{ mode: string; stop: number } | null>(null);
   const [zoom, setZoom] = useState({ by: 0, tick: 0 });
+  const [cardSize, setCardSize] = useState<"peek" | "half" | "full">("full");
   const [sheet, setSheet] = useState<"peek" | "half" | "full">("half"), [nowMode, setNowMode] = useState(false), [walk, setWalk] = useState<WalkState>(() => loadWalk(day));
   const shownModes = useMemo(() => (ridesOpen ? MODES.filter((m) => layers.has(m.id)) : []), [ridesOpen, layers]);
   const rideMode = ride && shownModes.find((m) => m.id === ride.mode);
@@ -320,7 +321,14 @@ export default function App() {
   const allTypes = useMemo(() => Array.from(new Set(activities.flatMap((e) => e.tags))).sort(), []);
   const openVenues = useMemo(() => new Set(museums.filter((m) => openAt(museumItem(m), at, day) || activities.some((e) => e.museumId === m.id && openAt(e, at, day))).map((m) => m.id)), [at, day]);
   const isOpen = useCallback((id: string) => openVenues.has(id), [openVenues]);
-  function pick(e: Item) { setSelected(e); setFocus(e.museumId); setNote(data?.ah_reactions.find((r) => r.event_id === e.id && r.user_id === userId)?.note || ""); track("details-open", { kind: e.kind }); }
+  /** A tap on the map: on a phone the details open as a small sheet over the map; drag it up for more. */
+  function pickFromMap(e: Item) { pick(e); if (isPhone()) setCardSize("peek"); }
+  const cardDrag = useRef<number | null>(null), cardDragged = useRef(false);
+  const resizeCard = (up: boolean) => {
+    const order = ["peek", "half", "full"] as const, i = order.indexOf(cardSize) + (up ? 1 : -1);
+    if (i < 0) setSelected(null); else setCardSize(order[Math.min(i, 2)]);
+  };
+  function pick(e: Item) { setCardSize("full"); setSelected(e); setFocus(e.museumId); setNote(data?.ah_reactions.find((r) => r.event_id === e.id && r.user_id === userId)?.note || ""); track("details-open", { kind: e.kind }); }
   const likes = (id: string) => {
     const who = suggestions.filter((s) => s.event_id === id && s.user_id !== userId).map((s) => nameOf(s.user_id)).filter(Boolean);
     return who.length ? `${who.slice(0, 2).join(" and ")}${who.length > 2 ? " and more" : ""} ${who.length === 1 ? "likes" : "like"} this` : "";
@@ -501,7 +509,7 @@ export default function App() {
 
     <div className="workspace">
       <section className="map-panel" aria-label="Map of Amsterdam">
-        <MapView isOpen={isOpen} transport={{ modes: shownModes, selected: ride, onSelect: (mode, stop) => setRide({ mode, stop }) }} visible={visible} lines={lines} onSelect={pick} focus={focus} fit={fit} me={loc.spot} locate={locateTick} zoomBy={zoom.by} zoomTick={zoom.tick} />
+        <MapView isOpen={isOpen} transport={{ modes: shownModes, selected: ride, onSelect: (mode, stop) => setRide({ mode, stop }) }} visible={visible} lines={lines} onSelect={pickFromMap} focus={focus} fit={fit} me={loc.spot} locate={locateTick} zoomBy={zoom.by} zoomTick={zoom.tick} />
         {proposal && <div className="preview-banner"><span>Preview: {proposal.title}</span><button onClick={() => setPreviewId(null)} aria-label="Close preview"><X size={15} /></button></div>}
         {previewStops && <div className="preview-banner"><span>Preview: suggested order</span><button onClick={() => setPreviewStops(null)} aria-label="Close preview"><X size={15} /></button></div>}
         <button className={"map-btn rides-button" + (ridesOpen ? " on" : "")} aria-pressed={ridesOpen} aria-label="Getting around" onClick={() => { setRidesOpen(!ridesOpen); setRide(null); }} data-tour="rides"><Layers size={19} /><span>Getting around</span></button>
@@ -554,7 +562,11 @@ export default function App() {
     </nav>
 
     {(toast || undo) && <div className="toast" role="status"><Check size={17} /><span>{toast || undo!.text}</span>{!toast && undo && <button className="toast-undo" onClick={() => { sync!.apply(undo.ops); setUndo(null); }}><Undo2 size={14} />Undo</button>}</div>}
-    {selected && isPhone() && <div className="sheet-backdrop" onClick={() => setSelected(null)}><div className="card-sheet" onClick={(e) => e.stopPropagation()}>{card()}</div></div>}
+    {selected && isPhone() && <div className={"sheet-backdrop" + (cardSize !== "full" ? " sheet-mode " + cardSize : "")} onClick={() => setSelected(null)}><div className="card-sheet" onClick={(e) => e.stopPropagation()}>
+      <button className="card-grip" aria-label={cardSize === "full" ? "Show less" : "Show more"} onClick={() => { if (cardDragged.current) { cardDragged.current = false; return; } setCardSize(cardSize === "peek" ? "half" : cardSize === "half" ? "full" : "peek"); }}
+        onPointerDown={(e) => { cardDrag.current = e.clientY; cardDragged.current = false; e.currentTarget.setPointerCapture(e.pointerId); }}
+        onPointerUp={(e) => { const y = cardDrag.current; cardDrag.current = null; if (y == null || Math.abs(e.clientY - y) < 30) return; cardDragged.current = true; resizeCard(e.clientY < y); }}><span /></button>
+      {card()}</div></div>}
     {filtersOpen && isPhone() && <div className="sheet-backdrop" onClick={() => setFiltersOpen(false)}><div className="card-sheet" onClick={(e) => e.stopPropagation()}>{filterPanel}</div></div>}
     {printOpen && <PrintDay day={day} stops={stops} title={dayLabel} onClose={() => setPrintOpen(false)} />}
     <Onboarding hold={doorPending || recoverOpen || nameDialog} inNight={!!identity} helpOpen={helpOpen} setHelpOpen={setHelpOpen} helpTab={helpTab} show={(p: Place) => {
