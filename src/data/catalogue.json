@@ -1,7 +1,7 @@
 {
  "source": "https://amsterdamart.com/en/programme/",
- "importedAt": "2026-11-11",
- "importedAtTime": "2026-11-11T12:13:41.567Z",
+ "importedAt": "2026-11-12",
+ "importedAtTime": "2026-11-12T13:19:35.544Z",
  "days": [
   "2026-11-18",
   "2026-11-19",
@@ -3073,6 +3073,50 @@
    "admission": "Free admission"
   },
   {
+   "id": "artist-talk-with-ginevra-petrozzi-and-muge-yilmaz",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-with-ginevra-petrozzi-and-muge-yilmaz/",
+   "title": "Artist Talk with Ginevra Petrozzi and Müge Yilmaz",
+   "venue": "No Limits! Art Castle",
+   "museumId": "no-limits-art-castle",
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-21": [
+     "17:00",
+     "18:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 17:00—18:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "artist-talk-with-venus-jasper-shani-leseman",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-with-venus-jasper-shani-leseman/",
+   "title": "Artist Talk with Venus Jasper & Shani Leseman",
+   "venue": "No Limits! Art Castle",
+   "museumId": "no-limits-art-castle",
+   "kind": "event",
+   "tags": [
+    "Artist Talk"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-19": [
+     "17:00",
+     "18:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 17:00—18:00",
+   "admission": "Free admission"
+  },
+  {
    "id": "artist-talk-adam-pendleton",
    "url": "https://amsterdamart.com/en/programme/artist-talk-adam-pendleton/",
    "title": "Artist Talk: Adam Pendleton",
@@ -3093,6 +3137,29 @@
    },
    "dates": "Wednesday 18 November 2026 · 09:00—10:15",
    "admission": "With ticket"
+  },
+  {
+   "id": "artist-talk-ola-hassanain-and-ala-kheir-in-conversation-and-opening-of-the-exhibition",
+   "url": "https://amsterdamart.com/en/programme/artist-talk-ola-hassanain-and-ala-kheir-in-conversation-and-opening-of-the-exhibition/",
+   "title": "Artist Talk: Ala Kheir in conversation with Hassan Kamil and Salih Basheer, and opening of the exhibition",
+   "venue": "Prince Claus Fund",
+   "museumId": "the-prince-claus-fund",
+   "kind": "event",
+   "tags": [
+    "Artist Talk",
+    "Panel / Talk"
+   ],
+   "disciplines": [
+    "Photography"
+   ],
+   "days": {
+    "2026-11-20": [
+     "17:00",
+     "19:00"
+    ]
+   },
+   "dates": "Friday 20 November 2026 · 17:00—19:00",
+   "admission": "Free admission"
   },
   {
    "id": "artist-talk-folkert-de-jong-with-doede-hardeman-museum-director-singer-laren",
@@ -3204,29 +3271,6 @@
     ]
    },
    "dates": "Sunday 22 November 2026 · 13:00—14:00",
-   "admission": "Free admission"
-  },
-  {
-   "id": "artist-talk-ola-hassanain-and-ala-kheir-in-conversation-and-opening-of-the-exhibition",
-   "url": "https://amsterdamart.com/en/programme/artist-talk-ola-hassanain-and-ala-kheir-in-conversation-and-opening-of-the-exhibition/",
-   "title": "Artist Talk: Ola Hassanain and Ala Kheir in conversation and opening of the exhibition",
-   "venue": "Prince Claus Fund",
-   "museumId": "the-prince-claus-fund",
-   "kind": "event",
-   "tags": [
-    "Artist Talk",
-    "Panel / Talk"
-   ],
-   "disciplines": [
-    "Photography"
-   ],
-   "days": {
-    "2026-11-20": [
-     "17:00",
-     "19:00"
-    ]
-   },
-   "dates": "Friday 20 November 2026 · 17:00—19:00",
    "admission": "Free admission"
   },
   {
@@ -3453,6 +3497,41 @@
    "admission": "Free admission"
   },
   {
+   "id": "solo-exhibition-aysen-kaptanoglu",
+   "url": "https://amsterdamart.com/en/programme/solo-exhibition-aysen-kaptanoglu/",
+   "title": "baby ghosts and the machine | Ayşen Kaptanoğlu",
+   "venue": "Madé van Krimpen",
+   "museumId": "made-van-krimpen-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Installation",
+    "Painting"
+   ],
+   "days": {
+    "2026-11-19": [
+     "12:00",
+     "21:00"
+    ],
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 19 December 2026",
+   "admission": "Free admission"
+  },
+  {
    "id": "barzakh-riyas-komu",
    "url": "https://amsterdamart.com/en/programme/barzakh-riyas-komu/",
    "title": "Barzakh | Riyas Komu",
@@ -3649,12 +3728,12 @@
     "Other"
    ],
    "days": {
-    "2026-11-19": [
+    "2026-11-20": [
      "19:00",
      "21:00"
     ]
    },
-   "dates": "Thursday 19 November 2026 · 19:00—21:00",
+   "dates": "Friday 20 November 2026 · 19:00—21:00",
    "admission": "Free admission"
   },
   {
@@ -4739,6 +4818,28 @@
    "dates": "Sunday 22 November 2026 · 10:00—12:00",
    "admission": "With ticket",
    "family": true
+  },
+  {
+   "id": "in-conversation-ernst-van-alphen-with-paul-kooiker-amie-dicke-juul-kraijer-and-geert-goiris",
+   "url": "https://amsterdamart.com/en/programme/in-conversation-ernst-van-alphen-with-paul-kooiker-amie-dicke-juul-kraijer-and-geert-goiris/",
+   "title": "In Conversation: Ernst van Alphen with Paul Kooiker, Amie Dicke, Juul Kraijer and Geert Goiris",
+   "venue": "Buro Onrust",
+   "museumId": null,
+   "kind": "event",
+   "tags": [
+    "Panel / Talk"
+   ],
+   "disciplines": [
+    "Photography"
+   ],
+   "days": {
+    "2026-11-19": [
+     "14:00",
+     "17:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 14:00—17:00",
+   "admission": "Free admission"
   },
   {
    "id": "in-conversation-robin-de-puy",
@@ -5833,28 +5934,6 @@
    "admission": "Free admission"
   },
   {
-   "id": "performance-counter-serenade",
-   "url": "https://amsterdamart.com/en/programme/performance-counter-serenade/",
-   "title": "Performance: Counter serenade",
-   "venue": "mad meg",
-   "museumId": "mad-meg",
-   "kind": "event",
-   "tags": [
-    "Performance"
-   ],
-   "disciplines": [
-    "Performance"
-   ],
-   "days": {
-    "2026-11-19": [
-     "19:00",
-     "21:00"
-    ]
-   },
-   "dates": "Thursday 19 November 2026 · 19:00—21:00",
-   "admission": "Free admission"
-  },
-  {
    "id": "performance-de-diepe-duisternis-by-patricia-kaersenhout-dwight-fransman-vernon-chatlein",
    "url": "https://amsterdamart.com/en/programme/performance-de-diepe-duisternis-by-patricia-kaersenhout-dwight-fransman-vernon-chatlein/",
    "title": "Performance: De diepe duisternis by patricia kaersenhout, Dwight Fransman & Vernon Chatlein",
@@ -6196,6 +6275,28 @@
    "admission": "Free admission"
   },
   {
+   "id": "performance-counter-serenade",
+   "url": "https://amsterdamart.com/en/programme/performance-counter-serenade/",
+   "title": "Reading Performance: Counter serenade",
+   "venue": "mad meg",
+   "museumId": "mad-meg",
+   "kind": "event",
+   "tags": [
+    "Performance"
+   ],
+   "disciplines": [
+    "Performance"
+   ],
+   "days": {
+    "2026-11-19": [
+     "19:00",
+     "21:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 19:00—21:00",
+   "admission": "Free admission"
+  },
+  {
    "id": "ruins-sense-of-place-i-nataliya-zuban",
    "url": "https://amsterdamart.com/en/programme/ruins-sense-of-place-i-nataliya-zuban/",
    "title": "ruins. sense of place I NATALIYA ZUBAN",
@@ -6291,41 +6392,6 @@
     ]
    },
    "dates": "Sunday 22 November 2026 · 15:00—17:00",
-   "admission": "Free admission"
-  },
-  {
-   "id": "solo-exhibition-aysen-kaptanoglu",
-   "url": "https://amsterdamart.com/en/programme/solo-exhibition-aysen-kaptanoglu/",
-   "title": "Solo Exhibition | Ayşen Kaptanoğlu",
-   "venue": "Madé van Krimpen",
-   "museumId": "made-van-krimpen-gallery",
-   "kind": "exhibition",
-   "tags": [
-    "Exhibition"
-   ],
-   "disciplines": [
-    "Installation",
-    "Painting"
-   ],
-   "days": {
-    "2026-11-19": [
-     "12:00",
-     "21:00"
-    ],
-    "2026-11-20": [
-     "12:00",
-     "18:00"
-    ],
-    "2026-11-21": [
-     "12:00",
-     "18:00"
-    ],
-    "2026-11-22": [
-     "12:00",
-     "17:00"
-    ]
-   },
-   "dates": "19 November up to 19 December 2026",
    "admission": "Free admission"
   },
   {
@@ -6552,6 +6618,28 @@
    },
    "dates": "Friday 20 November 2026 · 18:30—20:00",
    "admission": "Free admission"
+  },
+  {
+   "id": "tarotreading-by-eli-3",
+   "url": "https://amsterdamart.com/en/programme/tarotreading-by-eli-3/",
+   "title": "Tarotreading by Eli #3",
+   "venue": "No Limits! Art Castle",
+   "museumId": "no-limits-art-castle",
+   "kind": "event",
+   "tags": [
+    "Other"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-21": [
+     "14:00",
+     "17:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 14:00—17:00",
+   "admission": "With ticket"
   },
   {
    "id": "the-future-is-now-melanie-bonajo-anna-hoetjes-maria-pask-patricia-kaersenhout",
