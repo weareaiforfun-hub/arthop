@@ -1,7 +1,7 @@
 {
  "source": "https://amsterdamart.com/en/programme/",
- "importedAt": "2026-11-12",
- "importedAtTime": "2026-11-12T13:19:35.544Z",
+ "importedAt": "2026-11-13",
+ "importedAtTime": "2026-11-13T12:41:54.077Z",
  "days": [
   "2026-11-18",
   "2026-11-19",
@@ -3864,7 +3864,7 @@
   {
    "id": "past-present-future-inez-de-brauw-bo-bosk-kenneth-aidoo-clinton-kabena",
    "url": "https://amsterdamart.com/en/programme/past-present-future-inez-de-brauw-bo-bosk-kenneth-aidoo-clinton-kabena/",
-   "title": "Common Ground | Inez de Brauw, Bo Bosk, Clinton Kabena",
+   "title": "Common Ground: Inez de Brauw, Bo Bosk, Yaima Carrazana, Abul Hisham, Clinton Kabena, Daniel Tetteh Nartey and Lotte Werkema",
    "venue": "Vriend van Bavink Gallery",
    "museumId": "gallery-vriend-van-bavink",
    "kind": "exhibition",
@@ -4606,6 +4606,36 @@
     ]
    },
    "dates": "18 up to 22 November 2026",
+   "admission": "Free admission"
+  },
+  {
+   "id": "french-exit-louis-dercon-frans-van-hoek-tereza-kalousova",
+   "url": "https://amsterdamart.com/en/programme/french-exit-louis-dercon-frans-van-hoek-tereza-kalousova/",
+   "title": "French exit | Louis Dercon, Frans van Hoek, Tereza Kalousova",
+   "venue": "mad meg",
+   "museumId": "mad-meg",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Other"
+   ],
+   "days": {
+    "2026-11-20": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
+     "17:00"
+    ]
+   },
+   "dates": "19 November up to 5 December 2026",
    "admission": "Free admission"
   },
   {
@@ -5576,7 +5606,9 @@
    ],
    "disciplines": [
     "Digital art",
-    "Mixed Media"
+    "Installation",
+    "Mixed Media",
+    "Video | Film"
    ],
    "days": {
     "2026-11-21": [
