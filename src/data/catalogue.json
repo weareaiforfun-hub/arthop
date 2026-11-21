@@ -1,7 +1,7 @@
 {
  "source": "https://amsterdamart.com/en/programme/",
- "importedAt": "2026-11-16",
- "importedAtTime": "2026-11-16T13:13:38.602Z",
+ "importedAt": "2026-11-21",
+ "importedAtTime": "2026-11-21T13:05:30.025Z",
  "days": [
   "2026-11-18",
   "2026-11-19",
@@ -1342,17 +1342,21 @@
    "lng": 4.8975949,
    "pinSource": "Art Week location page",
    "hours": {
+    "2026-11-18": [
+     "15:00",
+     "18:00"
+    ],
     "2026-11-19": [
-     "14:00",
-     "17:00"
+     "13:00",
+     "18:00"
     ],
     "2026-11-20": [
      "12:00",
-     "18:00"
+     "20:00"
     ],
     "2026-11-21": [
      "12:00",
-     "18:00"
+     "19:00"
     ],
     "2026-11-22": [
      "12:00",
@@ -2008,14 +2012,6 @@
    "lng": 4.9033427,
    "pinSource": "Art Week location page",
    "hours": {
-    "2026-11-18": [
-     "09:00",
-     "17:00"
-    ],
-    "2026-11-19": [
-     "09:00",
-     "17:00"
-    ],
     "2026-11-20": [
      "09:00",
      "17:00"
@@ -2189,6 +2185,42 @@
     "2026-11-22": [
      "12:00",
      "17:00"
+    ]
+   },
+   "listedHours": true,
+   "accessible": null
+  },
+  {
+   "id": "stadssalon-amsterdam-art-week-hub",
+   "name": "StadsSalon: Amsterdam Art Week Hub",
+   "url": "https://amsterdamart.com/en/locations/stadssalon-amsterdam-art-week-hub/",
+   "address": "Herengracht 528, 1017 CC Amsterdam",
+   "kind": "other",
+   "area": "Grachtengordel-Zuid",
+   "district": null,
+   "lat": 52.36463452,
+   "lng": 4.89517921,
+   "pinSource": "address (PDOK)",
+   "hours": {
+    "2026-11-18": [
+     "09:30",
+     "12:00"
+    ],
+    "2026-11-19": [
+     "09:30",
+     "12:00"
+    ],
+    "2026-11-20": [
+     "09:30",
+     "12:00"
+    ],
+    "2026-11-21": [
+     "09:30",
+     "12:00"
+    ],
+    "2026-11-22": [
+     "09:30",
+     "12:00"
     ]
    },
    "listedHours": true,
@@ -2825,6 +2857,29 @@
    "admission": "Free admission"
   },
   {
+   "id": "aaw-hub-live-podcast-jochem-mestriner",
+   "url": "https://amsterdamart.com/en/programme/aaw-hub-live-podcast-jochem-mestriner/",
+   "title": "AAW Hub Talk: Kunst is Lang live recording with Jochem Mestriner",
+   "venue": "StadsSalon: Amsterdam Art Week Hub",
+   "museumId": "stadssalon-amsterdam-art-week-hub",
+   "kind": "event",
+   "tags": [
+    "Artist Talk",
+    "Panel / Talk"
+   ],
+   "disciplines": [
+    "Mixed Media"
+   ],
+   "days": {
+    "2026-11-21": [
+     "11:00",
+     "12:00"
+    ]
+   },
+   "dates": "Saturday 21 November 2026 · 11:00—12:00",
+   "admission": "With ticket"
+  },
+  {
    "id": "artist-in-motion-an-hommage-rene-groebli",
    "url": "https://amsterdamart.com/en/programme/artist-in-motion-an-hommage-rene-groebli/",
    "title": "An Artist in Motion | René Groebli",
@@ -3013,16 +3068,17 @@
    ],
    "disciplines": [
     "Digital art",
+    "Installation",
     "Mixed Media",
     "Other"
    ],
    "days": {
-    "2026-11-22": [
-     "10:00",
-     "18:00"
+    "2026-11-21": [
+     "11:00",
+     "14:00"
     ]
    },
-   "dates": "Sunday 22 November 2026 · 10:00—18:00",
+   "dates": "Saturday 21 November 2026 · 11:00—14:00",
    "admission": "Free admission"
   },
   {
@@ -3672,7 +3728,7 @@
   {
    "id": "book-launch-artist-talk-of-hinterland-geert-goiris-with-roger-willems-and-wim-de-temmerman",
    "url": "https://amsterdamart.com/en/programme/book-launch-artist-talk-of-hinterland-geert-goiris-with-roger-willems-and-wim-de-temmerman/",
-   "title": "Book Launch & Artist Talk of Hinterland: Geert Goiris with Roger Willems and Wim Temmerman",
+   "title": "Book Launch & Artist Talk of Hinterland: Geert Goiris with Roger Willems and Wim de Temmerman",
    "venue": "Buro Onrust",
    "museumId": "galerie-onrust",
    "kind": "event",
@@ -3967,7 +4023,7 @@
   {
    "id": "curator-tour-artist-talk-rosanna-van-mierlo-danae-tapia-hannah-dawn-henderson-thato-toeba",
    "url": "https://amsterdamart.com/en/programme/curator-tour-artist-talk-rosanna-van-mierlo-danae-tapia-hannah-dawn-henderson-thato-toeba/",
-   "title": "Curator Tour & Artist Talk: Rosanna van Mierlo, Danae Tapia, Hannah Dawn Henderson & Thato Toeba",
+   "title": "Curator Tour & Artist Talk: Rosanna van Mierlo, Danae Tapia, Hannah Dawn Henderson",
    "venue": "DNB",
    "museumId": "de-nederlandsche-bank-dnb",
    "kind": "event",
@@ -4352,16 +4408,16 @@
     "Photography"
    ],
    "days": {
-    "2026-11-18": [
-     "09:00",
-     "17:00"
-    ],
-    "2026-11-19": [
-     "09:00",
-     "17:00"
-    ],
     "2026-11-20": [
      "09:00",
+     "17:00"
+    ],
+    "2026-11-21": [
+     "12:00",
+     "18:00"
+    ],
+    "2026-11-22": [
+     "12:00",
      "17:00"
     ]
    },
@@ -5780,11 +5836,33 @@
    ],
    "days": {
     "2026-11-20": [
-     "17:00",
-     "19:00"
+     "18:00",
+     "20:00"
     ]
    },
-   "dates": "Friday 20 November 2026 · 17:00—19:00",
+   "dates": "Friday 20 November 2026 · 18:00—20:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "opening-indebt-x-diez-invites",
+   "url": "https://amsterdamart.com/en/programme/opening-indebt-x-diez-invites/",
+   "title": "Opening: INDEBT x diez invites…",
+   "venue": "INDEBT",
+   "museumId": "indebt",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Work on paper"
+   ],
+   "days": {
+    "2026-11-18": [
+     "15:00",
+     "18:00"
+    ]
+   },
+   "dates": "Wednesday 18 November 2026 · 15:00—18:00",
    "admission": "Free admission"
   },
   {
@@ -5808,6 +5886,55 @@
     ]
    },
    "dates": "Wednesday 18 November 2026 · 17:00—20:00",
+   "admission": "Free admission"
+  },
+  {
+   "id": "opening-ruins-sense-of-place-nataliya-zuban",
+   "url": "https://amsterdamart.com/en/programme/opening-ruins-sense-of-place-nataliya-zuban/",
+   "title": "Opening: ruins. sense of place | Nataliya Zuban",
+   "venue": "Iona Foundation",
+   "museumId": "iona-stichting",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Mixed Media",
+    "Sculpture"
+   ],
+   "days": {
+    "2026-11-18": [
+     "09:30",
+     "16:30"
+    ]
+   },
+   "dates": "Wednesday 18 November 2026 · 09:30—16:30",
+   "admission": "Free admission"
+  },
+  {
+   "id": "opening-the-future-is-now-melanie-bonajo-anna-hoetjes-maria-pask-patricia-kaersenhout",
+   "url": "https://amsterdamart.com/en/programme/opening-the-future-is-now-melanie-bonajo-anna-hoetjes-maria-pask-patricia-kaersenhout/",
+   "title": "Opening: The Future is Now | melanie bonajo, Anna Hoetjes, Maria Pask, patricia kaersenhout",
+   "venue": "VU ART SCIENCE Gallery",
+   "museumId": "vu-art-science-gallery",
+   "kind": "exhibition",
+   "tags": [
+    "Exhibition"
+   ],
+   "disciplines": [
+    "Ceramics",
+    "Installation",
+    "Mixed Media",
+    "Textile",
+    "Video | Film"
+   ],
+   "days": {
+    "2026-11-19": [
+     "17:00",
+     "19:00"
+    ]
+   },
+   "dates": "Thursday 19 November 2026 · 17:00—19:00",
    "admission": "Free admission"
   },
   {
