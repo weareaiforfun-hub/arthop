@@ -21,12 +21,22 @@
     <meta name="twitter:image" content="https://arthop.arian-shafa.xyz/og.jpg" />
     <link rel="icon" href="./favicon.svg" />
     <title>ArtHop · plan Amsterdam Art Week</title>
-    <!-- Structured data: what ArtHop is (a free, unofficial planner) and the event it's about. The organiser is
-         Stichting Amsterdam Art, not ArtHop. -->
+    <link rel="canonical" href="https://arthop.arian-shafa.xyz/" />
+    <!-- Structured data: the site's name (so search results show "ArtHop", not the bare address), what ArtHop is (a
+         free, unofficial planner) and the event it's about. The organiser is Stichting Amsterdam Art, not ArtHop. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://arthop.arian-shafa.xyz/#website",
+          "name": "ArtHop",
+          "url": "https://arthop.arian-shafa.xyz/",
+          "description": "A free, unofficial planner for Amsterdam Art Week (18–22 Nov 2026): the whole programme on one map, day by day. Plan your walk with friends; no account needed.",
+          "inLanguage": "en",
+          "publisher": { "@type": "Person", "name": "Arian Shafa", "url": "https://arian-shafa.xyz/" }
+        },
         {
           "@type": "WebApplication",
           "@id": "https://arthop.arian-shafa.xyz/#app",
@@ -135,7 +145,7 @@ addEventListener('unhandledrejection', e => err(e.reason && (e.reason.message ||
     <div id="root">
       <!-- Shown until the app loads, and to search engines and readers without JavaScript. -->
       <main class="noscript-intro" style="max-width:640px;margin:40px auto;padding:0 16px;font-family:'Space Grotesk',system-ui,sans-serif;background:#fbf6ea;color:#111">
-        <h1 style="font-family:Syne,sans-serif;font-size:44px;letter-spacing:-2px">arthop</h1>
+        <h1 style="font-family:Syne,sans-serif;font-size:44px;letter-spacing:-2px">arthop<span class="sr-only">: plan Amsterdam Art Week together</span></h1>
         <p>A free planner for Amsterdam Art Week, Wednesday 18 to Sunday 22 November 2026.</p>
         <ul>
           <li>The whole programme on one map, day by day: exhibitions, openings, talks and tours.</li>
